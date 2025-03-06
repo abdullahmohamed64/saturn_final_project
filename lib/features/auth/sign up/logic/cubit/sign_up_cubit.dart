@@ -1,0 +1,79 @@
+import 'dart:io';
+
+import 'package:bloc/bloc.dart';
+import 'package:flutter/widgets.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:saturn/constants/assets.dart';
+
+import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
+import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_model.dart';
+import 'package:saturn/features/auth/sign%20up/data/repo/sign_up_repo.dart';
+
+part 'sign_up_state.dart';
+
+class SignUpCubit extends Cubit<SignUpState> {
+  SignUpCubit(this._signUpRepo) : super(SignUpInitial());
+  final SignUpRepo _signUpRepo;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController mobileController = TextEditingController();
+  TextEditingController birthDateController = TextEditingController();
+  File image = File(Assets.assetsImagesFacebook);
+  TextEditingController genderController = TextEditingController();
+  TextEditingController bioController = TextEditingController();
+  final GlobalKey<FormState> signUpFormKey = GlobalKey();
+  final GlobalKey<FormState> completeProfileformKey = GlobalKey();
+
+  void emitSignUp() async {
+    emit(SignUpLoading());
+    String userName = '${firstNameController.text} ${lastNameController.text}';
+
+    final res = await _signUpRepo.signUp(
+      SignUpRequestModel(
+        username: userName,
+        email: emailController.text,
+        password: passwordController.text,
+        mobile: mobileController.text,
+        birthdate: birthDateController.text,
+        gender: genderController.text,
+        bio: bioController.text,
+        imagePath: image,
+      ),
+    );
+
+    res.when(
+      success: (signUpRes) {
+        emit(SignUpSuccess(signUpResponseModel: signUpRes));
+        close(); ///////////
+      },
+      failure:
+          (e) => emit(SignUpError(e.apiErrorModel.message ?? 'sign up failed')),
+    );
+  }
+
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    passwordController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    mobileController.dispose();
+    birthDateController.dispose();
+
+    genderController.dispose();
+    bioController.dispose();
+    return super.close();
+  }
+
+  void pickImageAndUpload() async {
+    ImagePicker picker = ImagePicker();
+    XFile? pickedImage = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      image = File(pickedImage.path);
+      emit(ImageUploaded(image: image));
+    }
+  }
+}
