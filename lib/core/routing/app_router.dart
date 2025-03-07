@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/routing/routes.dart';
+import 'package:saturn/features/auth/sign%20in/logic/cubit/sign_in_cubit.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/reset_password_page.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/set_new_password_page.dart';
-import 'package:saturn/features/auth/sign%20up/logic/cubit/sign_up_cubit.dart';
 import 'package:saturn/features/auth/sign%20up/presentation/views/complete_profile_page.dart';
 import 'package:saturn/features/auth/sign%20up/presentation/views/sign_up_page.dart';
 import 'package:saturn/features/on%20boarding/on_boarding_page.dart';
@@ -24,7 +24,10 @@ class AppRouter {
       case Routes.signInPage:
         return MaterialPageRoute(
           builder: (_) {
-            return SignInPage();
+            return BlocProvider(
+              create: (context) => getIt<SignInCubit>(),
+              child: SignInPage(),
+            );
           },
         );
       case Routes.signUpPage:

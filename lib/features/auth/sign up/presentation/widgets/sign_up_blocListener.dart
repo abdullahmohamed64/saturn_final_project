@@ -18,10 +18,15 @@ class SignUpBlocListener extends StatelessWidget {
           ).showSnackBar(SnackBar(content:
           
            Text('sign up failed ${state.message}')));
-        } else {
+        } else if(state is ImageUploaded){
           ScaffoldMessenger.of(
             context,
-          ).showSnackBar(SnackBar(content: Text('sign up succes')));
+          ).showSnackBar(SnackBar(content: Text('image uploaded succesfully')));
+        }
+        else{
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('signed up succesfully')));
         }
       },
       child: SizedBox.shrink(),

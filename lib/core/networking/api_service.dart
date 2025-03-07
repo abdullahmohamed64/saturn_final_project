@@ -1,17 +1,80 @@
-import 'package:dio/dio.dart';
-import 'package:retrofit/retrofit.dart';
+// import 'package:dio/dio.dart';
+// import 'package:retrofit/retrofit.dart';
+// import 'package:saturn/core/networking/api_constants.dart';
+// import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
+// import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_model.dart';
+// part 'api_service.g.dart';
+
+// //The @RestApi annotation tells Retrofit that this interface is a REST API client. The base URL is provided by ApiConstants.baseUrl
+// @RestApi(baseUrl: ApiConstants.baseUrl)
+// abstract class ApiService {
+//   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
+
+//   @POST(ApiConstants.signUp)
+//   Future<SignUpResponseModel> signUp(
+//     @Body() SignUpRequestModel signUpRequestModel,
+//   );
+// }
+
+import 'package:saturn/core/helper/app_functions.dart';
+import 'package:saturn/core/networking/api%20consumer/api_consumer.dart';
+
 import 'package:saturn/core/networking/api_constants.dart';
+import 'package:saturn/core/networking/server_exception.dart';
+import 'package:saturn/features/auth/sign%20in/data/models/sign_in_request_model.dart';
+import 'package:saturn/features/auth/sign%20in/data/models/sign_in_response_model.dart';
+
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_model.dart';
-part 'api_service.g.dart';
 
-//The @RestApi annotation tells Retrofit that this interface is a REST API client. The base URL is provided by ApiConstants.baseUrl
-@RestApi(baseUrl: ApiConstants.baseUrl)
-abstract class ApiService {
-  factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
+class ApiService {
+  ApiService({required this.api});
+  final ApiConsumer api;
 
-  @POST(ApiConstants.signUp)
   Future<SignUpResponseModel> signUp(
-    @Body() SignUpRequestModel signUpRequestModel,
-  );
+    SignUpRequestModel signUpRequestModel,
+  ) async {
+    final data = {
+      'username': signUpRequestModel.username,
+      'email': signUpRequestModel.email,
+      'password': signUpRequestModel.password,
+      'mobile': signUpRequestModel.mobile,
+      'birthdate': signUpRequestModel.birthdate,
+      'gender': signUpRequestModel.gender,
+      'bio': signUpRequestModel.bio,
+      // For files, use MultipartFile:
+      'file': await AppFunctions.uploadImageToApiMethod(signUpRequestModel),
+    };
+
+    try {
+      final res = await api.post(
+        ApiConstants.signUp,
+        data: data,
+        isFromData: true,
+      );
+      return SignUpResponseModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
+
+  // i added baseUrl to diio factory
+  Future<SignInResponseModel> sinIn(
+    SignInRequestModel signInRequestModel,
+  ) async {
+    final data = {
+      'email': signInRequestModel.email,
+      'password': signInRequestModel.password,
+    };
+    try {
+      final res = await api.post(
+        ApiConstants.signIn,
+        data: data,
+        isFromData: true,
+      );
+      return SignInResponseModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
 }

@@ -5,6 +5,7 @@ import 'package:saturn/constants/assets.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/core/widgets/dashed_line.dart';
+import 'package:saturn/features/auth/sign%20in/presentation/widgets/custom_sign_in_bloc_listener.dart';
 
 import '../widgets/custom_login_form.dart';
 import '../widgets/dont_have_an_account.dart';
@@ -61,6 +62,8 @@ class SignInPage extends StatelessWidget {
                 verticalSpace(20),
                 DontHaveAnAccount(),
                 verticalSpace(30),
+
+                CustomSignInBlocListener(),
               ],
             ),
           ),

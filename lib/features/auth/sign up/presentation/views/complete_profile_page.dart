@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:saturn/constants/assets.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/core/widgets/dashed_line.dart';

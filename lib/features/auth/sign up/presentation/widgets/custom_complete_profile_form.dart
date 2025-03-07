@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saturn/constants/assets.dart';
-import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/spacing.dart';
-import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/core/widgets/app_button.dart';
@@ -11,6 +9,7 @@ import 'package:saturn/core/widgets/custom_text_form_field.dart';
 
 import 'package:saturn/features/auth/sign%20up/logic/cubit/sign_up_cubit.dart';
 import 'package:saturn/features/auth/sign%20up/presentation/widgets/custom_drop_down_button.dart';
+import 'package:saturn/features/auth/sign%20up/presentation/widgets/upload_image_tp_api.dart';
 
 class CustomCompleteProfileForm extends StatefulWidget {
   const CustomCompleteProfileForm({super.key});
@@ -106,36 +105,6 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class PickImageAndUploadToApi extends StatelessWidget {
-  const PickImageAndUploadToApi({super.key, required this.signUp});
-
-  final SignUpCubit signUp;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
-      builder: (context, state) {
-        return GestureDetector(
-          onTap: () {
-            signUp.pickImageAndUpload();
-          },
-          child:
-              state is ImageUploaded
-                  ? CircleAvatar(
-                    radius: 50,
-                    backgroundImage: FileImage(state.image),
-                  )
-                  : Image.asset(
-                    Assets.assetsImagesEmptyAvater,
-                    width: 100,
-                    height: 100,
-                  ),
-        );
-      },
     );
   }
 }

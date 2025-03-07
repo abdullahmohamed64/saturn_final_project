@@ -7,7 +7,6 @@ import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/core/widgets/app_button.dart';
 import 'package:saturn/core/widgets/custom_text_form_field.dart';
-import 'package:saturn/features/auth/sign%20in/presentation/views/sign_in_page.dart';
 import 'package:saturn/features/auth/sign%20up/logic/cubit/sign_up_cubit.dart';
 
 
