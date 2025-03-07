@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:saturn/constants/assets.dart';
-
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/repo/sign_up_repo.dart';
@@ -20,7 +19,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   TextEditingController lastNameController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
   TextEditingController birthDateController = TextEditingController();
-  File image = File(Assets.assetsImagesFacebook);
+  File? image;
   TextEditingController genderController = TextEditingController();
   TextEditingController bioController = TextEditingController();
   final GlobalKey<FormState> signUpFormKey = GlobalKey();
@@ -42,14 +41,10 @@ class SignUpCubit extends Cubit<SignUpState> {
         imagePath: image,
       ),
     );
-
-    res.when(
-      success: (signUpRes) {
-        emit(SignUpSuccess(signUpResponseModel: signUpRes));
-        close(); ///////////
-      },
-      failure:
-          (e) => emit(SignUpError(e.apiErrorModel.message ?? 'sign up failed')),
+    res.fold(
+      (signUpResponseModel) =>
+          emit(SignUpSuccess(signUpResponseModel: signUpResponseModel)),
+      (error) => emit(SignUpError(error)),
     );
   }
 
@@ -73,7 +68,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
     if (pickedImage != null) {
       image = File(pickedImage.path);
-      emit(ImageUploaded(image: image));
+      emit(ImageUploaded(image: image!));
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:saturn/core/networking/api_constants.dart';
 
 class DioFactory {
   /// to prevent take an object
@@ -14,6 +15,8 @@ class DioFactory {
         ..options.receiveTimeout = timeOut;
       //  addHeaders();
       addDioInterceptors();
+      
+       dio?.options.baseUrl = ApiConstants.baseUrl;
     }
     return dio!;
   }
@@ -29,6 +32,7 @@ class DioFactory {
   // }
   static void addTokenAfterLogin({required String token}) {
     dio?.options.headers = {'Authorization': 'Bearer $token'};
+
   }
 
   static void addDioInterceptors() {
@@ -42,6 +46,8 @@ class DioFactory {
         responseBody: true,
         responseHeader: true,
       ),
+      
     );
+   
   }
 }

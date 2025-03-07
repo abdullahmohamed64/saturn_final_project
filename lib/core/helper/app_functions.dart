@@ -1,6 +1,9 @@
-
+import 'package:dio/dio.dart';
 import 'package:saturn/core/helper/app_reg_exp.dart';
 import 'package:saturn/core/helper/extension.dart';
+import 'package:saturn/core/networking/api_error_model.dart';
+import 'package:saturn/core/networking/server_exception.dart';
+import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
 
 class AppFunctions {
   String? checkEmailValidation(value) {
@@ -52,7 +55,53 @@ class AppFunctions {
   //   return LoginRequestBodyModel(email: email, password: password);
   // }
 
-   
-}
+  static void handleException(DioException e) {
+    switch (e.type) {
+      case DioExceptionType.connectionTimeout:
+        throw ServerException(
+          apiErrorModel: ApiErrorModel.fromJson(e.response!.data),
+        );
 
-  
+      case DioExceptionType.sendTimeout:
+        throw ServerException(
+          apiErrorModel: ApiErrorModel.fromJson(e.response!.data),
+        );
+      case DioExceptionType.receiveTimeout:
+        throw ServerException(
+          apiErrorModel: ApiErrorModel.fromJson(e.response!.data),
+        );
+
+      case DioExceptionType.badCertificate:
+        throw ServerException(
+          apiErrorModel: ApiErrorModel.fromJson(e.response!.data),
+        );
+
+      case DioExceptionType.badResponse:
+        throw ServerException(
+          apiErrorModel: ApiErrorModel.fromJson(e.response!.data),
+        );
+
+      case DioExceptionType.cancel:
+        throw ServerException(
+          apiErrorModel: ApiErrorModel.fromJson(e.response!.data),
+        );
+
+      case DioExceptionType.connectionError:
+        throw ServerException(
+          apiErrorModel: ApiErrorModel.fromJson(e.response!.data),
+        );
+
+      default:
+        throw ServerException(
+          apiErrorModel: ApiErrorModel.fromJson(e.response!.data),
+        );
+    }
+  }
+
+  static Future<MultipartFile> uploadImageToApiMethod(
+    SignUpRequestModel signUpRequestModel,
+  ) => MultipartFile.fromFile(
+    signUpRequestModel.imagePath?.path ?? '',
+    filename: signUpRequestModel.imagePath?.path.split('/').last,
+  );
+}
