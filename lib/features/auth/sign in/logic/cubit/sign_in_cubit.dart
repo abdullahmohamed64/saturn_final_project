@@ -8,6 +8,7 @@ class SignInCubit extends Cubit<SignInState> {
   SignInCubit(this.signInRepo) : super(SignInInitialState());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final GlobalKey <FormState>signInKey = GlobalKey();
   final SignInRepo signInRepo;
   void emitSignIn() async {
     emit(SignInLoadingState());

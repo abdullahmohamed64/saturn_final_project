@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:saturn/core/helper/app_reg_exp.dart';
 import 'package:saturn/core/helper/extension.dart';
+import 'package:saturn/core/helper/shared_pref_helper.dart';
+import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/core/networking/api_error_model.dart';
 import 'package:saturn/core/networking/server_exception.dart';
+import 'package:saturn/features/auth/sign%20in/data/models/sign_in_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
+
 
 class AppFunctions {
   String? checkEmailValidation(value) {
@@ -43,17 +47,18 @@ class AppFunctions {
   //   //     .toList();
   // }
 
-  // static Future<void> saveUserData(String email, password) async {
-  //   await SharedPrefHelper.setData(SharedPrefKeys.emailKey, email);
-  //   await SharedPrefHelper.setSecuredData(SharedPrefKeys.passwordKey, password);
-  // }
+  static Future<void> saveUserData(String email, password) async {
+    await SharedPrefHelper.setData(SharedPrefKeys.emailKey, email);
+    await SharedPrefHelper.setSecuredData(SharedPrefKeys.passwordKey, password);
+  }
 
-  // static Future<LoginRequestBodyModel> getUserData() async {
-  //   final email = await SharedPrefHelper.getString(SharedPrefKeys.emailKey);
-  //   final password =
-  //       await SharedPrefHelper.getSecuredData(SharedPrefKeys.passwordKey);
-  //   return LoginRequestBodyModel(email: email, password: password);
-  // }
+  static Future<SignInRequestModel> getUserData() async {
+    final email = await SharedPrefHelper.getString(SharedPrefKeys.emailKey);
+    final password =
+        await SharedPrefHelper.getSecuredData(SharedPrefKeys.passwordKey);
+    return SignInRequestModel(email: email, password: password);
+  }
+
 
   static void handleException(DioException e) {
     switch (e.type) {
@@ -102,6 +107,6 @@ class AppFunctions {
     SignUpRequestModel signUpRequestModel,
   ) => MultipartFile.fromFile(
     signUpRequestModel.imagePath?.path ?? '',
-    filename: signUpRequestModel.imagePath?.path.split('/').last,
+    filename: signUpRequestModel.imagePath?.path.split('/').last ?? '',
   );
 }

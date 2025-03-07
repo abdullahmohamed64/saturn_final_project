@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:saturn/core/helper/app_functions.dart';
 import 'package:saturn/core/networking/api%20consumer/api_consumer.dart';
@@ -21,7 +23,9 @@ class DioConsumer extends ApiConsumer {
         queryParameters: queryParameters,
         data: isFromData ? FormData.fromMap(data) : data,
       );
-      return res.data;
+      final Map<String, dynamic> jsonResponse =
+          res is String ? json.decode(res.data) : res.data;
+      return jsonResponse;
     } on DioException catch (e) {
       AppFunctions.handleException(e);
     } catch (e) {
@@ -43,7 +47,9 @@ class DioConsumer extends ApiConsumer {
         path,
         data: isFromData ? FormData.fromMap(data) : data,
       );
-      return res.data;
+      final Map<String, dynamic> jsonResponse =
+          res is String ? json.decode(res.data) : res.data;
+      return jsonResponse;
     } on DioException catch (e) {
       AppFunctions.handleException(e);
     } catch (e) {
@@ -66,7 +72,9 @@ class DioConsumer extends ApiConsumer {
         data: isFromData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-      return res.data;
+      final Map<String, dynamic> jsonResponse =
+          res is String ? json.decode(res.data) : res.data;
+      return jsonResponse;
     } on DioException catch (e) {
       AppFunctions.handleException(e);
     } catch (e) {
@@ -89,14 +97,17 @@ class DioConsumer extends ApiConsumer {
         data: isFromData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-      return res.data;
+      final Map<String, dynamic> jsonResponse = jsonDecode(res.data);
+          
+      return jsonResponse;
     } on DioException catch (e) {
       AppFunctions.handleException(e);
-    } catch (e) {
-      throw ServerException(
-        apiErrorModel: ApiErrorModel(message: 'an error has occured'),
-      );
-    }
+     } 
+    //catch (e) {
+    //   throw ServerException(
+    //     apiErrorModel: ApiErrorModel(message: 'an error has occured'),
+    //   );
+    // }
   }
 
   @override
@@ -112,7 +123,10 @@ class DioConsumer extends ApiConsumer {
         data: isFromData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-      return res.data;
+
+      final Map<String, dynamic> jsonResponse =
+          res is String ? json.decode(res.data) : res.data;
+      return jsonResponse;
     } on DioException catch (e) {
       AppFunctions.handleException(e);
     } catch (e) {

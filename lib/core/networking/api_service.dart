@@ -16,6 +16,8 @@
 //   );
 // }
 
+import 'dart:convert';
+
 import 'package:saturn/core/helper/app_functions.dart';
 import 'package:saturn/core/networking/api%20consumer/api_consumer.dart';
 
@@ -43,7 +45,7 @@ class ApiService {
       'gender': signUpRequestModel.gender,
       'bio': signUpRequestModel.bio,
       // For files, use MultipartFile:
-      'file': await AppFunctions.uploadImageToApiMethod(signUpRequestModel),
+      // 'file':  await AppFunctions.uploadImageToApiMethod(signUpRequestModel),
     };
 
     try {
@@ -52,6 +54,7 @@ class ApiService {
         data: data,
         isFromData: true,
       );
+     
       return SignUpResponseModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);

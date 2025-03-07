@@ -21,7 +21,7 @@ class CustomSignInBlocListener extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                'signed in succesfully ${state.signInResponseModel.username}',
+                'signed in succesfully ${state.signInResponseModel.userModel?.username}',
               ),
             ),
           );

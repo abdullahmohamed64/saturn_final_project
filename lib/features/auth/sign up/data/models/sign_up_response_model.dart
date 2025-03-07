@@ -1,12 +1,17 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:saturn/features/auth/models/user_model.dart';
 
-@JsonSerializable() ///////////////////
 class SignUpResponseModel {
-  String? status;
-
-  SignUpResponseModel({required this.status});
+  final String? status;
+  final UserModel? data;
+  final String? token;
+  SignUpResponseModel({required this.status, this.data, this.token});
 
   factory SignUpResponseModel.fromJson(Map<String, dynamic> json) {
-    return SignUpResponseModel(status: json['status']);
+    UserModel userModel = UserModel.fromJson(json['data']);
+    return SignUpResponseModel(
+      status: json['status'],
+      data: userModel,
+      token: json['token'],
+    );
   }
 }
