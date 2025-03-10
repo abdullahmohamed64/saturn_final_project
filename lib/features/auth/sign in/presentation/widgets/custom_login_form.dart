@@ -17,7 +17,7 @@ class CustomLoginForm extends StatefulWidget {
 }
 
 class _CustomLoginFormState extends State<CustomLoginForm> {
-  bool isVisible = false;
+  bool isVisible = true;
   @override
   Widget build(BuildContext context) {
     final signIn = context.read<SignInCubit>();

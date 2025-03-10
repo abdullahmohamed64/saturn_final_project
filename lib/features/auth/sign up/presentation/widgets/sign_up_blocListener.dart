@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:saturn/core/helper/extension.dart';
+import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/features/auth/sign%20up/logic/cubit/sign_up_cubit.dart';
 
 class SignUpBlocListener extends StatelessWidget {
@@ -24,9 +26,7 @@ class SignUpBlocListener extends StatelessWidget {
           ).showSnackBar(SnackBar(content: Text('image uploaded succesfully')));
         }
         else{
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text('signed up succesfully')));
+          context.pushReplacementNamed(Routes.loginSuccefullyPage);
         }
       },
       child: SizedBox.shrink(),

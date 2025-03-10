@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:saturn/constants/assets.dart';
+
+import 'package:saturn/core/helper/app_functions.dart';
+import 'package:saturn/core/helper/shared_pref_helper.dart';
+import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/repo/sign_up_repo.dart';
@@ -15,6 +18,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   final SignUpRepo _signUpRepo;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
@@ -41,11 +45,17 @@ class SignUpCubit extends Cubit<SignUpState> {
         imagePath: image,
       ),
     );
-    res.fold(
-      (signUpResponseModel) =>
-          emit(SignUpSuccess(signUpResponseModel: signUpResponseModel)),
-      (error) => emit(SignUpError(error)),
-    );
+    res.fold((signUpResponseModel) async {
+      await SharedPrefHelper.setSecuredData(
+        SharedPrefKeys.tokenKey,
+        signUpResponseModel.token ?? 'no token',
+      );
+      await AppFunctions.saveUserData(
+        email: signUpResponseModel.userData?.email ?? 'no email',
+        password: signUpResponseModel.userData?.password ?? 'no password',
+      );
+      emit(SignUpSuccess(signUpResponseModel: signUpResponseModel));
+    }, (error) => emit(SignUpError(error)));
   }
 
   @override

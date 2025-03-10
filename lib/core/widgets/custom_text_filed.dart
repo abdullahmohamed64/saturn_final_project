@@ -4,8 +4,8 @@ import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 
-class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({
     super.key,
     required this.hintText,
     this.label,
@@ -51,11 +51,12 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width?.w,
-      child: TextFormField(
+      child: TextField(
+      
         maxLines: maxLines ?? 1,
         
         controller: controller,
-        validator: checkValidation ?? defaultCheckValidation,
+      
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
@@ -78,6 +79,7 @@ class CustomTextFormField extends StatelessWidget {
           hintText: hintText,
           hintStyle: hintTextStyle ?? AppTextstyles.font12LigtGreyRegular,
           suffixIcon: suffixIcon,
+          prefixIcon: prefixIcon,
           filled: true,
           fillColor: backgroundColor ?? AppColors.theMostlightGrey,
           label: label,

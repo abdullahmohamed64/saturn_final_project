@@ -41,7 +41,7 @@ class OnBoardingPage extends StatelessWidget {
                     ),
                   ),
                   verticalSpace(20),
-          
+
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 64.w),
                     child: AppButton(
@@ -51,7 +51,7 @@ class OnBoardingPage extends StatelessWidget {
                           predicate: (route) => false,
                         );
                       },
-                      backgroungColor: AppColors.mainColor,
+                      backgroungColor: AppColors.mainPurple,
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

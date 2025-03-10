@@ -19,7 +19,7 @@ class CustomSignUpForm extends StatefulWidget {
 }
 
 class _CustomSignUpFormState extends State<CustomSignUpForm> {
-  bool isVisible = false;
+  bool isVisible = true;
   @override
   Widget build(BuildContext context) {
     final signUp = context.read<SignUpCubit>();
@@ -61,6 +61,7 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
           ),
           verticalSpace(20),
           CustomTextFormField(
+            controller: signUp.confirmPasswordController,
             backgroundColor: AppColors.textformFieldColor,
             hintText: 'confirm password',
             obscureText: isVisible,
@@ -81,7 +82,14 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
 
           AppButton(
             onPressed: (){
-              context.pushNamed(Routes.completeProfile);
+              if(signUp.passwordController.text == signUp.confirmPasswordController.text){
+                context.pushNamed(Routes.completeProfile);
+              }
+              else {
+                ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('passwords do not match')));
+              }
             },
             title: Text('Continue', style: AppTextstyles.font16WhiteMeduim),
           ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:saturn/core/helper/app_reg_exp.dart';
 import 'package:saturn/core/helper/extension.dart';
@@ -47,7 +49,7 @@ class AppFunctions {
   //   //     .toList();
   // }
 
-  static Future<void> saveUserData(String email, password) async {
+  static Future<void> saveUserData({required String email, password}) async {
     await SharedPrefHelper.setData(SharedPrefKeys.emailKey, email);
     await SharedPrefHelper.setSecuredData(SharedPrefKeys.passwordKey, password);
   }
@@ -104,9 +106,9 @@ class AppFunctions {
   }
 
   static Future<MultipartFile> uploadImageToApiMethod(
-    SignUpRequestModel signUpRequestModel,
+    File? imagePath,
   ) => MultipartFile.fromFile(
-    signUpRequestModel.imagePath?.path ?? '',
-    filename: signUpRequestModel.imagePath?.path.split('/').last ?? '',
+    imagePath?.path ?? '',
+    filename: imagePath?.path.split('/').last ?? '',
   );
 }

@@ -2,9 +2,9 @@ import 'package:saturn/features/auth/models/user_model.dart';
 
 class SignInResponseModel {
   final String? status;
-  final UserModel? userModel;
+  final UserModel? userData;
   final String? token;
-  SignInResponseModel({this.status, this.userModel, this.token});
+  SignInResponseModel({this.status, this.userData, this.token});
 
   factory SignInResponseModel.fromJson(Map<String, dynamic> json) {
     // List<UserModel> data = [];
@@ -15,7 +15,7 @@ class SignInResponseModel {
     UserModel userModel = UserModel.fromJson(json['data']);
     return SignInResponseModel(
       status: json['status'],
-      userModel: userModel,
+      userData: userModel,
       token: json['token'],
     );
   }
@@ -24,7 +24,7 @@ class SignInResponseModel {
 
 // {
 //     "status": "success",
-//     "data": [
+//     "data": 
 //         {
 //             "id": 4,
 //             "username": "aaabbb4",
@@ -38,5 +38,5 @@ class SignInResponseModel {
 //             "gender": "male",
 //             "bio": "b"
 //         }
-//     ]
+//     
 // }

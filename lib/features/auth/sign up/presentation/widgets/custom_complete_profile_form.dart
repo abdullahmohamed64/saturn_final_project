@@ -74,7 +74,7 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
                             value!.year,
                             value.month,
                             value.day,
-                          ).toString(),
+                          ).toIso8601String().substring(0, 10),
                 );
               },
               icon: Icon(Icons.calendar_today),
@@ -98,6 +98,9 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
             onPressed: () {
               if (signUp.completeProfileformKey.currentState!.validate() &&
                   signUp.signUpFormKey.currentState!.validate()) {
+                signUp.signUpFormKey.currentState!.save();
+                signUp.completeProfileformKey.currentState!.save();
+
                 signUp.emitSignUp();
               }
             },

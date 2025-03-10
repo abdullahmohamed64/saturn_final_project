@@ -1,3 +1,4 @@
+
 class Routes {
   static const homePage  = 'homePage';
   static const signInPage  = 'signInPage';
@@ -8,4 +9,5 @@ class Routes {
   static const onBoardingPage  = 'onBoardingPage';
     static const setNewPassword  = 'setNewPassword';
     static const completeProfile  = 'completeProfile';
+    static const loginSuccefullyPage  = 'loginSuccefullyPage';
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:saturn/core/helper/extension.dart';
+import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/features/auth/sign%20in/logic/cubit/sign_in_cubit.dart';
 import 'package:saturn/features/auth/sign%20in/logic/cubit/sign_in_state.dart';
 
@@ -18,12 +20,9 @@ class CustomSignInBlocListener extends StatelessWidget {
             SnackBar(content: Text('sign in failed ${state.errMessage}')),
           );
         } else if (state is SignInSuccessState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'signed in succesfully ${state.signInResponseModel.userModel?.username}',
-              ),
-            ),
+          context.pushNamedAndRemoveUntile(
+            Routes.loginSuccefullyPage,
+            predicate: (_) => false,
           );
         }
       },
