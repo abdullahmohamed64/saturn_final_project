@@ -10,4 +10,5 @@ class Routes {
     static const setNewPassword  = 'setNewPassword';
     static const completeProfile  = 'completeProfile';
     static const loginSuccefullyPage  = 'loginSuccefullyPage';
+    static const categoryPage  = 'categoryPage';
 }

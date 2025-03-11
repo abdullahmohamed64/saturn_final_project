@@ -95,4 +95,10 @@ class AppTextstyles {
     color: Colors.black,
     fontSize: 18.sp,
   );
+
+    static TextStyle font24LightPurpleRegular = TextStyle(
+    fontWeight: AppFontWeightHelper.regular,
+    color: AppColors.theMostLighPurple,
+    fontSize: 18.sp,
+  );
 }

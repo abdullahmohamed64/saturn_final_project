@@ -58,6 +58,7 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
       
         decoration: InputDecoration(
+          
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: enabledBorderColor ?? AppColors.morelightGrey,

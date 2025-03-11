@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:saturn/core/helper/shared_pref_helper.dart';
+import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/core/networking/api_constants.dart';
 
 class DioFactory {
@@ -21,15 +23,15 @@ class DioFactory {
     return dio!;
   }
 
-  // static void addHeaders()async {
+  static void addHeaders()async {
 
-  //   String token = await SharedPrefHelper.getSecuredData(SharedPrefKeys.userTokenKey);
-  //   dio?.options.headers = {
-  //     'Accept': 'application/json',
-  //     'Authorization':
-  //         'Bearer $token',
-  //   };
-  // }
+    String token = await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey);
+    dio?.options.headers = {
+      'Accept': 'application/json',
+      'Authorization':
+          'Bearer $token',
+    };
+  }
   static void addTokenAfterLogin({required String token}) {
     dio?.options.headers = {'Authorization': 'Bearer $token'};
 

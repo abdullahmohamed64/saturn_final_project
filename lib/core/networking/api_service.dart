@@ -80,4 +80,11 @@ class ApiService {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }
   }
+
+
+
+   getAllArts(){
+  api.get(''); 
+ }
+
 }

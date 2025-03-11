@@ -8,6 +8,7 @@ import 'package:saturn/features/auth/sign%20in/presentation/views/set_new_passwo
 import 'package:saturn/features/auth/sign%20up/presentation/views/complete_profile_page.dart';
 import 'package:saturn/features/auth/sign%20up/presentation/views/sign_up_page.dart';
 import 'package:saturn/features/auth/views/login_succefully_page.dart';
+import 'package:saturn/features/home/presentation/views/category_page.dart';
 import 'package:saturn/features/home/presentation/views/home_page.dart';
 import 'package:saturn/features/on%20boarding/on_boarding_page.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/sign_in_page.dart';
@@ -75,6 +76,12 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) {
             return HomePage();
+          },
+        );
+              case Routes.categoryPage:
+        return MaterialPageRoute(
+          builder: (_) {
+            return CategoryPage();
           },
         );
       default:

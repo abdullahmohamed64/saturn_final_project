@@ -17,6 +17,9 @@ class AppColors {
   static const Color lightPurple = Color(0xff3F217A);
   static const Color textformFieldColor = Color(0xffF8F7FB);
   static const Color white = Color.fromARGB(255, 255, 255, 255);
+  static const Color theMostLighPurple = Color(0xffAD99D6);
+  static const Color deepPurple = Color(0xff24004E);
 
-  //#
+
+  //###24004E
 }
