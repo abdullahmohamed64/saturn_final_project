@@ -26,6 +26,7 @@ import 'package:saturn/features/auth/sign%20in/data/models/sign_in_response_mode
 
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_model.dart';
+import 'package:saturn/features/home/data/models/categorys_response_model.dart';
 
 class ApiService {
   ApiService({required this.api});
@@ -43,9 +44,12 @@ class ApiService {
       'gender': signUpRequestModel.gender,
       'bio': signUpRequestModel.bio,
       // For files, use MultipartFile:
-      'file': signUpRequestModel.imagePath != null?  await AppFunctions.uploadImageToApiMethod(signUpRequestModel.imagePath)
-      : null
-      ,
+      'file':
+          signUpRequestModel.imagePath != null
+              ? await AppFunctions.uploadImageToApiMethod(
+                signUpRequestModel.imagePath,
+              )
+              : null,
     };
 
     try {
@@ -54,7 +58,7 @@ class ApiService {
         data: data,
         isFromData: true,
       );
-      
+
       return SignUpResponseModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
@@ -81,10 +85,19 @@ class ApiService {
     }
   }
 
-
-
-   getAllArts(){
-  api.get(''); 
- }
-
+  Future<CategorysResponseModel> getCategoryItems({
+    required String categoryName,
+  }) async {
+    final data = {'category': categoryName};
+    try {
+      final  res = await api.post(
+        ApiConstants.getAllCategoris,
+        data: data,
+        isFromData: true,
+      );
+      return  CategorysResponseModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
 }
