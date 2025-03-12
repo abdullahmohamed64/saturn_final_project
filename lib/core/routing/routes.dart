@@ -11,4 +11,9 @@ class Routes {
     static const completeProfile  = 'completeProfile';
     static const loginSuccefullyPage  = 'loginSuccefullyPage';
     static const categoryPage  = 'categoryPage';
+    static const chatPage  = 'chatPage';
+    static const profilePage  = 'profilePage';
+    static const addPostPage  = 'addPostPage';
+    static const favouritePage  = 'favourite';
+    static const navigationPage  = 'navigationPage';
 }

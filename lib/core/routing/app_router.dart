@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/routing/routes.dart';
+import 'package:saturn/features/add%20post/presentation/views/favourite_page.dart';
 import 'package:saturn/features/auth/sign%20in/logic/cubit/sign_in_cubit.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/reset_password_page.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/set_new_password_page.dart';
 import 'package:saturn/features/auth/sign%20up/presentation/views/complete_profile_page.dart';
 import 'package:saturn/features/auth/sign%20up/presentation/views/sign_up_page.dart';
 import 'package:saturn/features/auth/views/login_succefully_page.dart';
+import 'package:saturn/features/chat/presentation/views/chat_page.dart';
 import 'package:saturn/features/home/presentation/views/category_page.dart';
 import 'package:saturn/features/home/presentation/views/home_page.dart';
+import 'package:saturn/features/home/presentation/views/navigation_page.dart';
 import 'package:saturn/features/on%20boarding/on_boarding_page.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/sign_in_page.dart';
+import 'package:saturn/features/profile/presentaion/views/profile_page.dart';
 
 import '../../features/auth/sign up/presentation/views/confirm_email_page.dart';
 
@@ -78,12 +82,37 @@ class AppRouter {
             return HomePage();
           },
         );
-              case Routes.categoryPage:
+      case Routes.categoryPage:
         return MaterialPageRoute(
           builder: (_) {
             return CategoryPage();
           },
         );
+      case Routes.chatPage:
+        return MaterialPageRoute(
+          builder: (_) {
+            return ChatPage();
+          },
+        );
+      case Routes.profilePage:
+        return MaterialPageRoute(
+          builder: (_) {
+            return ProfilePage();
+          },
+        );
+      case Routes.addPostPage:
+        return MaterialPageRoute(
+          builder: (_) {
+            return AddPostPage();
+          },
+        );
+            case Routes.navigationPage:
+        return MaterialPageRoute(
+          builder: (_) {
+            return NavigationPage();
+          },
+        );
+
       default:
         return null;
     }
