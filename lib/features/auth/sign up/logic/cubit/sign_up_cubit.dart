@@ -54,6 +54,10 @@ class SignUpCubit extends Cubit<SignUpState> {
         email: signUpResponseModel.userData?.email ?? 'no email',
         password: signUpResponseModel.userData?.password ?? 'no password',
       );
+      await SharedPrefHelper.setData(
+        SharedPrefKeys.userIdKey,
+        signUpResponseModel.userData?.id ?? '',
+      );
       emit(SignUpSuccess(signUpResponseModel: signUpResponseModel));
     }, (error) => emit(SignUpError(error)));
   }

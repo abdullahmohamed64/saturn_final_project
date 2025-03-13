@@ -69,18 +69,16 @@
 */
 
 class CategorysResponseModel {
-  final List<CategoryModel> categories = [];
+  final List<ArtModel> categories = [];
 
   CategorysResponseModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      json['data'].forEach(
-        (item) => categories.add(CategoryModel.frpmJson(item)),
-      );
+      json['data'].forEach((item) => categories.add(ArtModel.frpmJson(item)));
     }
   }
 }
 
-class CategoryModel {
+class ArtModel {
   final int id;
   final int userId;
 
@@ -91,7 +89,7 @@ class CategoryModel {
   final String createdAt;
   final int likesCount;
 
-  CategoryModel({
+  ArtModel({
     required this.id,
     required this.userId,
     required this.type,
@@ -102,8 +100,8 @@ class CategoryModel {
     required this.likesCount,
   });
 
-  factory CategoryModel.frpmJson(Map<String, dynamic> json) {
-    return CategoryModel(
+  factory ArtModel.frpmJson(Map<String, dynamic> json) {
+    return ArtModel(
       id: json['id'],
       userId: json['user_id'],
       type: json['type'],

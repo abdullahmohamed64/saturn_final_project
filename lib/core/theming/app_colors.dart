@@ -19,7 +19,22 @@ class AppColors {
   static const Color white = Color.fromARGB(255, 255, 255, 255);
   static const Color theMostLighPurple = Color(0xffAD99D6);
   static const Color deepPurple = Color(0xff24004E);
+   
+    //#499DFF
+  static const Color paintingCategoryColor = Color(0xff499DFF);
 
+ // #FF6376 logos
+  static const Color logosCategoryColor = Color(0xffFF6376);
 
+ //#F58534
+  static const Color handMadeCategoryColor = Color(0xffF58534);
+
+ //#9C30F0
+  static const Color homeDesignCategoryColor = Color(0xff9C30F0);
+
+ //#4CD964
+  static const Color animationCategoryColor = Color(0xff4CD964);
+
+  
   //###24004E
 }

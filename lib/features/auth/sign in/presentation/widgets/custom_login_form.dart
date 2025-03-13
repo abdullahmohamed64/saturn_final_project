@@ -26,11 +26,13 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
       child: Column(
         children: [
           CustomTextFormField(
+            controller: signIn.emailController,
             backgroundColor: AppColors.textformFieldColor,
             hintText: 'Enter your email',
           ),
           verticalSpace(20),
           CustomTextFormField(
+            controller: signIn.passwordController,
             backgroundColor: AppColors.textformFieldColor,
 
             hintText: 'Enter your password',

@@ -46,17 +46,14 @@ class DioConsumer extends ApiConsumer {
       final res = await dio.get(
         path,
         data: isFromData ? FormData.fromMap(data) : data,
+        queryParameters: queryParameters,
+        
       );
-      final Map<String, dynamic> jsonResponse =
-          res is String ? json.decode(res.data) : res.data;
+      final Map<String, dynamic> jsonResponse =json.decode(res.data);
       return jsonResponse;
     } on DioException catch (e) {
       AppFunctions.handleException(e);
-    } catch (e) {
-      throw ServerException(
-        apiErrorModel: ApiErrorModel(message: 'an error has occured'),
-      );
-    }
+    } 
   }
 
   @override

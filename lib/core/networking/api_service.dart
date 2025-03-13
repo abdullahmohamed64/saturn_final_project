@@ -17,6 +17,8 @@
 // }
 
 import 'package:saturn/core/helper/app_functions.dart';
+import 'package:saturn/core/helper/shared_pref_helper.dart';
+import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/core/networking/api%20consumer/api_consumer.dart';
 
 import 'package:saturn/core/networking/api_constants.dart';
@@ -86,16 +88,21 @@ class ApiService {
   }
 
   Future<CategorysResponseModel> getCategoryItems({
-    required String categoryName,
+    String? categoryName,
   }) async {
-    final data = {'category': categoryName};
+    final param = {
+      'category': categoryName ?? '',
+      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+    };
     try {
-      final  res = await api.post(
-        ApiConstants.getAllCategoris,
-        data: data,
-        isFromData: true,
+      final res = await api.get(
+        ApiConstants.getCategorieItems,
+        queryParameters: param,
+        // data: data,
+        // isFromData: true,
       );
-      return  CategorysResponseModel.fromJson(res);
+      return CategorysResponseModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }
