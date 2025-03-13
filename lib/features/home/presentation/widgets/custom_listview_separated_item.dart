@@ -1,27 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:saturn/constants/assets.dart';
 import 'package:saturn/core/helper/spacing.dart';
+import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
+import 'package:saturn/features/home/data/models/category_name_and_image_model.dart';
 
 class CustomCategoryListviewSparatedItem extends StatelessWidget {
-  const CustomCategoryListviewSparatedItem({super.key});
-
+  const CustomCategoryListviewSparatedItem({super.key, required this.categoryNameAndImageModel});
+  final CategoryNameAndImageModel categoryNameAndImageModel;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.sp)),
+          padding: EdgeInsets.all(16.sp),
+          height: 100.h,
+          width: 80.w,
+          decoration: BoxDecoration(
+            // image: DecorationImage(image: AssetImage(categoryNameAndImageModel.categoryImage,)),
+            color: categoryNameAndImageModel.categoryColor,
+            borderRadius: BorderRadius.circular(16.sp)),
           child: Image.asset(
-            Assets.assetsImagesBag,
-            height: 100.h,
-            width: 120.w,
+            categoryNameAndImageModel.categoryImage,
+            height: 80.h,
+            // width: 120.w,
           ),
+
+       
         ),
         verticalSpace(10),
         Text(
-          'painting',
+          categoryNameAndImageModel.categoryName,
           style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp),
         ),
       ],

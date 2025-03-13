@@ -14,6 +14,10 @@ class Assets {
   /// assets/images/bag.png
   static const String assetsImagesBag = "assets/images/bag.png";
 
+  /// Assets for assetsImagesDesign
+  /// assets/images/Design.png
+  static const String assetsImagesDesign = "assets/images/Design.png";
+
   /// Assets for assetsImagesEmptyAvater
   /// assets/images/empty_avater.png
   static const String assetsImagesEmptyAvater = "assets/images/empty_avater.png";
@@ -25,6 +29,14 @@ class Assets {
   /// Assets for assetsImagesGoogle
   /// assets/images/google.png
   static const String assetsImagesGoogle = "assets/images/google.png";
+
+  /// Assets for assetsImagesHandMade
+  /// assets/images/Hand_Made.png
+  static const String assetsImagesHandMade = "assets/images/Hand_Made.png";
+
+  /// Assets for assetsImagesLogo
+  /// assets/images/Logo.png
+  static const String assetsImagesLogo = "assets/images/Logo.png";
 
   /// Assets for assetsImagesMan
   /// assets/images/man.png

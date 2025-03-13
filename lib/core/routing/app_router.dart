@@ -10,6 +10,9 @@ import 'package:saturn/features/auth/sign%20up/presentation/views/complete_profi
 import 'package:saturn/features/auth/sign%20up/presentation/views/sign_up_page.dart';
 import 'package:saturn/features/auth/views/login_succefully_page.dart';
 import 'package:saturn/features/chat/presentation/views/chat_page.dart';
+import 'package:saturn/features/home/data/models/categorys_response_model.dart';
+import 'package:saturn/features/home/data/repo/home_repo.dart';
+import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
 import 'package:saturn/features/home/presentation/views/category_page.dart';
 import 'package:saturn/features/home/presentation/views/home_page.dart';
 import 'package:saturn/features/home/presentation/views/navigation_page.dart';
@@ -76,16 +79,18 @@ class AppRouter {
           },
         );
 
-      case Routes.homePage:
+      case Routes.navigationPage:
         return MaterialPageRoute(
           builder: (_) {
-            return HomePage();
+            return NavigationPage();
           },
         );
       case Routes.categoryPage:
         return MaterialPageRoute(
           builder: (_) {
-            return CategoryPage();
+            return CategoryPage(
+              categoryName: routeSettings.arguments as String,
+            );
           },
         );
       case Routes.chatPage:
@@ -106,10 +111,10 @@ class AppRouter {
             return AddPostPage();
           },
         );
-            case Routes.navigationPage:
+      case Routes.homePage:
         return MaterialPageRoute(
           builder: (_) {
-            return NavigationPage();
+            return HomePage();
           },
         );
 
