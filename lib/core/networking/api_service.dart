@@ -28,6 +28,7 @@ import 'package:saturn/features/auth/sign%20in/data/models/sign_in_response_mode
 
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_model.dart';
+import 'package:saturn/features/favourite/data/models/add_like_response_model.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
 
 class ApiService {
@@ -103,6 +104,24 @@ class ApiService {
         // isFromData: true,
       );
       return CategorysResponseModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
+
+  Future<AddLikeResponseModel> react({required int artId}) async {
+    Map<String, dynamic> data = {
+      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'postid': artId,
+    };
+    try {
+      final res = await api.post(
+        ApiConstants.addLike,
+        data: data,
+        isFromData: true,
+      );
+      return AddLikeResponseModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }

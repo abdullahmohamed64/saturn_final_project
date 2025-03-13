@@ -7,15 +7,20 @@ import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
 
-class CustomArtsGridViewItem extends StatelessWidget {
-  const CustomArtsGridViewItem({super.key, required this.artModel});
+class CustomHomeArtsGridViewItem extends StatelessWidget {
+  const CustomHomeArtsGridViewItem({super.key, required this.artModel});
   final ArtModel artModel;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.only(bottom: 24.h , right: 16.w  ,left:16.w , top: 5.h ),
+          padding: EdgeInsets.only(
+            bottom: 24.h,
+            right: 16.w,
+            left: 16.w,
+            top: 5.h,
+          ),
           height: 130.h,
           width: 100.w,
           decoration: BoxDecoration(
@@ -31,10 +36,9 @@ class CustomArtsGridViewItem extends StatelessWidget {
             ),
             color: AppColors.lightGrey,
           ),
-          child:  ClipRRect(
+          child: ClipRRect(
             borderRadius: BorderRadius.circular(16.sp),
-            child: 
-            Image.asset(Assets.assetsImagesArts, height: 50, width: 50),
+            child: Image.asset(Assets.assetsImagesArts, height: 50, width: 50),
 
             // CachedNetworkImage(
             //   imageUrl: ApiConstants.upload + artModel.imageName,
@@ -50,7 +54,7 @@ class CustomArtsGridViewItem extends StatelessWidget {
             //     );
             //   },
             // ),
-            ),
+          ),
         ),
         verticalSpace(10),
         Text(

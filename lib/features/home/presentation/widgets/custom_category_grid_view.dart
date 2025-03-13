@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:saturn/core/helper/extension.dart';
+import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
 import 'package:saturn/features/home/presentation/widgets/custom_category_grid_view_item.dart';
 
@@ -18,7 +20,12 @@ class CustomCategoryItemsGridView extends StatelessWidget {
           mainAxisSpacing: 20.h,
         ),
         itemBuilder: (context, i) {
-          return CustomCategoryGridviewItem(artModel: arts[i]);
+          return GestureDetector(
+            onTap: () {
+              context.pushNamed(Routes.artViewPage, args: arts[i]);
+            },
+            child: CustomCategoryGridviewItem(artModel: arts[i]),
+          );
         },
       ),
     );

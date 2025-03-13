@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
 import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/features/add%20post/presentation/views/favourite_page.dart';
@@ -10,9 +11,12 @@ import 'package:saturn/features/auth/sign%20up/presentation/views/complete_profi
 import 'package:saturn/features/auth/sign%20up/presentation/views/sign_up_page.dart';
 import 'package:saturn/features/auth/views/login_succefully_page.dart';
 import 'package:saturn/features/chat/presentation/views/chat_page.dart';
+import 'package:saturn/features/favourite/data/repo/favourite_repo.dart';
+import 'package:saturn/features/favourite/logic/cubit/favourite_cubit.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
 import 'package:saturn/features/home/data/repo/home_repo.dart';
 import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
+import 'package:saturn/features/home/presentation/views/art_view_page.dart';
 import 'package:saturn/features/home/presentation/views/category_page.dart';
 import 'package:saturn/features/home/presentation/views/home_page.dart';
 import 'package:saturn/features/home/presentation/views/navigation_page.dart';
@@ -115,6 +119,15 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) {
             return HomePage();
+          },
+        );
+      case Routes.artViewPage:
+        return MaterialPageRoute(
+          builder: (_) {
+            return BlocProvider(
+              create: (context) => FavoriteCubit(getIt<FavouriteRepo>()),
+              child: ArtViewPage(artModel: routeSettings.arguments as ArtModel),
+            );
           },
         );
 
