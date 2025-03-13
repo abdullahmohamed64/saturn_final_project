@@ -4,9 +4,9 @@ import 'package:saturn/features/home/data/models/categorys_response_model.dart';
 
 import 'package:saturn/features/home/presentation/widgets/custom_arts_gridview_item.dart';
 
-class CustomArtsGridView extends StatelessWidget {
-  const CustomArtsGridView({super.key, required this.artModels});
-  final List <ArtModel >artModels ;
+class CustomHomeArtsGridView extends StatelessWidget {
+  const CustomHomeArtsGridView({super.key, required this.artModels});
+  final List<ArtModel> artModels;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -23,7 +23,7 @@ class CustomArtsGridView extends StatelessWidget {
           // childAspectRatio: 1/1,
         ),
         itemBuilder: (context, i) {
-          return CustomArtsGridViewItem(artModel: artModels[i],);
+          return CustomHomeArtsGridViewItem(artModel: artModels[i]);
         },
       ),
     );

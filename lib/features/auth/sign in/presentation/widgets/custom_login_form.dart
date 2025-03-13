@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:saturn/core/helper/app_functions.dart';
 import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/routing/routes.dart';
@@ -18,6 +19,17 @@ class CustomLoginForm extends StatefulWidget {
 
 class _CustomLoginFormState extends State<CustomLoginForm> {
   bool isVisible = true;
+ TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  @override
+  void initState() {
+    AppFunctions.getUserData().then((value) => emailController.text = value.email);
+    AppFunctions.getUserData().then((value) => passwordController.text = value.password);
+
+    
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final signIn = context.read<SignInCubit>();
@@ -26,13 +38,13 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
       child: Column(
         children: [
           CustomTextFormField(
-            controller: signIn.emailController,
+            controller: emailController,
             backgroundColor: AppColors.textformFieldColor,
             hintText: 'Enter your email',
           ),
           verticalSpace(20),
           CustomTextFormField(
-            controller: signIn.passwordController,
+            controller: passwordController,
             backgroundColor: AppColors.textformFieldColor,
 
             hintText: 'Enter your password',
@@ -69,7 +81,7 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
             title: Text('Sign In', style: AppTextstyles.font16WhiteMeduim),
             onPressed: () {
               if (signIn.signInKey.currentState!.validate()) {
-                signIn.emitSignIn();
+                signIn.emitSignIn( emailController.text, passwordController.text);
               }
             },
           ),
