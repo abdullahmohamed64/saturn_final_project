@@ -32,7 +32,7 @@ abstract class ApiConsumer {
   });
   Future<dynamic> get(
     String path, {
-    dynamic data,
+    Map<String , dynamic>? data,
     bool isFromData = false,
     Map<String, dynamic>? queryParameters,
   });

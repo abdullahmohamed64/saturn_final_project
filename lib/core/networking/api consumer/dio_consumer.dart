@@ -38,14 +38,14 @@ class DioConsumer extends ApiConsumer {
   @override
   Future get(
     String path, {
-    data,
+   Map<String , dynamic>? data,
     bool isFromData = false,
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
       final res = await dio.get(
         path,
-        data: isFromData ? FormData.fromMap(data) : data,
+        data: isFromData ? FormData.fromMap(data ?? {}) : data,
         queryParameters: queryParameters,
         
       );

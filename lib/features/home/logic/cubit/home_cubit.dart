@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:saturn/features/home/data/models/art_model.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
 import 'package:saturn/features/home/data/repo/home_repo.dart';
 

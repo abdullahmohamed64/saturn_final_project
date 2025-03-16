@@ -18,7 +18,7 @@ class LoginSuccefullyPage extends StatelessWidget {
       backgroundColor: Colors.black,
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
-        margin: EdgeInsets.only(top: height / 4),
+        margin: EdgeInsets.only(top: height / 6),
         decoration: BoxDecoration(
           color: Colors.white,
 

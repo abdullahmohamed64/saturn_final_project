@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/routing/routes.dart';
-import 'package:saturn/features/add%20post/presentation/views/favourite_page.dart';
+import 'package:saturn/features/add%20post/presentation/views/add_post_page.dart';
 import 'package:saturn/features/auth/sign%20in/logic/cubit/sign_in_cubit.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/reset_password_page.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/set_new_password_page.dart';
@@ -11,12 +11,13 @@ import 'package:saturn/features/auth/sign%20up/presentation/views/complete_profi
 import 'package:saturn/features/auth/sign%20up/presentation/views/sign_up_page.dart';
 import 'package:saturn/features/auth/views/login_succefully_page.dart';
 import 'package:saturn/features/chat/presentation/views/chat_page.dart';
-import 'package:saturn/features/favourite/data/repo/favourite_repo.dart';
-import 'package:saturn/features/favourite/logic/cubit/favourite_cubit.dart';
+import 'package:saturn/features/favourite/logic/cubit/get_user_favorite_arts_cubit.dart';
+import 'package:saturn/features/favourite/presentation/views/favourite_page.dart';
+import 'package:saturn/features/home/data/models/art_model.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
 import 'package:saturn/features/home/data/repo/home_repo.dart';
 import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
-import 'package:saturn/features/home/presentation/views/art_view_page.dart';
+import 'package:saturn/features/home/presentation/views/art_page.dart';
 import 'package:saturn/features/home/presentation/views/category_page.dart';
 import 'package:saturn/features/home/presentation/views/home_page.dart';
 import 'package:saturn/features/home/presentation/views/navigation_page.dart';
@@ -62,7 +63,6 @@ class AppRouter {
             return ResetPasswordPage();
           },
         );
-
       case Routes.completeProfile:
         return MaterialPageRoute(
           builder: (_) {
@@ -124,7 +124,14 @@ class AppRouter {
       case Routes.artViewPage:
         return MaterialPageRoute(
           builder: (_) {
-            return ArtViewPage(artModel: routeSettings.arguments as ArtModel);
+            return ArtPage(artModel: routeSettings.arguments as ArtModel);
+          },
+        );
+
+      case Routes.favouritePage:
+        return MaterialPageRoute(
+          builder: (_) {
+            return FavouritePage();
           },
         );
 

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/routing/routes.dart';
-import 'package:saturn/features/favourite/logic/cubit/favourite_cubit.dart';
-import 'package:saturn/features/home/data/models/categorys_response_model.dart';
+import 'package:saturn/features/home/data/models/art_model.dart';
 import 'package:saturn/features/home/presentation/widgets/custom_category_grid_view_item.dart';
 
 class CustomCategoryItemsGridView extends StatelessWidget {
@@ -21,15 +19,14 @@ class CustomCategoryItemsGridView extends StatelessWidget {
           crossAxisSpacing: 10.w,
           mainAxisSpacing: 20.h,
         ),
+
         itemBuilder: (context, i) {
           return GestureDetector(
-            onTap: () {
-              context.read<FavoriteCubit>().emitGetPostReact(artId: arts[i].id);
+            onTap: (){
+              context.pushNamed(Routes.artViewPage ,args: arts[i]);
               
-              context.pushNamed(Routes.artViewPage, args: arts[i]);
             },
-            child: CustomCategoryGridviewItem(artModel: arts[i]),
-          );
+            child: CustomCategoryGridviewItem(artModel: arts[i]));
         },
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:saturn/features/home/data/models/categorys_response_model.dart';
+import 'package:saturn/features/home/data/models/art_model.dart';
 
 import 'package:saturn/features/home/presentation/widgets/custom_arts_gridview_item.dart';
 
