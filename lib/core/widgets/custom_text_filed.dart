@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.hintText,
     this.label,
+    this.onChanged,
     this.maxLines,
     this.suffixIcon,
     this.enabledBorderColor,
@@ -46,12 +47,14 @@ class CustomTextField extends StatelessWidget {
   final Widget? label;
   final double? width;
   final int? maxLines;
-  final Icon? prefixIcon;
+  final Widget? prefixIcon;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width?.w,
       child: TextField(
+        onChanged: onChanged,
       
         maxLines: maxLines ?? 1,
         
@@ -84,6 +87,7 @@ class CustomTextField extends StatelessWidget {
           filled: true,
           fillColor: backgroundColor ?? AppColors.theMostlightGrey,
           label: label,
+          
         ),
         obscureText: obscureText ?? false,
       ),

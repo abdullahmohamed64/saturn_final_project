@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
+import 'package:saturn/core/widgets/custom_gridview_shimmer.dart';
 import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
 import 'package:saturn/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:saturn/features/home/presentation/widgets/custom_home_arts_grid_view.dart';
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                   ],
                 );
               } else {
-                return Center(child: CircularProgressIndicator());
+                return Center(child: CustomGridViewShimmer());
               }
             },
           ),

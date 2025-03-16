@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:saturn/core/helper/app_reg_exp.dart';
 import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/shared_pref_helper.dart';
@@ -111,4 +112,25 @@ class AppFunctions {
     imagePath?.path ?? '',
     filename: imagePath?.path.split('/').last ?? '',
   );
+
+
+
+static void showErrorDialog(BuildContext context, String title, String message) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text(title),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
+}
+
 }

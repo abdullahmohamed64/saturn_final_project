@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/constants/assets.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
-import 'package:saturn/features/home/data/models/categorys_response_model.dart';
+import 'package:saturn/features/home/data/models/art_model.dart';
 
 class ArtViewItem extends StatelessWidget {
   const ArtViewItem({super.key, required this.artModel});
@@ -26,7 +26,7 @@ class ArtViewItem extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
           
-              artModel.categoryName,
+              artModel.categoryName ?? '',
               style: AppTextstyles.font16WhitekSemiBold,
             ),
           ),

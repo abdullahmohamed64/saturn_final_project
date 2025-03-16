@@ -5,6 +5,8 @@ class AddPostPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text('Add Post Page'));
+    return Scaffold(
+      body: Text('add post page'),
+    );
   }
 }

@@ -28,7 +28,8 @@ import 'package:saturn/features/auth/sign%20in/data/models/sign_in_response_mode
 
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_model.dart';
-import 'package:saturn/features/favourite/data/models/add_like_response_model.dart';
+import 'package:saturn/features/favourite/data/models/user_favourit_arts_model.dart';
+import 'package:saturn/features/home/data/models/art_model.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
 
 class ApiService {
@@ -109,7 +110,7 @@ class ApiService {
     }
   }
 
-  Future<AddLikeResponseModel> react({required int artId}) async {
+  Future<ArtModel> makeReact({required int artId}) async {
     Map<String, dynamic> data = {
       'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
       'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
@@ -121,7 +122,64 @@ class ApiService {
         data: data,
         isFromData: true,
       );
-      return AddLikeResponseModel.fromJson(res);
+      return ArtModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
+
+  Future<ArtModel> createComment({
+    required int artId,
+    required String comment,
+  }) async {
+    Map<String, dynamic> data = {
+      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'postid': artId,
+      'comment': comment,
+    };
+    try {
+      final res = await api.post(
+        ApiConstants.addComment,
+        data: data,
+        isFromData: true,
+      );
+      return ArtModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
+
+  Future<ArtModel> getPostReactAndComments({required int artId}) async {
+    Map<String, dynamic> data = {
+      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'postid': artId,
+    };
+    try {
+      final res = await api.post(
+        ApiConstants.likedPosts,
+        data: data,
+        isFromData: true,
+      );
+      return ArtModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
+
+  Future<UserFavouritArtsModel> getUserFavoriteArts() async {
+    Map<String, dynamic> data = {
+      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+    };
+    try {
+      final res = await api.get(
+        ApiConstants.favorites,
+        queryParameters: data,
+
+      );
+      return UserFavouritArtsModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }

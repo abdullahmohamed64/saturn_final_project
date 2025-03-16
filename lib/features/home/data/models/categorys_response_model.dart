@@ -68,48 +68,14 @@
 }
 */
 
+import 'package:saturn/features/home/data/models/art_model.dart';
+
 class CategorysResponseModel {
-  final List<ArtModel> categories = [];
+  final List<ArtModel> arts = [];
 
   CategorysResponseModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      json['data'].forEach((item) => categories.add(ArtModel.frpmJson(item)));
+      json['data'].forEach((item) => arts.add(ArtModel.fromJson(item)));
     }
-  }
-}
-
-class ArtModel {
-  final int id;
-  final int userId;
-
-  final String type;
-  final String categoryName;
-  final String imageName;
-  final String description;
-  final String createdAt;
-  final int likesCount;
-
-  ArtModel({
-    required this.id,
-    required this.userId,
-    required this.type,
-    required this.categoryName,
-    required this.imageName,
-    required this.description,
-    required this.createdAt,
-    required this.likesCount,
-  });
-
-  factory ArtModel.frpmJson(Map<String, dynamic> json) {
-    return ArtModel(
-      id: json['id'],
-      userId: json['user_id'],
-      type: json['type'],
-      categoryName: json['category'],
-      imageName: json['name_image'],
-      description: json['description'],
-      createdAt: json['created_at'],
-      likesCount: json['likes_count'],
-    );
   }
 }
