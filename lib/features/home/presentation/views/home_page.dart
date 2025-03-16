@@ -5,7 +5,7 @@ import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
 import 'package:saturn/features/home/presentation/widgets/custom_app_bar.dart';
-import 'package:saturn/features/home/presentation/widgets/custom_arts_grid_view.dart';
+import 'package:saturn/features/home/presentation/widgets/custom_home_arts_grid_view.dart';
 import 'package:saturn/features/home/presentation/widgets/custom_category_listview_separated.dart';
 
 class HomePage extends StatelessWidget {
@@ -36,7 +36,9 @@ class HomePage extends StatelessWidget {
                           ),
                           //!!!!!!!!!!arts
                           SliverToBoxAdapter(
-                            child: CustomArtsGridView(artModels: state.arts),
+                            child: CustomHomeArtsGridView(
+                              artModels: state.arts,
+                            ),
                           ),
                         ],
                       ),
