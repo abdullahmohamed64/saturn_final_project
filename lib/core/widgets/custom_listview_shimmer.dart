@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/widgets/custom_shimmer_item.dart';
 
@@ -7,11 +8,14 @@ class CustomListViewShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (context, i)=>verticalSpace(20),
-      itemCount: 6,
-      itemBuilder: (context, i){
-      return ShimmerItem();
-    });
+    return SizedBox(
+      height: 800.h,
+      child: ListView.separated(
+        separatorBuilder: (context, i)=>verticalSpace(20),
+        itemCount: 6,
+        itemBuilder: (context, i){
+        return ShimmerItem();
+      }),
+    );
   }
 }

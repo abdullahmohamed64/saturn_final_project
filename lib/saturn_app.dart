@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/routing/app_router.dart';
 import 'package:saturn/core/routing/routes.dart';
+import 'package:saturn/features/add%20post/logic/cubit/add_post_cubit.dart';
+import 'package:saturn/features/add%20post/presentation/views/add_post_page.dart';
 import 'package:saturn/features/auth/sign%20up/logic/cubit/sign_up_cubit.dart';
 import 'package:saturn/features/favourite/data/repo/favorite_repo.dart';
 import 'package:saturn/features/favourite/logic/cubit/favorite_cubit.dart';
@@ -26,6 +28,11 @@ class SaturnApp extends StatelessWidget {
                 (context) => HomeCubit(getIt<HomeRepo>())..getCategoyItems(),
           ),
           BlocProvider(create: (context) => ArtCubit(getIt<FavouriteRepo>())),
+
+      //     BlocProvider(
+      //   create: (context) => AddPostCubit(getIt()),
+      //   child: AddPostPage(),
+      // ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

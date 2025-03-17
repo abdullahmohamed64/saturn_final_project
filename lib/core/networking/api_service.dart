@@ -23,6 +23,8 @@ import 'package:saturn/core/networking/api%20consumer/api_consumer.dart';
 
 import 'package:saturn/core/networking/api_constants.dart';
 import 'package:saturn/core/networking/server_exception.dart';
+import 'package:saturn/features/add%20post/data/models/add_post_request_model.dart';
+import 'package:saturn/features/add%20post/data/models/add_post_response_model.dart';
 import 'package:saturn/features/auth/sign%20in/data/models/sign_in_request_model.dart';
 import 'package:saturn/features/auth/sign%20in/data/models/sign_in_response_model.dart';
 
@@ -54,6 +56,7 @@ class ApiService {
                 signUpRequestModel.imagePath,
               )
               : null,
+
     };
 
     try {
@@ -174,14 +177,49 @@ class ApiService {
       'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
     };
     try {
-      final res = await api.get(
-        ApiConstants.favorites,
-        queryParameters: data,
-
-      );
+      final res = await api.get(ApiConstants.favorites, queryParameters: data);
       return UserFavouritArtsModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }
   }
+
+  Future<AddPostResponseModel> addPost(
+    AddPostRequestModel addPostRequestModel,
+  ) async {
+    final data = {
+      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      
+      'title': addPostRequestModel.title,
+      'description': addPostRequestModel.description,
+      'category': addPostRequestModel.categoryName,
+      
+      'type' : addPostRequestModel.type ,        
+
+
+      // For files, use MultipartFile:
+      'file':
+          addPostRequestModel.imagePath != null
+              ? await AppFunctions.uploadImageToApiMethod(
+                addPostRequestModel.imagePath,
+              )
+              : null,
+    };
+
+    try {
+      final res = await api.post(
+        ApiConstants.addPost,
+        data: data,
+        isFromData: true,
+      );
+
+      return AddPostResponseModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
+ 
+
+  
 }

@@ -5,6 +5,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/theming/app_colors.dart';
+import 'package:saturn/features/add%20post/logic/cubit/add_post_cubit.dart';
 import 'package:saturn/features/add%20post/presentation/views/add_post_page.dart';
 import 'package:saturn/features/chat/presentation/views/chat_page.dart';
 import 'package:saturn/features/favourite/logic/cubit/get_user_favorite_arts_cubit.dart';
@@ -54,14 +55,25 @@ class _NavigationPageState extends State<NavigationPage> {
           ],
         ),
       ),
-      body: 
-       _currentPage == 4 ?
-
-       BlocProvider(
-         create: (context) => GetUserFavoriteArtsCubit(getIt())..emitGetUserFavoriteArts() , 
-         child: pages.elementAt(_currentPage),
-       ) :
-       pages.elementAt(_currentPage)
+      body: _selectBody(_currentPage)
     );
+  }
+
+  Widget _selectBody(int i) {
+    if (i == 2) {
+      return BlocProvider(
+        create: (context) => AddPostCubit(getIt()),
+        child: pages.elementAt(i),
+      );
+    } else if (i == 4) {
+      return BlocProvider(
+        create:
+            (context) =>
+                GetUserFavoriteArtsCubit(getIt())..emitGetUserFavoriteArts(),
+        child: pages.elementAt(i),
+      );
+    } else {
+      return pages.elementAt(i);
+    }
   }
 }
