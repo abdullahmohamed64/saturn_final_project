@@ -7,15 +7,16 @@ import 'package:saturn/features/auth/sign%20up/logic/cubit/sign_up_cubit.dart';
 
 const List<String> list = <String>['male', 'female'];
 
-class CustomDropDownButton extends StatefulWidget {
-  const CustomDropDownButton({super.key});
+class CustomGenderDropDownButton extends StatefulWidget {
+  const CustomGenderDropDownButton({super.key});
 
   @override
-  State<CustomDropDownButton> createState() => _CustomDropDownButtonState();
+  State<CustomGenderDropDownButton> createState() =>
+      _CustomGenderDropDownButtonState();
 }
 
-class _CustomDropDownButtonState extends State<CustomDropDownButton> {
-  String dropdownValue = list[0];
+class _CustomGenderDropDownButtonState
+    extends State<CustomGenderDropDownButton> {
   late TextEditingController genderController;
 
   @override
@@ -29,7 +30,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
       dropdownColor: Colors.white,
-      value: dropdownValue,
+      value: genderController.text,
       icon: const Icon(Icons.arrow_drop_down, color: Colors.black),
       elevation: 4,
       style: TextStyle(
@@ -65,8 +66,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
       ),
       onChanged: (String? value) {
         setState(() {
-          dropdownValue = value!;
-          genderController.text = value;
+          genderController.text = value!;
         });
       },
       items:

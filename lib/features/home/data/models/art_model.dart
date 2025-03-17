@@ -26,8 +26,10 @@ class ArtModel {
   final String? imageName;
   final String? description;
   final String? createdAt;
+  final String? title;
 
   ArtModel({
+    this.title,
     this.status,
     this.liked,
     this.comments,

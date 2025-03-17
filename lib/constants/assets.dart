@@ -66,6 +66,10 @@ class Assets {
   /// assets/images/reset_password.png
   static const String assetsImagesResetPassword = "assets/images/reset_password.png";
 
+  /// Assets for assetsImagesSendToCloud
+  /// assets/images/send_to_cloud.png
+  static const String assetsImagesSendToCloud = "assets/images/send_to_cloud.png";
+
   /// Assets for assetsImagesSplashImage
   /// assets/images/splash_image.png
   static const String assetsImagesSplashImage = "assets/images/splash_image.png";

@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:saturn/core/networking/api%20consumer/dio_consumer.dart';
 import 'package:saturn/core/networking/api_service.dart';
 import 'package:saturn/core/networking/dio_factory.dart';
+import 'package:saturn/features/add%20post/data/repo/add_post_repo.dart';
+import 'package:saturn/features/add%20post/logic/cubit/add_post_cubit.dart';
 import 'package:saturn/features/auth/sign%20in/data/repo/sign_in_repo.dart';
 import 'package:saturn/features/auth/sign%20in/logic/cubit/sign_in_cubit.dart';
 import 'package:saturn/features/auth/sign%20up/data/repo/sign_up_repo.dart';
@@ -54,4 +56,13 @@ void setUpGetIt() {
   //!!!!!!!!!!! get user favourite arts
 
    getIt.registerLazySingleton<GetUserFavoriteArtsCubit>(() => GetUserFavoriteArtsCubit(getIt()));
+
+
+
+
+   ///!!!!!!!!!! add post
+    getIt.registerLazySingleton<AddPostRepo>(()=>AddPostRepo(apiService: getIt()));
+    getIt.registerLazySingleton<AddPostCubit>(()=>AddPostCubit(getIt()));
+
+    
 }

@@ -8,7 +8,7 @@ import 'package:saturn/core/widgets/app_button.dart';
 import 'package:saturn/core/widgets/custom_text_form_field.dart';
 
 import 'package:saturn/features/auth/sign%20up/logic/cubit/sign_up_cubit.dart';
-import 'package:saturn/features/auth/sign%20up/presentation/widgets/custom_drop_down_button.dart';
+import 'package:saturn/features/auth/sign%20up/presentation/widgets/custom_gender_drop_down_button.dart';
 import 'package:saturn/features/auth/sign%20up/presentation/widgets/upload_image_tp_api.dart';
 
 class CustomCompleteProfileForm extends StatefulWidget {
@@ -54,7 +54,7 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
           verticalSpace(20),
 
           //gender
-          CustomDropDownButton(),
+          CustomGenderDropDownButton(),
           verticalSpace(20),
 
           //birthdate
@@ -69,12 +69,11 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
                   lastDate: DateTime(2015),
                 ).then(
                   (value) =>
-                      signUp.birthDateController.text =
-                          DateTime(
-                            value!.year,
-                            value.month,
-                            value.day,
-                          ).toIso8601String().substring(0, 10),
+                      signUp.birthDateController.text = DateTime(
+                        value!.year,
+                        value.month,
+                        value.day,
+                      ).toIso8601String().substring(0, 10),
                 );
               },
               icon: Icon(Icons.calendar_today),
