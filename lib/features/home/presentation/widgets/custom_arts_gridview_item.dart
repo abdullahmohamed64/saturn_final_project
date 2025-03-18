@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/constants/assets.dart';
+import 'package:saturn/core/helper/app_functions.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
@@ -56,9 +57,23 @@ class CustomHomeArtsGridViewItem extends StatelessWidget {
             // ),
           ),
         ),
-        verticalSpace(10),
+        verticalSpace(4),
+
         Text(
-          artModel.categoryName ?? '',
+          artModel.categoryName ?? 'no title',
+          style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp),
+        ),
+        verticalSpace(4),
+
+        // Text(
+        //   textAlign: TextAlign.center,
+        //   maxLines: 2,
+        //   overflow: TextOverflow.ellipsis,
+        //  AppFunctions.formatDate( artModel.createdAt ?? ''),
+        //   style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp),
+        // ),
+        Text(
+          artModel.type ?? 'no type',
           style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp),
         ),
       ],

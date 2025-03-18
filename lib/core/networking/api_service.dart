@@ -33,6 +33,7 @@ import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_mode
 import 'package:saturn/features/favourite/data/models/user_favourit_arts_model.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
+import 'package:saturn/features/profile/data/models/user_profile_response_model.dart';
 
 class ApiService {
   ApiService({required this.api});
@@ -56,7 +57,6 @@ class ApiService {
                 signUpRequestModel.imagePath,
               )
               : null,
-
     };
 
     try {
@@ -190,13 +190,10 @@ class ApiService {
     final data = {
       'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
       'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
-      
-      'title': addPostRequestModel.title,
       'description': addPostRequestModel.description,
       'category': addPostRequestModel.categoryName,
-      
-      'type' : addPostRequestModel.type ,        
 
+      'type': addPostRequestModel.type,
 
       // For files, use MultipartFile:
       'file':
@@ -219,7 +216,20 @@ class ApiService {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }
   }
- 
 
-  
+  Future<UserProfileResponseModel> getUserProfile() async {
+    Map<String, dynamic> data = {
+      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+    };
+    try {
+      final res = await api.get(
+        ApiConstants.userProfile,
+        queryParameters: data,
+      );
+      return UserProfileResponseModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
 }
