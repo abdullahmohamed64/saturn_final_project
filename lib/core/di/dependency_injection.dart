@@ -18,6 +18,8 @@ import 'package:saturn/features/favourite/logic/cubit/get_user_favorite_arts_cub
 
 import 'package:saturn/features/home/data/repo/home_repo.dart';
 import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
+import 'package:saturn/features/profile/data/repo/user_profile_repo.dart';
+import 'package:saturn/features/profile/logic/cubit/user_profile_cubit_.dart';
 
 final getIt = GetIt.instance;
 void setUpGetIt() {
@@ -55,14 +57,21 @@ void setUpGetIt() {
 
   //!!!!!!!!!!! get user favourite arts
 
-   getIt.registerLazySingleton<GetUserFavoriteArtsCubit>(() => GetUserFavoriteArtsCubit(getIt()));
+  getIt.registerLazySingleton<GetUserFavoriteArtsCubit>(
+    () => GetUserFavoriteArtsCubit(getIt()),
+  );
 
+  ///!!!!!!!!!! add post
+  getIt.registerLazySingleton<AddPostRepo>(
+    () => AddPostRepo(apiService: getIt()),
+  );
+  getIt.registerLazySingleton<AddPostCubit>(() => AddPostCubit(getIt()));
 
-
-
-   ///!!!!!!!!!! add post
-    getIt.registerLazySingleton<AddPostRepo>(()=>AddPostRepo(apiService: getIt()));
-    getIt.registerLazySingleton<AddPostCubit>(()=>AddPostCubit(getIt()));
-
-    
+  ///!!!!!!!!!! add profile
+  getIt.registerLazySingleton<UserProfileRepo>(
+    () => UserProfileRepo(apiService: getIt()),
+  );
+  getIt.registerLazySingleton<UserProfileCubit>(
+    () => UserProfileCubit(getIt()),
+  );
 }

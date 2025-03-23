@@ -9,10 +9,9 @@ abstract class ApiConstants {
   static const String likedPosts = 'view/post.php';
   static const String addComment = 'add/comment.php';
   static const String favorites = 'view/favorites.php';
-    ////////
+  ////////
   static const String addPost = 'add/post.php';
-  static const String viewUserProfile = 'view/user.php';
+  static const String userProfile = 'view/user.php';
 
- //https://9a98-156-211-124-158.ngrok-free.app/saturn/add/post.php
-
+  //https://9a98-156-211-124-158.ngrok-free.app/saturn/add/post.php
 }

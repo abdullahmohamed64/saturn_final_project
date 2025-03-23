@@ -18,7 +18,7 @@ class CustomHomeArtsGridView extends StatelessWidget {
           crossAxisCount: 3,
           crossAxisSpacing: 5.w,
           mainAxisSpacing: 5.h,
-          childAspectRatio: 4 / 5,
+          childAspectRatio: 4 / 6,
           // ,
           // childAspectRatio: 1/1,
         ),

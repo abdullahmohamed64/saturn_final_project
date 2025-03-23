@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:json_annotation/json_annotation.dart';
 
 
 
@@ -14,7 +13,7 @@ import 'package:json_annotation/json_annotation.dart';
 //   String toJson(File object) => object.path;
 // }
 
-@JsonSerializable()
+
 class SignUpRequestModel {
   final String username;
   final String email;

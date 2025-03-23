@@ -41,14 +41,7 @@ class AddPostPage extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CustomTextFormField(
-                              controller: addPostCubit.titleController,
-                              hintText: 'title',
-                              hintTextStyle: AppTextstyles.font14GreyRegular
-                                  .copyWith(
-                                    color: AppColors.addPostInputTextsColor,
-                                  ),
-                            ),
+                  
                             verticalSpace(20),
                             CustomTextFormField(
                               controller: addPostCubit.descriptionController,

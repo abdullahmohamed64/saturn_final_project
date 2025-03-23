@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:saturn/core/helper/app_reg_exp.dart';
 import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/shared_pref_helper.dart';
@@ -10,7 +11,6 @@ import 'package:saturn/core/networking/api_error_model.dart';
 import 'package:saturn/core/networking/server_exception.dart';
 import 'package:saturn/features/auth/sign%20in/data/models/sign_in_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
-
 
 class AppFunctions {
   String? checkEmailValidation(value) {
@@ -57,11 +57,11 @@ class AppFunctions {
 
   static Future<SignInRequestModel> getUserData() async {
     final email = await SharedPrefHelper.getString(SharedPrefKeys.emailKey);
-    final password =
-        await SharedPrefHelper.getSecuredData(SharedPrefKeys.passwordKey);
+    final password = await SharedPrefHelper.getSecuredData(
+      SharedPrefKeys.passwordKey,
+    );
     return SignInRequestModel(email: email, password: password);
   }
-
 
   static void handleException(DioException e) {
     switch (e.type) {
@@ -106,33 +106,36 @@ class AppFunctions {
     }
   }
 
-  static Future<MultipartFile> uploadImageToApiMethod(
-    File? imagePath,
-  ) => MultipartFile.fromFile(
-    imagePath?.path ?? '',
-    filename: imagePath?.path.split('/').last ?? '',
-  );
-
-
-
-static void showCustomDialog(BuildContext context, String title, String message) {
-  showDialog(
-  
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        
-        title: Text(title),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text("OK"),
-          ),
-        ],
+  static Future<MultipartFile> uploadImageToApiMethod(File? imagePath) =>
+      MultipartFile.fromFile(
+        imagePath?.path ?? '',
+        filename: imagePath?.path.split('/').last ?? '',
       );
-    },
-  );
-}
 
+  static void showCustomDialog(
+    BuildContext context,
+    String title,
+    String message,
+  ) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+ static  String formatDate(String createdAt) {
+    final DateTime parsedDate = DateTime.parse(createdAt);
+    return DateFormat('MMM d • h:mm a').format(parsedDate);
+  }
 }
