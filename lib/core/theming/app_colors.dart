@@ -14,6 +14,8 @@ class AppColors {
   static const Color textFieldBckgroundColor = Color(0xffF5F5F5);
 
   static const Color mainPurple = Color(0xff3B057A);
+  static const Color usersProfileChatContainerColor = Color(0xff280E5C);
+  //#280E5C
   static const Color lightPurple = Color(0xff3F217A);
   static const Color textformFieldColor = Color(0xffF8F7FB);
   static const Color white = Color.fromARGB(255, 255, 255, 255);
