@@ -37,6 +37,10 @@ class AppColors {
   //#4CD964
   static const Color animationCategoryColor = Color(0xff4CD964);
   static const Color addPostInputTextsColor = Color(0xff7F909F);
+  static const Color senderMessageColor = Color(0xff373E4E);
+  static const Color reiceverMessageColor = Color(0xff7A8194);
+ 
+ //#7A8194
 
   //#7F909F
 

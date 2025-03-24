@@ -41,7 +41,7 @@ class SaturnApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           ),
           onGenerateRoute: AppRouter.onGenerate,
-          initialRoute: Routes.chatPage,
+          initialRoute: Routes.chatRoomPage,
         ),
       ),
     );

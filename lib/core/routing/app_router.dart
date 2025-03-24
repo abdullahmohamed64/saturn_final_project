@@ -11,6 +11,7 @@ import 'package:saturn/features/auth/sign%20up/presentation/views/complete_profi
 import 'package:saturn/features/auth/sign%20up/presentation/views/sign_up_page.dart';
 import 'package:saturn/features/auth/views/login_succefully_page.dart';
 import 'package:saturn/features/chat/presentation/views/chat_page.dart';
+import 'package:saturn/features/chat/presentation/views/chat_room_page.dart';
 import 'package:saturn/features/favourite/logic/cubit/get_user_favorite_arts_cubit.dart';
 import 'package:saturn/features/favourite/presentation/views/favourite_page.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
@@ -132,6 +133,12 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) {
             return FavouritePage();
+          },
+        );
+         case Routes.chatRoomPage:
+        return MaterialPageRoute(
+          builder: (_) {
+            return ChatRoomPage();
           },
         );
 
