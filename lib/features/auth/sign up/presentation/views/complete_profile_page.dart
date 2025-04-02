@@ -15,7 +15,7 @@ class CompleteProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        // backgroundColor: Colors.black,
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           margin: EdgeInsets.only(top: 32.h),

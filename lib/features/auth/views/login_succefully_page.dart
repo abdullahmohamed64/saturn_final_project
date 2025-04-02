@@ -15,7 +15,7 @@ class LoginSuccefullyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         margin: EdgeInsets.only(top: height / 6),

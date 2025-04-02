@@ -46,6 +46,14 @@ class Assets {
   /// assets/images/man2.png
   static const String assetsImagesMan2 = "assets/images/man2.png";
 
+  /// Assets for assetsImagesMyAppLogo
+  /// assets/images/my_App_logo.png
+  static const String assetsImagesMyAppLogo = "assets/images/my_App_logo.png";
+
+  /// Assets for assetsImagesMyAppLogo2
+  /// assets/images/my_app_logo2.png
+  static const String assetsImagesMyAppLogo2 = "assets/images/my_app_logo2.png";
+
   /// Assets for assetsImagesOTPImage
   /// assets/images/OTP_image.png
   static const String assetsImagesOTPImage = "assets/images/OTP_image.png";
@@ -69,6 +77,10 @@ class Assets {
   /// Assets for assetsImagesSendToCloud
   /// assets/images/send_to_cloud.png
   static const String assetsImagesSendToCloud = "assets/images/send_to_cloud.png";
+
+  /// Assets for assetsImagesSplash12
+  /// assets/images/splash_12.png
+  static const String assetsImagesSplash12 = "assets/images/splash_12.png";
 
   /// Assets for assetsImagesSplashImage
   /// assets/images/splash_image.png

@@ -22,7 +22,7 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        // backgroundColor: Colors.black,
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           margin: EdgeInsets.only(top: 32.h),
@@ -52,7 +52,7 @@ class SignInPage extends StatelessWidget {
                 ),
                 verticalSpace(20),
                 Image.asset(
-                  Assets.assetsImagesAppLogo,
+                  Assets.assetsImagesMyAppLogo2,
                   width: 100,
                   height: 100,
                 ),
