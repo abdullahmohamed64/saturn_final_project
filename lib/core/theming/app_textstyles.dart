@@ -66,6 +66,11 @@ class AppTextstyles {
     color: AppColors.black,
     fontSize: 12.sp,
   );
+    static TextStyle font12WhiteRegular = TextStyle(
+    fontWeight: AppFontWeightHelper.regular,
+    color: AppColors.white,
+    fontSize: 12.sp,
+  );
   static TextStyle font12BlackSemiBold = TextStyle(
     fontWeight: AppFontWeightHelper.semiBold,
     color: AppColors.black,

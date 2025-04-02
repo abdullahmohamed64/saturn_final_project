@@ -16,4 +16,5 @@ class Routes {
   static const favouritePage = 'favourite';
   static const navigationPage = 'navigationPage';
   static const artViewPage = 'artViewPage';
+  static const chatRoomPage = 'chatRoomPage';
 }

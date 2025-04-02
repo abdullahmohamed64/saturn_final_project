@@ -24,11 +24,12 @@ class CustomTextField extends StatelessWidget {
     this.verticalPadding,
     this.borderRadius,
     this.controller,
-    this.checkValidation, this.width, this.prefixIcon,
+    this.checkValidation, this.width, this.prefixIcon, this.textFieldStyle,
   });
 
   /// The text to be displayed as a hint in the text form field.
   final String hintText;
+  final TextStyle? textFieldStyle;
 
   final Widget? suffixIcon;
   final Color? enabledBorderColor;
@@ -87,9 +88,11 @@ class CustomTextField extends StatelessWidget {
           filled: true,
           fillColor: backgroundColor ?? AppColors.theMostlightGrey,
           label: label,
+          labelStyle: TextStyle(color: AppColors.white)
           
         ),
         obscureText: obscureText ?? false,
+        style: textFieldStyle,
       ),
     );
   }
