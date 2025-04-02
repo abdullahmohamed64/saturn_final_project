@@ -16,7 +16,7 @@ class UsersProfileChatItem extends StatelessWidget {
           radius: 28.r,
           backgroundImage: AssetImage(Assets.assetsImagesMan2),
         ),
-        horizontalSpace(10),
+        horizontalSpace(12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

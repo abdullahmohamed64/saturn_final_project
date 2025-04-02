@@ -20,7 +20,7 @@ class ChatPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              verticalSpace(50),
+              verticalSpace(30),
               Text(
                 'Messages',
                 style: AppTextstyles.font32BlueBold.copyWith(
@@ -29,6 +29,7 @@ class ChatPage extends StatelessWidget {
                   fontFamily: GoogleFonts.pacifico().fontFamily,
                 ),
               ),
+
               verticalSpace(10),
 
               Text(
@@ -36,10 +37,10 @@ class ChatPage extends StatelessWidget {
                 style: AppTextstyles.font13Greyregular.copyWith(
                   color: AppColors.lighterGrey,
                   fontSize: 16,
-                   fontFamily: GoogleFonts.poppins().fontFamily,
+                  fontFamily: GoogleFonts.poppins().fontFamily,
                 ),
               ),
-              verticalSpace(15),
+              verticalSpace(30),
 
               UserListviewPhotos(),
               UsersProfileChatContainer(),

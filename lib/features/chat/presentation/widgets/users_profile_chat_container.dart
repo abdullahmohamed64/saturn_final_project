@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/spacing.dart';
+import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/features/chat/presentation/widgets/users_profile_chat_item.dart';
 
@@ -11,7 +13,7 @@ class UsersProfileChatContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.only(top: 54.h , right: 8.w , left: 8.w),
+        padding: EdgeInsets.only(top: 32.h , right: 12.w , left: 12.w),
       
       decoration: BoxDecoration(
         color: AppColors.usersProfileChatContainerColor,
@@ -20,10 +22,14 @@ class UsersProfileChatContainer extends StatelessWidget {
        ),
       ),
       child: ListView.separated(
-        separatorBuilder: (context, index) => verticalSpace(20),
+        separatorBuilder: (context, index) => verticalSpace(30),
         itemCount: 20,
         itemBuilder: (context,i){
-         return UsersProfileChatItem();
+         return GestureDetector(
+          onTap: (){
+            context.pushNamed(Routes.chatRoomPage);
+          },
+          child: UsersProfileChatItem());
       }),
       ),
 
