@@ -26,6 +26,7 @@ class HomePage extends StatelessWidget {
               } else if (state is GetAllCategorisSuccess) {
                 return Column(
                   children: [
+                    verticalSpace(10),
                     CustomAppBar(),
                     verticalSpace(30),
                     Expanded(

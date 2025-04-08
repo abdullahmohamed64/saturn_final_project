@@ -135,10 +135,10 @@ class AppRouter {
             return FavouritePage();
           },
         );
-         case Routes.chatRoomPage:
+      case Routes.chatRoomPage:
         return MaterialPageRoute(
           builder: (_) {
-            return ChatRoomPage();
+            return ChatRoomPage(receiverId: routeSettings.arguments as String);
           },
         );
 

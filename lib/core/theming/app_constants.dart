@@ -9,7 +9,7 @@ static const message  = "message";
 static const type  = "type";
 static const senderId  = "senderId";
 static const groupName  = "groupName";
-
+static const text = "text";
 
 
 }

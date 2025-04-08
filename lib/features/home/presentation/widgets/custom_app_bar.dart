@@ -14,6 +14,13 @@ class CustomAppBar extends StatelessWidget {
       children: [
         Expanded(
           child: CustomTextField(
+            textFieldStyle: TextStyle(color:  AppColors.white),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(32.r),
+              topRight: Radius.circular(32.r),
+              bottomRight: Radius.circular(512.r),
+              bottomLeft: Radius.circular(32.r),
+            ),
             focusdBorderColor: AppColors.white,
             enabledBorderColor: AppColors.lightPurple,
             backgroundColor: AppColors.lightPurple,

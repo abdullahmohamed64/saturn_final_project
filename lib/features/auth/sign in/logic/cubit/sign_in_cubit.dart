@@ -32,6 +32,7 @@ class SignInCubit extends Cubit<SignInState> {
        await AppFunctions.saveUserData(
           email: signInResponseModel.userData?.email ?? 'no email',
           password: signInResponseModel.userData?.password ?? 'no password',
+        
         );
         await SharedPrefHelper.setData(SharedPrefKeys.userIdKey, signInResponseModel.userData?.id ?? '');
 

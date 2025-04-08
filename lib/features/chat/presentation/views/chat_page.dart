@@ -4,11 +4,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
+import 'package:saturn/features/chat/data/models/chat_service.dart';
 import 'package:saturn/features/chat/presentation/widgets/user_listview_photos.dart';
-import 'package:saturn/features/chat/presentation/widgets/users_profile_chat_container.dart';
+import 'package:saturn/features/chat/presentation/widgets/chats_list_container.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
+
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +25,10 @@ class ChatPage extends StatelessWidget {
         backgroundColor: AppColors.deepPurple,
         body: Padding(
           padding: EdgeInsets.all(8),
-          child: Column(
+          child:  
+         
+          
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               verticalSpace(30),
@@ -42,8 +53,8 @@ class ChatPage extends StatelessWidget {
               ),
               verticalSpace(30),
 
-              UserListviewPhotos(),
-              UsersProfileChatContainer(),
+              UsersListviewPhotos(),
+              ChatsListContainer(),
             ],
           ),
         ),

@@ -49,8 +49,8 @@ class _ArtPageState extends State<ArtPage> {
           },
           builder: (context, state) {
             final bool isLoading = state is GetPostReactsAndCommentsLoading;
-            final bool hasCommentsAndPosts =
-                state is GetPostReactsAndCommentsSucceFully;
+            // final bool hasCommentsAndPosts =
+            //     state is GetPostReactsAndCommentsSucceFully;
 
             return Column(
               children: [

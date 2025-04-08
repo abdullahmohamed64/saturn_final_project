@@ -4,8 +4,8 @@ import 'package:saturn/constants/assets.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 
-class UsersProfileChatItem extends StatelessWidget {
-  const UsersProfileChatItem({super.key});
+class ChatListviewItem extends StatelessWidget {
+  const ChatListviewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
