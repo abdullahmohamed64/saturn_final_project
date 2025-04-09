@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/features/add%20post/presentation/views/add_post_page.dart';
+import 'package:saturn/features/auth/models/user_model.dart';
 import 'package:saturn/features/auth/sign%20in/logic/cubit/sign_in_cubit.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/reset_password_page.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/set_new_password_page.dart';
@@ -138,7 +139,9 @@ class AppRouter {
       case Routes.chatRoomPage:
         return MaterialPageRoute(
           builder: (_) {
-            return ChatRoomPage(receiverId: routeSettings.arguments as String);
+            return ChatRoomPage(
+              receiverData: routeSettings.arguments as UserModel,
+            );
           },
         );
 

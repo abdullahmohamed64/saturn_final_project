@@ -109,9 +109,9 @@ class CustomTextField extends StatelessWidget {
   }
 
   OutlineInputBorder customErrorBorder() {
-    return const OutlineInputBorder(
+    return  OutlineInputBorder(
       borderSide: BorderSide(color: Colors.red),
-      borderRadius: BorderRadius.all(Radius.circular(16)),
+      borderRadius: borderRadius?? BorderRadius.all(Radius.circular(16)),
     );
   }
 }

@@ -30,6 +30,7 @@ import 'package:saturn/features/auth/sign%20in/data/models/sign_in_response_mode
 
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_model.dart';
+import 'package:saturn/features/chat/data/models/users_list_model.dart';
 import 'package:saturn/features/favourite/data/models/user_favourit_arts_model.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
@@ -228,6 +229,21 @@ class ApiService {
         queryParameters: data,
       );
       return UserProfileResponseModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
+    Future<UsersListModel> getAllUsers() async {
+    Map<String, dynamic> data = {
+      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+    };
+    try {
+      final res = await api.get(
+        ApiConstants.getAllUsersUrl,
+        queryParameters: data,
+      );
+      return UsersListModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }

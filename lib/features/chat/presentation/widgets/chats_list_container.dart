@@ -4,22 +4,15 @@ import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/core/theming/app_colors.dart';
+import 'package:saturn/features/auth/models/user_model.dart';
 import 'package:saturn/features/chat/presentation/widgets/chat_listview_item.dart';
 
-const List<String> usersId = [
-  '01',
-  '02',
-  '03',
-  '04',
-  '05',
-  '06',
-  '07',
-  '08',
-  '09',
-];
+
 
 class ChatsListContainer extends StatelessWidget {
-  const ChatsListContainer({super.key});
+  const ChatsListContainer({super.key, required this.users});
+final  List <UserModel>users;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -35,13 +28,13 @@ class ChatsListContainer extends StatelessWidget {
         ),
         child: ListView.separated(
           separatorBuilder: (context, index) => verticalSpace(30),
-          itemCount: 9,
+          itemCount: users.length,
           itemBuilder: (context, i) {
             return GestureDetector(
               onTap: () {
-                context.pushNamed(Routes.chatRoomPage, args: usersId[i]);
+                context.pushNamed(Routes.chatRoomPage, args: users[i]);
               },
-              child: ChatListviewItem(),
+              child: ChatListviewItem(user : users[i]),
             );
           },
         ),
