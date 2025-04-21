@@ -11,6 +11,7 @@ import 'package:saturn/core/networking/api_error_model.dart';
 import 'package:saturn/core/networking/server_exception.dart';
 import 'package:saturn/features/auth/sign%20in/data/models/sign_in_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
+import 'package:saturn/features/home/data/models/art_model.dart';
 
 class AppFunctions {
   String? checkEmailValidation(value) {
@@ -137,5 +138,18 @@ class AppFunctions {
  static  String formatDate(String createdAt) {
     final DateTime parsedDate = DateTime.parse(createdAt);
     return DateFormat('MMM d • h:mm a').format(parsedDate);
+  }
+
+    List<ArtModel>? searchPosts(List<ArtModel>arts, String description) {
+    if (arts.isNullOrEmpty()) return <ArtModel>[];
+    return arts
+        ?.where(
+          (ArtModel art) =>
+              art.description?.toLowerCase().contains(
+                description.toLowerCase(),
+              ) ??
+              false,
+        )
+        .toList();
   }
 }

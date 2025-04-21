@@ -11,6 +11,7 @@ import 'package:saturn/features/chat/logic/cubit/chat_cubit.dart';
 import 'package:saturn/features/chat/presentation/views/chat_page.dart';
 import 'package:saturn/features/favourite/logic/cubit/get_user_favorite_arts_cubit.dart';
 import 'package:saturn/features/favourite/presentation/views/favourite_page.dart';
+import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
 import 'package:saturn/features/home/presentation/views/home_page.dart';
 import 'package:saturn/features/profile/logic/cubit/user_profile_cubit_.dart';
 import 'package:saturn/features/profile/presentaion/views/profile_page.dart';
@@ -62,9 +63,6 @@ class _NavigationPageState extends State<NavigationPage> {
   }
 
   Widget _selectBody(int i) {
-       if (i == 1) {
-      return pages.elementAt(i);
-    } 
     if (i == 2) {
       return BlocProvider(
         create: (context) => AddPostCubit(getIt()),

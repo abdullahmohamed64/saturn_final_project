@@ -14,6 +14,7 @@ import 'package:saturn/features/add%20post/logic/cubit/add_post_cubit.dart';
 import 'package:saturn/features/add%20post/presentation/widgets/choose_img_or_video.dart';
 import 'package:saturn/features/add%20post/presentation/widgets/custom_category_pop_up_button.dart';
 import 'package:saturn/features/add%20post/presentation/widgets/custom_post_type_pop_up_down_button.dart';
+import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
 
 class AddPostPage extends StatelessWidget {
   const AddPostPage({super.key});
@@ -41,7 +42,6 @@ class AddPostPage extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                  
                             verticalSpace(20),
                             CustomTextFormField(
                               controller: addPostCubit.descriptionController,
@@ -113,6 +113,7 @@ class AddPostPage extends StatelessWidget {
         'success',
         'post added successfully',
       );
+      context.read<HomeCubit>().getCategoyItems();
       context.pushNamedAndRemoveUntile(
         Routes.navigationPage,
         predicate: (context) => false,

@@ -6,14 +6,15 @@ import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/widgets/custom_text_filed.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
+  const CustomAppBar({super.key, this.onChanged});
+final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: CustomTextField(
+            onChanged: onChanged,
             textFieldStyle: TextStyle(color:  AppColors.white),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(64.r),
