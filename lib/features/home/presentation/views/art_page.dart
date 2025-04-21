@@ -49,8 +49,8 @@ class _ArtPageState extends State<ArtPage> {
           },
           builder: (context, state) {
             final bool isLoading = state is GetPostReactsAndCommentsLoading;
-            final bool hasCommentsAndPosts =
-                state is GetPostReactsAndCommentsSucceFully;
+            // final bool hasCommentsAndPosts =
+            //     state is GetPostReactsAndCommentsSucceFully;
 
             return Column(
               children: [
@@ -81,8 +81,8 @@ class _ArtPageState extends State<ArtPage> {
     final bool isLiked = isSuccess && state.favouriteRsponseModel.liked == true;
 
     return ArtImageSecion(
+     artModel: widget.artModel,
       likesCount: likeCount,
-      artId: widget.artModel.id!,
       isLiked: isLiked,
       onCommentPress: () {
         setState(() {

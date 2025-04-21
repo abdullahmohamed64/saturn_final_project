@@ -15,3 +15,22 @@ final class GetAllCategorisFailure extends HomeState {
 }
 
 final class GetAllCategorisLoading extends HomeState {}
+
+
+final class GetAllUsersSuccefully extends HomeState {
+  final List<UserModel> users;
+
+  GetAllUsersSuccefully({required this.users});
+
+}
+final class GetAllUsersLoading extends HomeState {
+
+
+}
+final class GetAllUsersFailure extends HomeState {
+  final String errorMessage;
+
+  GetAllUsersFailure({required this.errorMessage});
+
+
+}

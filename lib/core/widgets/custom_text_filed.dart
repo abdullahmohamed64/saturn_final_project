@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     required this.hintText,
+    this.borderRadius,
     this.label,
     this.onChanged,
     this.maxLines,
@@ -22,7 +23,7 @@ class CustomTextField extends StatelessWidget {
     this.backgroundColor,
     this.obscureText,
     this.verticalPadding,
-    this.borderRadius,
+    this.borderCircularRadiusValue,
     this.controller,
     this.checkValidation, this.width, this.prefixIcon, this.textFieldStyle,
   });
@@ -42,7 +43,7 @@ class CustomTextField extends StatelessWidget {
   final Color? suffixIconColor;
   final Color? backgroundColor;
   final bool? obscureText;
-  final double? borderRadius;
+  final double? borderCircularRadiusValue;
   final TextEditingController? controller;
   final String? Function(String?)? checkValidation;
   final Widget? label;
@@ -50,11 +51,13 @@ class CustomTextField extends StatelessWidget {
   final int? maxLines;
   final Widget? prefixIcon;
   final void Function(String)? onChanged;
+  final BorderRadius? borderRadius ;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width?.w,
       child: TextField(
+        
         onChanged: onChanged,
       
         maxLines: maxLines ?? 1,
@@ -67,13 +70,13 @@ class CustomTextField extends StatelessWidget {
             borderSide: BorderSide(
               color: enabledBorderColor ?? AppColors.morelightGrey,
             ),
-            borderRadius: BorderRadius.circular(borderRadius ?? 16),
+            borderRadius: borderRadius?? BorderRadius.circular(borderCircularRadiusValue??  16.r),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: focusdBorderColor ?? AppColors.mainBlue,
             ),
-            borderRadius: BorderRadius.circular(borderRadius ?? 16.sp),
+            borderRadius:borderRadius??  BorderRadius.circular(borderCircularRadiusValue ?? 16.r),
           ),
           errorBorder: customErrorBorder(),
           focusedErrorBorder: customErrorBorder(),
@@ -106,9 +109,9 @@ class CustomTextField extends StatelessWidget {
   }
 
   OutlineInputBorder customErrorBorder() {
-    return const OutlineInputBorder(
+    return  OutlineInputBorder(
       borderSide: BorderSide(color: Colors.red),
-      borderRadius: BorderRadius.all(Radius.circular(16)),
+      borderRadius: borderRadius?? BorderRadius.all(Radius.circular(16)),
     );
   }
 }

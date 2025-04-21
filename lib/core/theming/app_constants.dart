@@ -1,6 +1,15 @@
 class AppConstants {
-  static String paymentBox = 'paymentBox';
-  static String paymentMethod = 'paymentMethod';
-  static String paymentCard = 'paymentCard';
-  static String paymentFullDate = 'paymentFullDate';
+static const chats  = "chats";
+static const members  = "members";
+static const isGroup  = "isGroup";
+static const createdAt  = "createdAt";
+static const timeStamp  = "timeStamp";
+static const messages  = "messages";
+static const message  = "message";
+static const type  = "type";
+static const senderId  = "senderId";
+static const groupName  = "groupName";
+static const text = "text";
+
+
 }

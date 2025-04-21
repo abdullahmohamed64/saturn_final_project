@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/constants/assets.dart';
 import 'package:saturn/core/helper/spacing.dart';
+import 'package:saturn/core/networking/api_constants.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
@@ -28,7 +29,11 @@ class CustomCategoryGridviewItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Image.asset(Assets.assetsImagesBag, height: 100.h, width: 70.w),
+         artModel.imageName == null?
+
+          Image.asset(Assets.assetsImagesBag, height: 100.h, width: 70.w):
+          Image.network(ApiConstants.upload+  artModel.imageName! , height: 100.h,width: 70.w,)
+          ,
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

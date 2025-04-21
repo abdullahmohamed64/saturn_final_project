@@ -17,7 +17,7 @@ const List<String> textList = ['All', 'Photos', 'Videos'];
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
-
+  
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -56,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   clipBehavior: Clip.none,
                   children: [
                     DeepBuleContainer(mdQry: mdQry),
-                    UserImage(),
+                    UserImage(user: state.userProfileResponseModel.user!, ),
 
                     Positioned(
                       bottom: 20.h,
@@ -99,7 +99,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                   }).toList(),
                             ),
                             verticalSpace(10),
-                            GridViewContainer(mdQry: mdQry, arts: artList),
+                            StaggeredGridViewContainer(
+                              mdQry: mdQry,
+                              arts: artList,
+                            ),
                           ],
                         ),
                       ),
@@ -125,9 +128,3 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
-
-
-
-
-
-
