@@ -8,7 +8,7 @@ import 'package:saturn/features/chat/data/models/chat_service.dart';
 class SendMessageTextField extends StatefulWidget {
   const SendMessageTextField({super.key, required this.chatId, required this.senderId});
   final String chatId;
-  final String senderId;
+  final int senderId;
 
   @override
   State<SendMessageTextField> createState() => _SendMessageTextFieldState();

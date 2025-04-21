@@ -78,10 +78,10 @@ void setUpGetIt() {
   );
 
   //!!!!!!!!!! get all users (chat page) 
-    getIt.registerLazySingleton<ChatRepo>(
-    () => ChatRepo(apiService: getIt()),
-  );
-  getIt.registerLazySingleton<ChatCubit>(
-    () => ChatCubit(getIt()),
-  );
+  //   getIt.registerLazySingleton<ChatRepo>(
+  //   () => ChatRepo(apiService: getIt()),
+  // );
+  // getIt.registerLazySingleton<ChatCubit>(
+  //   () => ChatCubit(getIt()),
+  // );
 }

@@ -4,8 +4,8 @@ import 'package:saturn/core/widgets/custom_listview_shimmer.dart';
 import 'package:saturn/core/widgets/custom_shimmer_item.dart';
 
 class CustomGridViewShimmer extends StatelessWidget {
-  const CustomGridViewShimmer({super.key});
-
+  const CustomGridViewShimmer({super.key , this.length});
+ final int? length;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -20,7 +20,7 @@ class CustomGridViewShimmer extends StatelessWidget {
             mainAxisSpacing: 20.h,
             crossAxisSpacing: 20.w
           ),
-          itemCount: 6,
+          itemCount: length ?? 6,
           itemBuilder: (cotext, i) {
             return ShimmerItem();
           },

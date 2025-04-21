@@ -23,7 +23,7 @@ class CustomHomeArtsGridView extends StatelessWidget {
           // childAspectRatio: 1/1,
         ),
         itemBuilder: (context, i) {
-          return CustomHomeArtsGridViewItem(artModel: artModels[i]);
+          return CustomArtsGridViewItem(artModel: artModels[i]);
         },
       ),
     );

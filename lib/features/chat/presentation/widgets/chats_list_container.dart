@@ -7,11 +7,9 @@ import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
 import 'package:saturn/features/chat/presentation/widgets/chat_listview_item.dart';
 
-
-
 class ChatsListContainer extends StatelessWidget {
   const ChatsListContainer({super.key, required this.users});
-final  List <UserModel>users;
+  final List<UserModel> users;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +32,7 @@ final  List <UserModel>users;
               onTap: () {
                 context.pushNamed(Routes.chatRoomPage, args: users[i]);
               },
-              child: ChatListviewItem(user : users[i]),
+              child: ChatListviewItem(user: users[i]),
             );
           },
         ),

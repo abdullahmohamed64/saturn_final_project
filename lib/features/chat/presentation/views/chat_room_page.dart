@@ -23,7 +23,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
   bool isLoading = true;
   String? chatId;
 
-  late int currentUserId; // Replace with actual user ID later
+  late int currentUserId; 
 
   @override
   void initState() {
@@ -76,7 +76,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                       verticalSpace(20),
                       SendMessageTextField(
                         chatId: chatId!,
-                        senderId: currentUserId.toString(),
+                        senderId: currentUserId,
                       ),
                     ],
                   ),

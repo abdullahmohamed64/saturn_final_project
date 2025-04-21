@@ -14,9 +14,14 @@ class UserProfileResponseModel {
   });
   UserProfileResponseModel.fromJson(Map<String, dynamic> json)
     : status = json['status'],
-      user = json['user_information'] != null ? UserModel.fromJson(json['user_information']) : null,
+      user =
+          json['user_information'] != null
+              ? UserModel.fromJson(json['user_information'])
+              : null,
       arts =
           json['posts'] != null
-              ? (json['posts'] as List).map((i) => ArtModel.fromJson(i)).toList()
+              ? (json['posts'] as List)
+                  .map((i) => ArtModel.fromJson(i))
+                  .toList()
               : null;
 }

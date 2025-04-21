@@ -63,10 +63,7 @@ class _NavigationPageState extends State<NavigationPage> {
 
   Widget _selectBody(int i) {
        if (i == 1) {
-      return BlocProvider(
-        create: (context) => ChatCubit(getIt())..getAllUsers(),
-        child: pages.elementAt(i),
-      );
+      return pages.elementAt(i);
     } 
     if (i == 2) {
       return BlocProvider(

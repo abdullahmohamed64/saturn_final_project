@@ -18,10 +18,8 @@ class ChatService {
 
       // Check if chat exists
       for (var chat in snapShot.children) {
-    
-
         Map<dynamic, dynamic> chatData = chat.value as Map<dynamic, dynamic>;
-   
+
         if (chatData.containsKey(AppConstants.isGroup) &&
             chatData[AppConstants.isGroup] == false) {
           List<String> members = [];
@@ -55,7 +53,7 @@ class ChatService {
 
   Future<void> sendMessage({
     required String chatId,
-    required String senderId,
+    required int senderId,
     required String text,
   }) async {
     DatabaseReference chatRef = FirebaseDatabase.instance
@@ -80,7 +78,33 @@ class ChatService {
         .onValue;
   }
 
+Future<  List<String>> getAllUserschatsKey()async {
+    List<String> chatsId = [];
+  DataSnapshot collection = await  FirebaseDatabase.instance
+        .ref()
+        .child(AppConstants.chats)
+        .get();
 
+        for (var element in collection.children) {
+
+          chatsId.add(element.key!);
+        }
+     
+        return chatsId;
+  }
+  getAllLastMessages()async{
+    List<String >chatsId = await getAllUserschatsKey();
+    final firebaseRef = FirebaseDatabase.instance.ref().child(AppConstants.messages);
+
+    List<Map>lastMessages = [];
+    for (var chatId in chatsId) {
+      DataSnapshot snapshot = await firebaseRef.child(chatId).limitToLast(1).get();
+      if(snapshot.exists){
+        lastMessages.add(snapshot.children.first.value as Map);
+        print(snapshot.value );
+      }
+    }
+  }
 
   Future<String> createGroupChat({
     required List<String> members,

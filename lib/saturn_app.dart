@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
 import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/routing/app_router.dart';
 import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/features/auth/sign%20up/logic/cubit/sign_up_cubit.dart';
+import 'package:saturn/features/chat/data/chat%20repo/chat_repo.dart';
+import 'package:saturn/features/chat/logic/cubit/chat_cubit.dart';
 import 'package:saturn/features/favourite/data/repo/favorite_repo.dart';
 import 'package:saturn/features/favourite/logic/cubit/favorite_cubit.dart';
 import 'package:saturn/features/home/data/repo/home_repo.dart';
@@ -23,10 +26,10 @@ class SaturnApp extends StatelessWidget {
           BlocProvider(create: (context) => getIt<SignUpCubit>()),
           BlocProvider(
             create:
-                (context) => HomeCubit(getIt<HomeRepo>())..getCategoyItems(),
+                (context) => HomeCubit(getIt<HomeRepo>())..getCategoyItems()..getAllUsers()
           ),
           BlocProvider(create: (context) => ArtCubit(getIt<FavouriteRepo>())),
-
+        
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

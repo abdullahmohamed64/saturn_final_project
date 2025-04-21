@@ -81,8 +81,8 @@ class _ArtPageState extends State<ArtPage> {
     final bool isLiked = isSuccess && state.favouriteRsponseModel.liked == true;
 
     return ArtImageSecion(
+     artModel: widget.artModel,
       likesCount: likeCount,
-      artId: widget.artModel.id!,
       isLiked: isLiked,
       onCommentPress: () {
         setState(() {

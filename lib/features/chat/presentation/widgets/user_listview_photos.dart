@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/spacing.dart';
-import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/features/chat/data/models/chat_service.dart';
 
 import 'userListview_photos_item.dart';
@@ -21,7 +19,7 @@ class UsersListviewPhotos extends StatelessWidget {
             itemBuilder: (context, i) {
               return GestureDetector(
                 onTap: () {
-                  context.pushNamed(Routes.chatRoomPage, args: '');
+                 ChatService().getAllLastMessages();
                 },
                 child: UserListviewPhotosItem(),
               );
