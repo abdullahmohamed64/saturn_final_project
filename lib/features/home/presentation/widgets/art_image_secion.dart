@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/constants/assets.dart';
+import 'package:saturn/core/helper/app_functions.dart';
 import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/networking/api_constants.dart';
@@ -60,18 +61,16 @@ class ArtImageSecion extends StatelessWidget {
           bottom: 10.h,
           right: 10.w,
           child: Container(
-
             decoration: BoxDecoration(
+              color: const Color.fromARGB(144, 127, 144, 159),
 
-            color: const Color.fromARGB(144, 127, 144, 159),
-
-              borderRadius: BorderRadius.circular(16.sp)
+              borderRadius: BorderRadius.circular(16.sp),
             ),
             child: Row(
               children: [
                 horizontalSpace(8),
                 Text(
-                  artModel.createdAt!,
+                  AppFunctions.formatDate(artModel.createdAt!),
                   style: AppTextstyles.font16WhiteSemiBold,
                 ),
                 horizontalSpace(100),
@@ -93,7 +92,6 @@ class ArtImageSecion extends StatelessWidget {
                   icon: const Icon(Icons.comment, color: Colors.white),
                 ),
                 horizontalSpace(8),
-
               ],
             ),
           ),

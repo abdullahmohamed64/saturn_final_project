@@ -46,14 +46,6 @@ class Assets {
   /// assets/images/man2.png
   static const String assetsImagesMan2 = "assets/images/man2.png";
 
-  /// Assets for assetsImagesMyAppLogo
-  /// assets/images/my_App_logo.png
-  static const String assetsImagesMyAppLogo = "assets/images/my_App_logo.png";
-
-  /// Assets for assetsImagesMyAppLogo2
-  /// assets/images/my_app_logo2.png
-  static const String assetsImagesMyAppLogo2 = "assets/images/my_app_logo2.png";
-
   /// Assets for assetsImagesOTPImage
   /// assets/images/OTP_image.png
   static const String assetsImagesOTPImage = "assets/images/OTP_image.png";
@@ -89,5 +81,9 @@ class Assets {
   /// Assets for assetsImagesSuccess
   /// assets/images/success.png
   static const String assetsImagesSuccess = "assets/images/success.png";
+
+  /// Assets for assetsImagesUserAvatar
+  /// assets/images/user_avatar.png
+  static const String assetsImagesUserAvatar = "assets/images/user_avatar.png";
 }
 

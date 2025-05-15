@@ -24,7 +24,7 @@ class UserImage extends StatelessWidget {
             child: CircleAvatar(
               backgroundImage:
               user.picName == null?
-               AssetImage(Assets.assetsImagesDesign)
+               AssetImage(Assets.assetsImagesUserAvatar)
                :
                NetworkImage(ApiConstants.upload  + user.picName!)
                ,

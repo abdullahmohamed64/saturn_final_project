@@ -11,6 +11,6 @@ abstract class ApiConstants {
   static const String favorites = 'view/favorites.php';
   static const String addPost = 'add/post.php';
   static const String userProfile = 'view/user.php';
-  static const String getAllUsersUrl = 'chat/info_user.php?';
-  
+  static const String getAllUsersUrl = 'chat/info_user.php?'; 
+  static const String editUser = 'edit/info_user.php'; 
 }
