@@ -8,12 +8,13 @@ import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
 import 'package:saturn/features/chat/data/models/chat_service.dart';
+import 'package:saturn/features/chat/data/models/chat_title_model.dart';
 import 'package:saturn/features/chat/presentation/widgets/chat_room_listview_messages.dart';
 import 'package:saturn/features/chat/presentation/widgets/send_message_text_field.dart';
 
 class ChatRoomPage extends StatefulWidget {
-  const ChatRoomPage({super.key, required this.receiverData});
-  final UserModel receiverData;
+  const ChatRoomPage({super.key, required this.chatTileModel});
+  final ChatTileModel chatTileModel;
 
   @override
   State<ChatRoomPage> createState() => _ChatRoomPageState();
@@ -23,7 +24,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
   bool isLoading = true;
   String? chatId;
 
-  late int currentUserId; 
+  late int currentUserId;
 
   @override
   void initState() {
@@ -36,7 +37,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
     currentUserId = await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey);
     chatId = await ChatService().createOrGetChat(
       userId1: currentUserId.toString(),
-      userId2: widget.receiverData.id.toString(),
+      userId2: widget.chatTileModel.receiverId.toString(),
     );
     setState(() {
       isLoading = false;
@@ -59,7 +60,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                       SizedBox(
                         height: 50.h,
                         child: Text(
-                          widget.receiverData.username!,
+                          widget.chatTileModel.username,
                           textAlign: TextAlign.center,
                           style: AppTextstyles.font16WhiteSemiBold.copyWith(
                             fontFamily: GoogleFonts.poppins().fontFamily,

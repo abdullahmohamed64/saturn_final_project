@@ -8,6 +8,7 @@ class ChatRepo {
   final ApiService _apiService;
 
   ChatRepo({required ApiService apiService}) : _apiService = apiService;
+  //get all users from server 
   Future<Either<List<UserModel>, String>> getAllUsers() async {
     try {
       final UsersListModel res = await _apiService.getAllUsers();

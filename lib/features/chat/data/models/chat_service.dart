@@ -1,5 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/theming/app_constants.dart';
+import 'package:saturn/features/chat/data/models/chat_model.dart';
+import 'package:saturn/features/chat/data/models/message_model.dart';
 
 class ChatService {
   // create or get chat and return chat id
@@ -13,11 +16,11 @@ class ChatService {
         AppConstants.chats,
       );
 
-      DataSnapshot snapShot = await chatsRef.get();
-      print('Retrieved ${snapShot.children.length} chats');
+      DataSnapshot chatSnapShot = await chatsRef.get();
+      print('Retrieved ${chatSnapShot.children.length} chats');
 
       // Check if chat exists
-      for (var chat in snapShot.children) {
+      for (var chat in chatSnapShot.children) {
         Map<dynamic, dynamic> chatData = chat.value as Map<dynamic, dynamic>;
 
         if (chatData.containsKey(AppConstants.isGroup) &&
@@ -69,7 +72,7 @@ class ChatService {
     });
   }
 
-  Stream<DatabaseEvent> getMessagesOnChat({required String chatId}) {
+  Stream<DatabaseEvent> getChatMessages({required String chatId}) {
     return FirebaseDatabase.instance
         .ref()
         .child(AppConstants.messages)
@@ -78,32 +81,74 @@ class ChatService {
         .onValue;
   }
 
-Future<  List<String>> getAllUserschatsKey()async {
-    List<String> chatsId = [];
-  DataSnapshot collection = await  FirebaseDatabase.instance
-        .ref()
-        .child(AppConstants.chats)
-        .get();
+  Future<List<ChatModel>> getMyChats(String userId) async {
+    DatabaseReference chatRef = FirebaseDatabase.instance.ref().child(
+      AppConstants.chats,
+    );
+    //take refrence from chatDatabase
+    DataSnapshot chatSnapShot = await chatRef.get();
 
-        for (var element in collection.children) {
+    List<ChatModel> chats = []; //all chats in databse
+    List<ChatModel> userChats = []; // chats of current user
 
-          chatsId.add(element.key!);
+    for (var chat in chatSnapShot.children) {
+      Map<dynamic, dynamic> chatValue = chat.value as Map;
+      chats.add(ChatModel.fromMap(chatValue, chat.key!));
+    }
+
+    for (var chat in chats) {
+      if (chat.isGroup == false && !chat.members.isNullOrEmpty()) {
+        if (chat.members.contains(userId)) {
+          userChats.add(chat);
+          print(
+            "********************\n${chat.members.first} ${chat.members.last}  ${chat.id}",
+          );
         }
-     
-        return chatsId;
-  }
-  getAllLastMessages()async{
-    List<String >chatsId = await getAllUserschatsKey();
-    final firebaseRef = FirebaseDatabase.instance.ref().child(AppConstants.messages);
-
-    List<Map>lastMessages = [];
-    for (var chatId in chatsId) {
-      DataSnapshot snapshot = await firebaseRef.child(chatId).limitToLast(1).get();
-      if(snapshot.exists){
-        lastMessages.add(snapshot.children.first.value as Map);
-        print(snapshot.value );
       }
     }
+
+    return userChats;
+  }
+// ids of users you make chat with them
+  Future<List<String>> getChatedUsersId(String userId) async {
+    List<ChatModel> chats = await getMyChats(userId);
+    List<String> usersId = [];
+    for (var chat in chats) {
+      usersId.add(chat.members.last);
+    }
+    return usersId;
+  }
+// ids of chats of  users you chat with them 
+  Future<List<String>> getChatedUsersChatId(String userId) async {
+    List<String> chatsIds = [];
+
+   List <ChatModel> chats = await getMyChats(userId);
+     for (var chat in chats) {
+       chatsIds.add(chat.id);
+     }
+    return chatsIds;
+  }
+ // last messages of your chats 
+  Future<List<MessageModel>> getAllLastMessages(String userId) async {
+    List<String> chatsId = await getChatedUsersChatId(userId);
+    final messagesRef = FirebaseDatabase.instance.ref().child(
+      AppConstants.messages,
+    );
+
+    List<MessageModel> lastMessages = [];
+  
+  
+    for (var chatId in chatsId) {
+      DataSnapshot snapshot =
+          await messagesRef.child(chatId).limitToLast(1).get();
+      if (snapshot.exists) {
+      final message =   snapshot.children.first;
+        lastMessages.add(MessageModel.fromMap(message.value as Map, message.key!, chatId));
+        print("***************${lastMessages.last.dateTime}\n");
+      }
+    }
+  
+    return lastMessages;
   }
 
   Future<String> createGroupChat({

@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/core/widgets/custom_text_filed.dart';
 import 'package:saturn/features/chat/data/models/chat_service.dart';
+import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
 
 class SendMessageTextField extends StatefulWidget {
-  const SendMessageTextField({super.key, required this.chatId, required this.senderId});
+  const SendMessageTextField({
+    super.key,
+    required this.chatId,
+    required this.senderId,
+  });
   final String chatId;
   final int senderId;
 
@@ -15,12 +21,13 @@ class SendMessageTextField extends StatefulWidget {
 }
 
 class _SendMessageTextFieldState extends State<SendMessageTextField> {
-  late TextEditingController messageController ;
+  late TextEditingController messageController;
   @override
   void initState() {
-   messageController = TextEditingController();
+    messageController = TextEditingController();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -41,6 +48,11 @@ class _SendMessageTextFieldState extends State<SendMessageTextField> {
               senderId: widget.senderId,
               text: messageController.text,
             );
+
+            context.read<HomeCubit>().getListOfUsersById(
+              widget.senderId.toString(),
+            );
+
             messageController.clear();
           },
           icon: Icon(Icons.send, color: AppColors.white),

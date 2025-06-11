@@ -1,6 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
+import 'package:saturn/features/auth/sign%20up/presentation/widgets/custom_gender_drop_down_button.dart';
+import 'package:saturn/features/chat/data/models/chat_service.dart';
+import 'package:saturn/features/chat/data/models/chat_title_model.dart';
+import 'package:saturn/features/chat/data/models/message_model.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
 import 'package:saturn/features/home/data/repo/home_repo.dart';
@@ -11,6 +15,8 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._homeRepo) : super(HomeInitial());
   final HomeRepo _homeRepo;
   List<ArtModel>? arts = [];
+    List<ChatTileModel> chatTileModels = [];
+
   Future<void> getCategoyItems({String? categoryName}) async {
     emit(GetAllCategorisLoading());
 
@@ -23,8 +29,6 @@ class HomeCubit extends Cubit<HomeState> {
           }, (r) => emit(GetAllCategorisFailure(errMessage: r))),
         );
   }
-
-
 
   List<UserModel>? allUsers = [];
   Future<void> getAllUsers({String? categoryName}) async {
@@ -44,5 +48,24 @@ class HomeCubit extends Cubit<HomeState> {
     } catch (e) {
       return null;
     }
+  }
+
+  getListOfUsersById(String userId) async {
+    emit(GetAllUsersLoading());
+ List<UserModel> chatedUsers = [];
+    List<String> usersId = [];
+    List <MessageModel> messages = [];
+    usersId = await ChatService().getChatedUsersId(userId);
+    messages = await ChatService().getAllLastMessages(userId);
+    for (int i = 0  ; i< usersId.length ; i++) {
+       UserModel user = getUserById(int.parse(usersId[i]))!;
+       chatTileModels.add(ChatTileModel(receiverId: usersId[i], username: user.username!, lastMessage: messages[i].message, lastMessageTime: messages[i].dateTime));
+    }
+
+    if (chatedUsers.isNullOrEmpty()) {
+      emit(GetAllCategorisFailure(errMessage: 'No Chated users yet'));
+    }
+
+    emit(GetSpecificUsersSucces(lastMessageModels: chatTileModels));
   }
 }

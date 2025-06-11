@@ -19,7 +19,7 @@ class ChatRoomListviewMessages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: StreamBuilder(
-        stream: ChatService().getMessagesOnChat(chatId: chatId),
+        stream: ChatService().getChatMessages(chatId: chatId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -31,18 +31,33 @@ class ChatRoomListviewMessages extends StatelessWidget {
           }
 
           if (snapshot.hasError) {
-            return  Center(child: Text("Something went wrong" , style:AppTextstyles.font16WhitekSemiBold,));
+            return Center(
+              child: Text(
+                "Something went wrong",
+                style: AppTextstyles.font16WhitekSemiBold,
+              ),
+            );
           }
 
           if (!snapshot.hasData || snapshot.data!.snapshot.value == null) {
-            return  Center(child: Text("No messages yet.",style:AppTextstyles.font16WhitekSemiBold));
+            return Center(
+              child: Text(
+                "No messages yet.",
+                style: AppTextstyles.font16WhitekSemiBold,
+              ),
+            );
           }
 
           Map<dynamic, dynamic> messages =
               snapshot.data!.snapshot.value as Map<dynamic, dynamic>;
 
           if (messages.isEmpty) {
-            return  Center(child: Text("No messages found." , style:AppTextstyles.font16WhitekSemiBold));
+            return Center(
+              child: Text(
+                "No messages found.",
+                style: AppTextstyles.font16WhitekSemiBold,
+              ),
+            );
           }
           List<MapEntry<dynamic, dynamic>> sortedMessages =
               messages.entries.toList();

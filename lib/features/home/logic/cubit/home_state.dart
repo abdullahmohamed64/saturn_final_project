@@ -34,3 +34,11 @@ final class GetAllUsersFailure extends HomeState {
 
 
 }
+
+final class GetSpecificUsersSucces extends HomeState {
+  final List<ChatTileModel> lastMessageModels;
+
+  GetSpecificUsersSucces({required this.lastMessageModels});
+
+
+}

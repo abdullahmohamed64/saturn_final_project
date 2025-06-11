@@ -2,26 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:saturn/core/helper/shared_pref_helper.dart';
+import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/core/widgets/custom_listview_shimmer.dart';
+import 'package:saturn/features/chat/data/models/cc.dart';
+import 'package:saturn/features/chat/data/models/chat_service.dart';
 import 'package:saturn/features/chat/presentation/widgets/user_listview_photos.dart';
 import 'package:saturn/features/chat/presentation/widgets/chats_list_container.dart';
 import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
+import 'package:saturn/features/home/presentation/views/home_page.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
+
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  @override
+  void initState() {
+    getUserId().then((userId) {
+      context.read<HomeCubit>().getListOfUsersById(userId.toString());
+    });
+    super.initState();
+  }
+
+  Future<int> getUserId() async {
+    return await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey);
+  }
 
   @override
   Widget build(BuildContext context) {
     // Access users directly from the cubit
     final users = context.watch<HomeCubit>().allUsers;
-
+    final chatTileModels = context.watch<HomeCubit>().chatTileModels;
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.mainPurple,
-        body: Padding( 
+        body: Padding(
           padding: const EdgeInsets.all(8),
           child: Builder(
             builder: (context) {
@@ -36,34 +58,34 @@ class ChatPage extends StatelessWidget {
 
               if (users == null || users.isEmpty) {
                 return const CustomListViewShimmer();
+              } else {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    verticalSpace(30),
+                    Text(
+                      'Messages',
+                      style: AppTextstyles.font32BlueBold.copyWith(
+                        color: AppColors.white,
+                        fontSize: 26.sp,
+                        fontFamily: GoogleFonts.pacifico().fontFamily,
+                      ),
+                    ),
+                    verticalSpace(10),
+                    Text(
+                      'R e c e n t',
+                      style: AppTextstyles.font13Greyregular.copyWith(
+                        color: AppColors.lighterGrey,
+                        fontSize: 16,
+                        fontFamily: GoogleFonts.poppins().fontFamily,
+                      ),
+                    ),
+                    verticalSpace(30),
+                    ListOfAllUsers(users: users),
+                    ChatsListContainer(chatTileModels: chatTileModels),
+                  ],
+                );
               }
-
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  verticalSpace(30),
-                  Text(
-                    'messages',
-                    style: AppTextstyles.font32BlueBold.copyWith(
-                      color: AppColors.white,
-                      fontSize: 28.sp,
-                      fontFamily: GoogleFonts.pacifico().fontFamily,
-                    ),
-                  ),
-                  verticalSpace(10),
-                  Text(
-                    'R e c e n t',
-                    style: AppTextstyles.font13Greyregular.copyWith(
-                      color: AppColors.lighterGrey,
-                      fontSize: 16,
-                      fontFamily: GoogleFonts.poppins().fontFamily,
-                    ),
-                  ),
-                  verticalSpace(30),
-                  UsersListviewPhotos(),
-                  ChatsListContainer(users: users),
-                ],
-              );
             },
           ),
         ),

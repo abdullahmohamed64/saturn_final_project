@@ -135,12 +135,16 @@ class AppFunctions {
     );
   }
 
-  static String formatDate(String createdAt) {
+  static String formatDate(DateTime createdAt) {
+    // final DateTime parsedDate = DateTime.parse(createdAt);
+    return DateFormat('h:mm a').format(createdAt);
+  }
+    static String formatDate2(String createdAt) {
     final DateTime parsedDate = DateTime.parse(createdAt);
     return DateFormat('MMM d • h:mm a').format(parsedDate);
   }
 
-  List<ArtModel>? searchPosts(List<ArtModel>? arts, String description) {
+  List<ArtModel>? searchPosts(List<ArtModel>? arts,  description) {
     if (arts.isNullOrEmpty()) return <ArtModel>[];
     return arts
         ?.where(

@@ -70,7 +70,7 @@ class ArtImageSecion extends StatelessWidget {
               children: [
                 horizontalSpace(8),
                 Text(
-                  AppFunctions.formatDate(artModel.createdAt!),
+                  AppFunctions.formatDate2(artModel.createdAt!),
                   style: AppTextstyles.font16WhiteSemiBold,
                 ),
                 horizontalSpace(100),

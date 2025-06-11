@@ -11,6 +11,7 @@ import 'package:saturn/features/auth/sign%20in/presentation/views/set_new_passwo
 import 'package:saturn/features/auth/sign%20up/presentation/views/complete_profile_page.dart';
 import 'package:saturn/features/auth/sign%20up/presentation/views/sign_up_page.dart';
 import 'package:saturn/features/auth/views/login_succefully_page.dart';
+import 'package:saturn/features/chat/data/models/chat_title_model.dart';
 import 'package:saturn/features/chat/presentation/views/chat_page.dart';
 import 'package:saturn/features/chat/presentation/views/chat_room_page.dart';
 import 'package:saturn/features/favourite/logic/cubit/get_user_favorite_arts_cubit.dart';
@@ -144,7 +145,9 @@ class AppRouter {
           builder: (_) {
             return BlocProvider(
               create: (context) => EditUserProfileCubit(getIt<EditUserRepo>()),
-              child: EditUserProfileView(userModel: routeSettings.arguments as UserModel,),
+              child: EditUserProfileView(
+                userModel: routeSettings.arguments as UserModel,
+              ),
             );
           },
         );
@@ -152,7 +155,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) {
             return ChatRoomPage(
-              receiverData: routeSettings.arguments as UserModel,
+              chatTileModel: routeSettings.arguments as ChatTileModel,
             );
           },
         );

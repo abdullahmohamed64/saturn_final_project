@@ -5,32 +5,32 @@ import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/networking/api_constants.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
+import 'package:saturn/features/chat/data/models/chat_title_model.dart';
 
 class ChatListviewItem extends StatelessWidget {
-  const ChatListviewItem({super.key, required this.user});
-  final UserModel user;
+  const ChatListviewItem({super.key, required this.chatTileModel});
+  final ChatTileModel chatTileModel;
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-    CircleAvatar(
-      radius: 32.r,
-      backgroundImage: 
-      user.picName == null ?
-      AssetImage(Assets.assetsImagesEmptyAvater):
-       NetworkImage(ApiConstants.upload + user.picName!)
-      ,
-    ),
-            
-        
+        CircleAvatar(
+          radius: 32.r,
+          backgroundImage:
+              chatTileModel.userImage == null
+                  ? AssetImage(Assets.assetsImagesUserAvatar)
+                  : NetworkImage(
+                    ApiConstants.upload + chatTileModel.userImage!,
+                  ),
+        ),
 
         horizontalSpace(12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              user.username!,
+              chatTileModel.username,
               style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 15.sp),
             ),
             SizedBox(
@@ -40,14 +40,14 @@ class ChatListviewItem extends StatelessWidget {
                 softWrap: false,
                 maxLines: 1,
 
-                'hi Mo im ali how are you ?',
+                chatTileModel.lastMessage,
                 style: AppTextstyles.font14LigtGreyRegular,
               ),
             ),
           ],
         ),
         Spacer(),
-        Text('08:65 pm', style: AppTextstyles.font14LigtGreyRegular),
+        Text(chatTileModel.lastMessageTime, style: AppTextstyles.font14LigtGreyRegular),
       ],
     );
   }
