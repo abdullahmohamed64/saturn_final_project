@@ -43,7 +43,7 @@ class ChatPage extends StatelessWidget {
                 children: [
                   verticalSpace(30),
                   Text(
-                    'Messages',
+                    'messages',
                     style: AppTextstyles.font32BlueBold.copyWith(
                       color: AppColors.white,
                       fontSize: 28.sp,

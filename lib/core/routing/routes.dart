@@ -17,4 +17,5 @@ class Routes {
   static const navigationPage = 'navigationPage';
   static const artViewPage = 'artViewPage';
   static const chatRoomPage = 'chatRoomPage';
+  static const editProfilePage = 'editProfilePage';
 }

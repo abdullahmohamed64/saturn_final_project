@@ -20,8 +20,10 @@ import 'package:saturn/features/favourite/logic/cubit/get_user_favorite_arts_cub
 
 import 'package:saturn/features/home/data/repo/home_repo.dart';
 import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
+import 'package:saturn/features/profile/data/repo/edit_user_repo.dart';
 import 'package:saturn/features/profile/data/repo/user_profile_repo.dart';
-import 'package:saturn/features/profile/logic/cubit/user_profile_cubit_.dart';
+import 'package:saturn/features/profile/logic/edit%20user%20cubit/edit_user_profile_cubit.dart';
+import 'package:saturn/features/profile/logic/user%20profile%20cubit/user_profile_cubit_.dart';
 
 final getIt = GetIt.instance;
 void setUpGetIt() {
@@ -84,4 +86,12 @@ void setUpGetIt() {
   // getIt.registerLazySingleton<ChatCubit>(
   //   () => ChatCubit(getIt()),
   // );
+
+    ///!!!!!!!!!! edit profile
+  getIt.registerLazySingleton<EditUserRepo>(
+    () => EditUserRepo(apiService: getIt()),
+  );
+  getIt.registerFactory<EditUserProfileCubit>(
+    () => EditUserProfileCubit(getIt()),
+  );
 }

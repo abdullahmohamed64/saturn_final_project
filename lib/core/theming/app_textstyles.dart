@@ -80,6 +80,7 @@ class AppTextstyles {
     fontWeight: AppFontWeightHelper.meduim,
     color: Colors.white,
     fontSize: 16.sp,
+    fontFamily: GoogleFonts.poppins().fontFamily,
   );
   static TextStyle font18BlackRegular = TextStyle(
     fontWeight: AppFontWeightHelper.regular,
@@ -106,4 +107,11 @@ class AppTextstyles {
     color: AppColors.theMostLighPurple,
     fontSize: 18.sp,
   );
+
+  static TextStyle font14BlackMeduim = GoogleFonts.poppins(
+    fontSize: 14.sp,
+    fontWeight: AppFontWeightHelper.meduim,
+    color: AppColors.black,
+    
+  ); 
 }

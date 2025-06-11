@@ -7,7 +7,7 @@ import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/core/widgets/dashed_line.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/widgets/custom_sign_in_bloc_listener.dart';
 
-import '../widgets/custom_login_form.dart';
+import '../widgets/custom_sign_in_form.dart';
 import '../widgets/dont_have_an_account.dart';
 import '../widgets/google_and_facebook_icons.dart';
 
@@ -53,7 +53,7 @@ class SignInPage extends StatelessWidget {
                   height: 100,
                 ),
                 verticalSpace(40),
-                CustomLoginForm(), //!!!!!!!!!!!!!!!!!!!!!!!!form
+                CustomSignInForm(), //!!!!!!!!!!!!!!!!!!!!!!!!form
                 verticalSpace(10),
                 Text('you can connect with'),
                 verticalSpace(10),

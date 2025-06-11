@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/core/helper/extension.dart';
+import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
+    this.height,
     super.key,
-    required this.hintText,
+     this.hintText,
     this.label,
     this.maxLines,
     this.suffixIcon,
@@ -23,11 +25,11 @@ class CustomTextFormField extends StatelessWidget {
     this.verticalPadding,
     this.borderRadius,
     this.controller,
-    this.checkValidation, this.width, this.prefixIcon,
+    this.checkValidation, this.width, this.prefixIcon, this.labelText, this.labelTextStyle,
   });
 
   /// The text to be displayed as a hint in the text form field.
-  final String hintText;
+  final String? hintText;
 
   final Widget? suffixIcon;
   final Color? enabledBorderColor;
@@ -46,43 +48,64 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? label;
   final double? width;
   final int? maxLines;
-  final Icon? prefixIcon;
+  final Widget? prefixIcon;
+  final String? labelText;
+  final double? height;
+  final TextStyle? labelTextStyle;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      height: height,
       width: width?.w,
-      child: TextFormField(
-        maxLines: maxLines ?? 1,
-        
-        controller: controller,
-        validator: checkValidation ?? defaultCheckValidation,
-        decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: enabledBorderColor ?? AppColors.morelightGrey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(labelText ?? '', style:
+          labelTextStyle??
+           AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp),),
+          verticalSpace(8),
+          TextFormField(
+            maxLines: maxLines ?? 1,
+            
+            controller: controller,
+            validator: checkValidation ?? defaultCheckValidation,
+            decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                
+                borderSide: BorderSide(
+                  color: enabledBorderColor ?? AppColors.morelightGrey,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius ?? 16),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: focusdBorderColor ?? AppColors.mainBlue,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius ?? 16.sp),
+              ),
+              errorBorder: customErrorBorder(),
+              focusedErrorBorder: customErrorBorder(),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding ?? 17.w,
+                vertical: verticalPadding ?? 20.h,
+              ),
+              
+              hintText: hintText ?? '',
+              hintStyle: hintTextStyle ?? AppTextstyles.font12LigtGreyRegular,
+              suffixIcon: suffixIcon,
+              prefixIcon: prefixIcon,
+              filled: true,
+              fillColor: backgroundColor ?? AppColors.theMostlightGrey,
+              label: label,
+              labelStyle: TextStyle(
+                
+                color: AppColors.white),
+              
             ),
-            borderRadius: BorderRadius.circular(borderRadius ?? 16),
+            obscureText: obscureText ?? false,
+            
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: focusdBorderColor ?? AppColors.mainBlue,
-            ),
-            borderRadius: BorderRadius.circular(borderRadius ?? 16.sp),
-          ),
-          errorBorder: customErrorBorder(),
-          focusedErrorBorder: customErrorBorder(),
-          contentPadding: EdgeInsets.symmetric(
-            horizontal: horizontalPadding ?? 17.w,
-            vertical: verticalPadding ?? 20.h,
-          ),
-          hintText: hintText,
-          hintStyle: hintTextStyle ?? AppTextstyles.font12LigtGreyRegular,
-          suffixIcon: suffixIcon,
-          filled: true,
-          fillColor: backgroundColor ?? AppColors.theMostlightGrey,
-          label: label,
-        ),
-        obscureText: obscureText ?? false,
+        ],
       ),
     );
   }

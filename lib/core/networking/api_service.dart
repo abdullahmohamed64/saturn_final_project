@@ -25,6 +25,7 @@ import 'package:saturn/core/networking/api_constants.dart';
 import 'package:saturn/core/networking/server_exception.dart';
 import 'package:saturn/features/add%20post/data/models/add_post_request_model.dart';
 import 'package:saturn/features/add%20post/data/models/add_post_response_model.dart';
+import 'package:saturn/features/auth/models/user_model.dart';
 import 'package:saturn/features/auth/sign%20in/data/models/sign_in_request_model.dart';
 import 'package:saturn/features/auth/sign%20in/data/models/sign_in_response_model.dart';
 
@@ -34,6 +35,7 @@ import 'package:saturn/features/chat/data/models/users_list_model.dart';
 import 'package:saturn/features/favourite/data/models/user_favourit_arts_model.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
 import 'package:saturn/features/home/data/models/categorys_response_model.dart';
+import 'package:saturn/features/profile/data/models/edit_user_model.dart';
 import 'package:saturn/features/profile/data/models/user_profile_response_model.dart';
 
 class ApiService {
@@ -233,7 +235,8 @@ class ApiService {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }
   }
-    Future<UsersListModel> getAllUsers() async {
+
+  Future<UsersListModel> getAllUsers() async {
     Map<String, dynamic> data = {
       'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
       'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
@@ -244,6 +247,35 @@ class ApiService {
         queryParameters: data,
       );
       return UsersListModel.fromJson(res);
+    } on ServerException catch (e) {
+      throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
+
+  Future<EditUserResposeModel> editUserProfile(UserModel userModel) async {
+    final data = {
+      'mobile': userModel.mobile,
+      'username': userModel.username,
+      'email': userModel.email,
+      'bio': userModel.bio,
+      'pic_name':        userModel.imagePath != null
+              ? await AppFunctions.uploadImageToApiMethod(
+                userModel.imagePath              )
+              : null,
+      'password': userModel.password,
+    };
+    final queryParameters = {
+      'userid':await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+    };
+    try {
+      final res = await api.post(
+        ApiConstants.editUser,
+        data: data,
+        isFromData: true,
+        queryParameters: queryParameters,
+      );
+      return EditUserResposeModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }

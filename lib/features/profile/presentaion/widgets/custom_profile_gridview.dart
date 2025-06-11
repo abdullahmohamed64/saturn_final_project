@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
 
-import 'package:saturn/features/home/presentation/widgets/custom_arts_gridview_item.dart';
 import 'package:saturn/features/profile/presentaion/widgets/staggered_gridview_item.dart';
 import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
 

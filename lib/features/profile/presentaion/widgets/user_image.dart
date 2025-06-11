@@ -1,40 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/networking/api_constants.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
+import 'package:saturn/features/profile/logic/edit%20user%20cubit/edit_user_profile_cubit.dart';
 
 import '../../../../constants/assets.dart';
 
 class UserImage extends StatelessWidget {
-  const UserImage({super.key, required this.user});
+  const UserImage({super.key, required this.user, this.editCubit});
   final UserModel user;
+  final EditUserProfileCubit? editCubit ;
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: -50,
-
-      child: Column(
-        children: [
-          CircleAvatar(
-            backgroundColor: AppColors.white,
-            radius: 50.r,
-            child: CircleAvatar(
-              backgroundImage:
-              user.picName == null?
-               AssetImage(Assets.assetsImagesUserAvatar)
-               :
-               NetworkImage(ApiConstants.upload  + user.picName!)
-               ,
-              radius: 45.r,
-            ),
+    return Column(
+      children: [
+        CircleAvatar(
+          backgroundColor: AppColors.white,
+          radius: 50.r,
+          child: CircleAvatar(
+            backgroundImage:
+           
+         editCubit?.image != null?
+             FileImage(editCubit!.image!):
+            user.picName == null?
+             AssetImage(Assets.assetsImagesUserAvatar)
+             :
+             NetworkImage(ApiConstants.upload  + user.picName!)
+             ,
+            radius: 45.r,
           ),
-          verticalSpace(10),
-          Text(user.username! , style: AppTextstyles.font16WhiteMeduim,)
-        ],
-      ),
+        ),
+        verticalSpace(10),
+        Text(user.username ?? '' , style: AppTextstyles.font16WhiteMeduim,)
+      ],
     );
   }
 }

@@ -45,6 +45,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         imagePath: image,
       ),
     );
+    
     res.fold((signUpResponseModel) async {
       await SharedPrefHelper.setSecuredData(
         SharedPrefKeys.tokenKey,

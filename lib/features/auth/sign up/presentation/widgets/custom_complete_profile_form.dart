@@ -32,12 +32,15 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
           verticalSpace(40),
 
           CustomTextFormField(
+             prefixIcon: Icon(Icons.person_pin_outlined, color: AppColors.red),
             controller: signUp.firstNameController,
             backgroundColor: AppColors.textformFieldColor,
             hintText: 'Enter your first name',
           ),
           verticalSpace(20),
           CustomTextFormField(
+             prefixIcon: Icon(Icons.email_outlined, color: AppColors.red),
+
             controller: signUp.lastNameController,
             backgroundColor: AppColors.textformFieldColor,
 
@@ -46,6 +49,8 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
           verticalSpace(20),
 
           CustomTextFormField(
+             prefixIcon: Icon(Icons.phone_callback_outlined, color: AppColors.red),
+
             controller: signUp.mobileController,
 
             backgroundColor: AppColors.textformFieldColor,
@@ -54,13 +59,12 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
           verticalSpace(20),
 
           //gender
-          CustomGenderDropDownButton(),
-          verticalSpace(20),
-
           //birthdate
           //create birth date item using date package
           CustomTextFormField(
-            suffixIcon: IconButton(
+          
+
+            prefixIcon: IconButton(
               onPressed: () async {
                 await showDatePicker(
                   context: context,
@@ -76,13 +80,16 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
                       ).toIso8601String().substring(0, 10),
                 );
               },
-              icon: Icon(Icons.calendar_today),
+              icon: Icon(Icons.calendar_today_outlined, color: AppColors.red ),
             ),
-            hintText: 'birth date',
+            hintText: 'date birth',
             controller: signUp.birthDateController,
           ),
 
           verticalSpace(20),
+          CustomGenderDropDownButton(),
+          verticalSpace(20),
+
           CustomTextFormField(
             maxLines: 4,
             controller: signUp.bioController,

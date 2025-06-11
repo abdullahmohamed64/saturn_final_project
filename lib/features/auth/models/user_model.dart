@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class UserModel {
   final int? id;
   final String? username;
@@ -10,8 +12,9 @@ class UserModel {
   final String? picName;
   final String? gender;
   final String? bio;
+  final File? imagePath;
 
-  UserModel({
+  UserModel( {
     this.id,
     this.username,
     this.email,
@@ -23,6 +26,8 @@ class UserModel {
     this.picName,
     this.gender,
     this.bio,
+    this.imagePath,
+    
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {

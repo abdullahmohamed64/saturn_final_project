@@ -28,12 +28,16 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
       child: Column(
         children: [
           CustomTextFormField(
+             labelText: 'Name',
+            labelTextStyle: AppTextstyles.font14BlackMeduim,
             controller: signUp.firstNameController,
             backgroundColor: AppColors.textformFieldColor,
             hintText: 'Enter your name',
           ),
           verticalSpace(20),
           CustomTextFormField(
+             labelText: 'Email',
+            labelTextStyle: AppTextstyles.font14BlackMeduim,
             controller: signUp.emailController,
             backgroundColor: AppColors.textformFieldColor,
 
@@ -42,6 +46,8 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
           verticalSpace(20),
 
           CustomTextFormField(
+             labelText: 'Password',
+            labelTextStyle: AppTextstyles.font14BlackMeduim,
             controller: signUp.passwordController,
 
             backgroundColor: AppColors.textformFieldColor,
@@ -55,12 +61,14 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
               },
               icon:
                   isVisible
-                      ? Icon(Icons.visibility)
-                      : Icon(Icons.visibility_off),
+                      ? Icon(Icons.visibility , color: AppColors.lightGrey,)
+                      : Icon(Icons.visibility_off , color: AppColors.lightGrey,),
             ),
           ),
           verticalSpace(20),
           CustomTextFormField(
+             labelText: 'Confirm Password',
+            labelTextStyle: AppTextstyles.font14BlackMeduim,
             controller: signUp.confirmPasswordController,
             backgroundColor: AppColors.textformFieldColor,
             hintText: 'confirm password',
@@ -73,8 +81,8 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
               },
               icon:
                   isVisible
-                      ? Icon(Icons.visibility)
-                      : Icon(Icons.visibility_off),
+                      ? Icon(Icons.visibility , color: AppColors.lightGrey,)
+                      : Icon(Icons.visibility_off , color: AppColors.lightGrey,),
             ),
           ),
 

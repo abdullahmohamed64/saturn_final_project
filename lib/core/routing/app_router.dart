@@ -25,6 +25,9 @@ import 'package:saturn/features/home/presentation/views/home_page.dart';
 import 'package:saturn/features/home/presentation/views/navigation_page.dart';
 import 'package:saturn/features/on%20boarding/on_boarding_page.dart';
 import 'package:saturn/features/auth/sign%20in/presentation/views/sign_in_page.dart';
+import 'package:saturn/features/profile/data/repo/edit_user_repo.dart';
+import 'package:saturn/features/profile/logic/edit%20user%20cubit/edit_user_profile_cubit.dart';
+import 'package:saturn/features/profile/presentaion/views/edit_user_profile_view.dart';
 import 'package:saturn/features/profile/presentaion/views/profile_page.dart';
 
 import '../../features/auth/sign up/presentation/views/confirm_email_page.dart';
@@ -134,6 +137,15 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) {
             return FavouritePage();
+          },
+        );
+      case Routes.editProfilePage:
+        return MaterialPageRoute(
+          builder: (_) {
+            return BlocProvider(
+              create: (context) => EditUserProfileCubit(getIt<EditUserRepo>()),
+              child: EditUserProfileView(userModel: routeSettings.arguments as UserModel,),
+            );
           },
         );
       case Routes.chatRoomPage:

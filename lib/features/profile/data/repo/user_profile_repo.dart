@@ -8,15 +8,12 @@ class UserProfileRepo {
 
   UserProfileRepo({required ApiService apiService}) : _apiService = apiService;
 
-
-
-  Future<Either<String , UserProfileResponseModel>> getUserProfile()async {
-  try {
-     final result = await  _apiService.getUserProfile();
-     return right(result);
-  } 
-  on ServerException catch (e) {
-    return left(e.apiErrorModel.message);
+  Future<Either<String, UserProfileResponseModel>> getUserProfile() async {
+    try {
+      final result = await _apiService.getUserProfile();
+      return right(result);
+    } on ServerException catch (e) {
+      return left(e.apiErrorModel.message);
+    }
   }
-}
 }

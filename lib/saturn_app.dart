@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/routing/app_router.dart';
 import 'package:saturn/core/routing/routes.dart';
+import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/features/auth/sign%20up/logic/cubit/sign_up_cubit.dart';
 import 'package:saturn/features/chat/data/chat%20repo/chat_repo.dart';
 import 'package:saturn/features/chat/logic/cubit/chat_cubit.dart';
@@ -12,6 +13,9 @@ import 'package:saturn/features/favourite/data/repo/favorite_repo.dart';
 import 'package:saturn/features/favourite/logic/cubit/favorite_cubit.dart';
 import 'package:saturn/features/home/data/repo/home_repo.dart';
 import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
+import 'package:saturn/features/profile/data/repo/user_profile_repo.dart';
+import 'package:saturn/features/profile/logic/edit%20user%20cubit/edit_user_profile_cubit.dart';
+import 'package:saturn/features/profile/logic/user%20profile%20cubit/user_profile_cubit_.dart';
 
 class SaturnApp extends StatelessWidget {
   const SaturnApp({super.key});
@@ -29,13 +33,15 @@ class SaturnApp extends StatelessWidget {
                 (context) => HomeCubit(getIt<HomeRepo>())..getCategoyItems()..getAllUsers()
           ),
           BlocProvider(create: (context) => ArtCubit(getIt<FavouriteRepo>())),
+
+          BlocProvider(create: (context)=>UserProfileCubit(getIt<UserProfileRepo>()))
         
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'saturn',
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.appBarColorPurple),
           ),
           onGenerateRoute: AppRouter.onGenerate,
           initialRoute: Routes.navigationPage,

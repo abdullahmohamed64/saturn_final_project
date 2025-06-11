@@ -22,7 +22,8 @@ class AppColors {
   static const Color white = Color.fromARGB(255, 255, 255, 255);
   static const Color theMostLighPurple = Color(0xffAD99D6);
   static const Color deepPurple = Color(0xff24004E);
-
+  static const Color appBarColorPurple = Color(0xff2C0258);
+//#2C0258
   //#499DFF
   static const Color paintingCategoryColor = Color(0xff499DFF);
 
@@ -40,8 +41,13 @@ class AppColors {
   static const Color addPostInputTextsColor = Color(0xff7F909F);
   static const Color senderMessageColor = Color(0xff373E4E);
   static const Color reiceverMessageColor = Color(0xff7A8194);
- 
- //#7A8194
+  static const Color arrowBackBakgroundColor = Color(0xffDEEDFD);
+  static const Color arrowBackColor = Color(0xff373737);
+  //  #DEEDFD
+
+  //#373737
+
+  //#7A8194
 
   //#7F909F
 

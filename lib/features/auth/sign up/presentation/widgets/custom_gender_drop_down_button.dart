@@ -76,8 +76,8 @@ class _CustomGenderDropDownButtonState
               child: Row(
                 children: [
                   Icon(
-                    value == 'male' ? Icons.male : Icons.female,
-                    color: AppColors.grey,
+                    value == 'male' ? Icons.male_rounded : Icons.female_rounded,
+                    color: AppColors.red,
                   ),
                   SizedBox(width: 10.w),
                   Text(

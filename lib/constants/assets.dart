@@ -14,9 +14,21 @@ class Assets {
   /// assets/images/bag.png
   static const String assetsImagesBag = "assets/images/bag.png";
 
+  /// Assets for assetsImagesCalender
+  /// assets/images/calender.png
+  static const String assetsImagesCalender = "assets/images/calender.png";
+
   /// Assets for assetsImagesDesign
   /// assets/images/Design.png
   static const String assetsImagesDesign = "assets/images/Design.png";
+
+  /// Assets for assetsImagesEditPin
+  /// assets/images/edit_pin.png
+  static const String assetsImagesEditPin = "assets/images/edit_pin.png";
+
+  /// Assets for assetsImagesEmail
+  /// assets/images/email.png
+  static const String assetsImagesEmail = "assets/images/email.png";
 
   /// Assets for assetsImagesEmptyAvater
   /// assets/images/empty_avater.png
@@ -33,6 +45,10 @@ class Assets {
   /// Assets for assetsImagesHandMade
   /// assets/images/Hand_Made.png
   static const String assetsImagesHandMade = "assets/images/Hand_Made.png";
+
+  /// Assets for assetsImagesLock
+  /// assets/images/lock.png
+  static const String assetsImagesLock = "assets/images/lock.png";
 
   /// Assets for assetsImagesLogo
   /// assets/images/Logo.png
@@ -62,6 +78,10 @@ class Assets {
   /// assets/images/password.png
   static const String assetsImagesPassword = "assets/images/password.png";
 
+  /// Assets for assetsImagesPhone
+  /// assets/images/Phone.png
+  static const String assetsImagesPhone = "assets/images/Phone.png";
+
   /// Assets for assetsImagesResetPassword
   /// assets/images/reset_password.png
   static const String assetsImagesResetPassword = "assets/images/reset_password.png";
@@ -85,5 +105,9 @@ class Assets {
   /// Assets for assetsImagesUserAvatar
   /// assets/images/user_avatar.png
   static const String assetsImagesUserAvatar = "assets/images/user_avatar.png";
+
+  /// Assets for assetsImagesUsername
+  /// assets/images/username.png
+  static const String assetsImagesUsername = "assets/images/username.png";
 }
 

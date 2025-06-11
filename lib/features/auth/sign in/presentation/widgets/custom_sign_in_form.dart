@@ -10,23 +10,26 @@ import 'package:saturn/core/widgets/app_button.dart';
 import 'package:saturn/core/widgets/custom_text_form_field.dart';
 import 'package:saturn/features/auth/sign%20in/logic/cubit/sign_in_cubit.dart';
 
-class CustomLoginForm extends StatefulWidget {
-  const CustomLoginForm({super.key});
+class CustomSignInForm extends StatefulWidget {
+  const CustomSignInForm({super.key});
 
   @override
-  State<CustomLoginForm> createState() => _CustomLoginFormState();
+  State<CustomSignInForm> createState() => _CustomSignInFormState();
 }
 
-class _CustomLoginFormState extends State<CustomLoginForm> {
+class _CustomSignInFormState extends State<CustomSignInForm> {
   bool isVisible = true;
- TextEditingController emailController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   @override
   void initState() {
-    AppFunctions.getUserData().then((value) => emailController.text = value.email);
-    AppFunctions.getUserData().then((value) => passwordController.text = value.password);
+    AppFunctions.getUserData().then(
+      (value) => emailController.text = value.email,
+    );
+    AppFunctions.getUserData().then(
+      (value) => passwordController.text = value.password,
+    );
 
-    
     super.initState();
   }
 
@@ -38,12 +41,19 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
       child: Column(
         children: [
           CustomTextFormField(
+            labelText: 'Email',
+            labelTextStyle: AppTextstyles.font14BlackMeduim,
+            prefixIcon: Icon(Icons.email_outlined, color: AppColors.red),
+
             controller: emailController,
             backgroundColor: AppColors.textformFieldColor,
             hintText: 'Enter your email',
           ),
           verticalSpace(20),
           CustomTextFormField(
+            labelText: 'Password',
+            labelTextStyle: AppTextstyles.font14BlackMeduim,
+            prefixIcon: Icon(Icons.lock_outline_rounded, color: AppColors.red),
             controller: passwordController,
             backgroundColor: AppColors.textformFieldColor,
 
@@ -81,7 +91,10 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
             title: Text('Sign In', style: AppTextstyles.font16WhiteMeduim),
             onPressed: () {
               if (signIn.signInKey.currentState!.validate()) {
-                signIn.emitSignIn( emailController.text, passwordController.text);
+                signIn.emitSignIn(
+                  emailController.text,
+                  passwordController.text,
+                );
               }
             },
           ),
