@@ -154,9 +154,7 @@ class AppRouter {
       case Routes.chatRoomPage:
         return MaterialPageRoute(
           builder: (_) {
-            return ChatRoomPage(
-              chatTileModel: routeSettings.arguments as ChatTileModel,
-            );
+            return ChatRoomPage(user: routeSettings.arguments as UserModel);
           },
         );
 

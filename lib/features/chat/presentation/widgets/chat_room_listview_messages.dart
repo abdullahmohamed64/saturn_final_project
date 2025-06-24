@@ -4,6 +4,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:saturn/core/theming/app_constants.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/features/chat/data/models/chat_service.dart';
+import 'package:saturn/features/chat/data/models/message_model.dart';
 import 'package:saturn/features/chat/presentation/widgets/buble_message.dart';
 
 class ChatRoomListviewMessages extends StatelessWidget {
@@ -73,7 +74,8 @@ class ChatRoomListviewMessages extends StatelessWidget {
             itemBuilder: (context, i) {
               var message = sortedMessages[i].value;
               bool isSender = message[AppConstants.senderId] == senderId;
-              return BubbleMessage(isSender: isSender, messageData: message);
+              MessageModel messageModel = MessageModel.fromMap(message, "", "");
+              return BubbleMessage(isSender: isSender, messageModel: messageModel);
             },
           );
         },

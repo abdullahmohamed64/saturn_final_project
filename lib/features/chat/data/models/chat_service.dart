@@ -11,13 +11,13 @@ class ChatService {
     required String userId2,
   }) async {
     try {
-      print('Starting createOrGetChat for users: $userId1 and $userId2');
+      // print('Starting createOrGetChat for users: $userId1 and $userId2');
       DatabaseReference chatsRef = FirebaseDatabase.instance.ref().child(
         AppConstants.chats,
       );
 
       DataSnapshot chatSnapShot = await chatsRef.get();
-      print('Retrieved ${chatSnapShot.children.length} chats');
+      // print('Retrieved ${chatSnapShot.children.length} chats');
 
       // Check if chat exists
       for (var chat in chatSnapShot.children) {
@@ -34,22 +34,22 @@ class ChatService {
             return chat.key!;
           }
         } else {
-          print('Chat has no valid members field');
+          // print('Chat has no valid members field');
         }
       }
 
       // Create new chat
-      print('No matching chat found, creating new chat');
+      // print('No matching chat found, creating new chat');
       DatabaseReference newChat = chatsRef.push();
       await newChat.set({
         AppConstants.isGroup: false,
         AppConstants.members: [userId1, userId2],
         AppConstants.createdAt: ServerValue.timestamp,
       });
-      print('New chat created with key: ${newChat.key}');
+      // print('New chat created with key: ${newChat.key}');
       return newChat.key!;
     } catch (e) {
-      print('Error in createOrGetChat: ${e.toString()}');
+      // print('Error in createOrGetChat: ${e.toString()}');
       rethrow;
     }
   }
@@ -100,9 +100,9 @@ class ChatService {
       if (chat.isGroup == false && !chat.members.isNullOrEmpty()) {
         if (chat.members.contains(userId)) {
           userChats.add(chat);
-          print(
-            "********************\n${chat.members.first} ${chat.members.last}  ${chat.id}",
-          );
+          // print(
+          //   "********************\n${chat.members.first} ${chat.members.last}  ${chat.id}",
+          // );
         }
       }
     }
@@ -144,7 +144,7 @@ class ChatService {
       if (snapshot.exists) {
       final message =   snapshot.children.first;
         lastMessages.add(MessageModel.fromMap(message.value as Map, message.key!, chatId));
-        print("***************${lastMessages.last.dateTime}\n");
+        // print("***************${lastMessages.last.dateTime}\n");
       }
     }
   

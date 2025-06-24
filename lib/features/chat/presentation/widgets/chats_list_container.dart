@@ -31,7 +31,9 @@ class ChatsListContainer extends StatelessWidget {
           itemBuilder: (context, i) {
             return GestureDetector(
               onTap: () {
-                context.pushNamed(Routes.chatRoomPage, args: chatTileModels[i]);
+
+                UserModel user = UserModel(id: int.parse(chatTileModels[i].receiverId) , username: chatTileModels[i].username);
+                context.pushNamed(Routes.chatRoomPage, args: user);
               },
               child: ChatListviewItem(chatTileModel: chatTileModels[i]),
             );

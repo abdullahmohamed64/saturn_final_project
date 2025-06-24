@@ -15,7 +15,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._homeRepo) : super(HomeInitial());
   final HomeRepo _homeRepo;
   List<ArtModel>? arts = [];
-    List<ChatTileModel> chatTileModels = [];
+  List<ChatTileModel> chatTileModels = [];
 
   Future<void> getCategoyItems({String? categoryName}) async {
     emit(GetAllCategorisLoading());
@@ -52,18 +52,31 @@ class HomeCubit extends Cubit<HomeState> {
 
   getListOfUsersById(String userId) async {
     emit(GetAllUsersLoading());
- List<UserModel> chatedUsers = [];
+    List<UserModel> chatedUsers = [];
     List<String> usersId = [];
-    List <MessageModel> messages = [];
+    List<MessageModel> messages = [];
+    chatTileModels = [];
     usersId = await ChatService().getChatedUsersId(userId);
-    messages = await ChatService().getAllLastMessages(userId);
-    for (int i = 0  ; i< usersId.length ; i++) {
-       UserModel user = getUserById(int.parse(usersId[i]))!;
-       chatTileModels.add(ChatTileModel(receiverId: usersId[i], username: user.username!, lastMessage: messages[i].message, lastMessageTime: messages[i].dateTime));
-    }
 
+    messages = await ChatService().getAllLastMessages(userId);
+
+    for (int i = 0; i < usersId.length; i++) {
+      UserModel user = getUserById(int.parse(usersId[i]))!;
+      chatTileModels.add(
+        ChatTileModel(
+          receiverId: usersId[i],
+          username: user.username!,
+          lastMessage: messages[i].message,
+          lastMessageTime: messages[i].dateTime,
+          timeStamp: messages[i].timeStamp,
+        ),
+      );
+    }
+    chatTileModels.sort(
+      (a, b) => b.timeStamp.compareTo(a.timeStamp),
+    );
     if (chatedUsers.isNullOrEmpty()) {
-      emit(GetAllCategorisFailure(errMessage: 'No Chated users yet'));
+      emit(GetAllUsersFailure(errorMessage: 'No Chated users yet'));
     }
 
     emit(GetSpecificUsersSucces(lastMessageModels: chatTileModels));

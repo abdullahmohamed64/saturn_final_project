@@ -8,8 +8,9 @@ class MessageModel {
   final String type;
   final int senderId;
   final String dateTime;
-  
+  final int timeStamp;
   MessageModel({
+    required this.timeStamp,
     required this.id,
     required this.chatId,
     required this.message,
@@ -23,11 +24,13 @@ class MessageModel {
     String messageId,
     String chatId,
   ) {
-    DateTime date = DateTime.fromMicrosecondsSinceEpoch(
+    DateTime date = DateTime.fromMillisecondsSinceEpoch(
+      isUtc: true,
       map[AppConstants.timeStamp],
-    );
+    ).toLocal();
    String formatedDate =  AppFunctions.formatDate(date);
     return MessageModel(
+      timeStamp: map[AppConstants.timeStamp],
       id: messageId,
       chatId: chatId,
       message: map[AppConstants.message] ?? '',

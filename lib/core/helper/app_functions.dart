@@ -136,15 +136,46 @@ class AppFunctions {
   }
 
   static String formatDate(DateTime createdAt) {
-    // final DateTime parsedDate = DateTime.parse(createdAt);
-    return DateFormat('h:mm a').format(createdAt);
+    // Convert to Egypt local time (UTC+3 in summer)
+    DateTime egyptTime = createdAt.toUtc().add(const Duration(hours: 3));
+    DateTime now = DateTime.now();
+    DateTime nowEgypt = now.toUtc().add(const Duration(hours: 3));
+
+    // Normalize to midnight for date-only comparison
+    DateTime msgDateOnly = DateTime(
+      egyptTime.year,
+      egyptTime.month,
+      egyptTime.day,
+    );
+    DateTime nowDateOnly = DateTime(
+      nowEgypt.year,
+      nowEgypt.month,
+      nowEgypt.day,
+    );
+    DateTime yesterdayDateOnly = nowDateOnly.subtract(const Duration(days: 1));
+
+    if (msgDateOnly == nowDateOnly) {
+      return DateFormat('h:mm a').format(egyptTime); // today
+    } else if (msgDateOnly == yesterdayDateOnly) {
+      return 'Yester-${DateFormat('h:mm a').format(egyptTime)}';
+    } else if (nowDateOnly.difference(msgDateOnly).inDays < 7 &&
+        nowDateOnly.weekday >= msgDateOnly.weekday) {
+      return '${DateFormat('EEE').format(egyptTime)} - ${DateFormat('h:mm a').format(egyptTime)}'; // this week
+    }
+    //not this year
+    else if (msgDateOnly.year != now.year) {
+      return DateFormat('dd/MM/yyyy').format(msgDateOnly);
+    } else {
+      return '${DateFormat('dd').format(egyptTime)} - ${DateFormat('MMM').format(egyptTime)}';
+    }
   }
-    static String formatDate2(String createdAt) {
+
+  static String formatDate2(String createdAt) {
     final DateTime parsedDate = DateTime.parse(createdAt);
     return DateFormat('MMM d • h:mm a').format(parsedDate);
   }
 
-  List<ArtModel>? searchPosts(List<ArtModel>? arts,  description) {
+  List<ArtModel>? searchPosts(List<ArtModel>? arts, description) {
     if (arts.isNullOrEmpty()) return <ArtModel>[];
     return arts
         ?.where(

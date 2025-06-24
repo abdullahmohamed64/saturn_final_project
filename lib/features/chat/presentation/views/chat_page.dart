@@ -8,12 +8,9 @@ import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/core/widgets/custom_listview_shimmer.dart';
-import 'package:saturn/features/chat/data/models/cc.dart';
-import 'package:saturn/features/chat/data/models/chat_service.dart';
-import 'package:saturn/features/chat/presentation/widgets/user_listview_photos.dart';
+import 'package:saturn/features/chat/presentation/widgets/list_of_users.dart';
 import 'package:saturn/features/chat/presentation/widgets/chats_list_container.dart';
 import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
-import 'package:saturn/features/home/presentation/views/home_page.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});

@@ -13,8 +13,8 @@ import 'package:saturn/features/chat/presentation/widgets/chat_room_listview_mes
 import 'package:saturn/features/chat/presentation/widgets/send_message_text_field.dart';
 
 class ChatRoomPage extends StatefulWidget {
-  const ChatRoomPage({super.key, required this.chatTileModel});
-  final ChatTileModel chatTileModel;
+  const ChatRoomPage({super.key, required this.user});
+  final UserModel user;
 
   @override
   State<ChatRoomPage> createState() => _ChatRoomPageState();
@@ -37,7 +37,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
     currentUserId = await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey);
     chatId = await ChatService().createOrGetChat(
       userId1: currentUserId.toString(),
-      userId2: widget.chatTileModel.receiverId.toString(),
+      userId2: widget.user.id.toString(),
     );
     setState(() {
       isLoading = false;
@@ -60,7 +60,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                       SizedBox(
                         height: 50.h,
                         child: Text(
-                          widget.chatTileModel.username,
+                          widget.user.username!,
                           textAlign: TextAlign.center,
                           style: AppTextstyles.font16WhiteSemiBold.copyWith(
                             fontFamily: GoogleFonts.poppins().fontFamily,

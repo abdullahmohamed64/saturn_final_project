@@ -5,6 +5,7 @@ import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
 import 'package:saturn/features/chat/data/models/chat_service.dart';
+import 'package:saturn/features/chat/data/models/chat_title_model.dart';
 
 import 'userListview_photos_item.dart';
 
@@ -22,8 +23,14 @@ class ListOfAllUsers extends StatelessWidget {
         itemBuilder: (context, i) {
           return GestureDetector(
             onTap: () {
-              // context.pushNamed(Routes.chatRoomPage , args: users[i]);
-              ChatService().getAllLastMessages('22');
+              // ChatTileModel chatTileModel = ChatTileModel(
+              //   receiverId: users[i].id.toString(),
+              //   username: users[i].username!,
+              //   lastMessage: 'lastMessage',
+              //   lastMessageTime: 'lastMessageTime',
+              // );
+              context.pushNamed(Routes.chatRoomPage, args: users[i]);
+              // ChatService().getAllLastMessages('22');
             },
             child: UserListviewPhotosItem(userModel: users[i]),
           );
