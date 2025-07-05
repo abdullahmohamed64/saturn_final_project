@@ -16,6 +16,7 @@
 //   );
 // }
 
+import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/helper/app_functions.dart';
 import 'package:saturn/core/helper/shared_pref_helper.dart';
 import 'package:saturn/core/helper/shared_pref_keys.dart';
@@ -41,7 +42,7 @@ import 'package:saturn/features/profile/data/models/user_profile_response_model.
 class ApiService {
   ApiService({required this.api});
   final ApiConsumer api;
-
+SharedPrefHelper sharedPrefHelper = getIt<SharedPrefHelper>();
   Future<SignUpResponseModel> signUp(
     SignUpRequestModel signUpRequestModel,
   ) async {
@@ -100,8 +101,8 @@ class ApiService {
   }) async {
     final param = {
       'category': categoryName ?? '',
-      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
-      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await sharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'userid':  sharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
     };
     try {
       final res = await api.get(
@@ -116,10 +117,10 @@ class ApiService {
     }
   }
 
-  Future<ArtModel> makeReact({required int artId}) async {
+  Future<PostModel> makeReact({required int artId}) async {
     Map<String, dynamic> data = {
-      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
-      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'userid': await sharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await sharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
       'postid': artId,
     };
     try {
@@ -128,19 +129,19 @@ class ApiService {
         data: data,
         isFromData: true,
       );
-      return ArtModel.fromJson(res);
+      return PostModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }
   }
 
-  Future<ArtModel> createComment({
+  Future<PostModel> createComment({
     required int artId,
     required String comment,
   }) async {
     Map<String, dynamic> data = {
-      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
-      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'userid': await sharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await sharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
       'postid': artId,
       'comment': comment,
     };
@@ -150,16 +151,16 @@ class ApiService {
         data: data,
         isFromData: true,
       );
-      return ArtModel.fromJson(res);
+      return PostModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }
   }
 
-  Future<ArtModel> getPostReactAndComments({required int artId}) async {
+  Future<PostModel> getPostReactAndComments({required int artId}) async {
     Map<String, dynamic> data = {
-      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
-      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'userid': await sharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await sharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
       'postid': artId,
     };
     try {
@@ -168,7 +169,7 @@ class ApiService {
         data: data,
         isFromData: true,
       );
-      return ArtModel.fromJson(res);
+      return PostModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
     }
@@ -176,8 +177,8 @@ class ApiService {
 
   Future<UserFavouritArtsModel> getUserFavoriteArts() async {
     Map<String, dynamic> data = {
-      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
-      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'userid': await sharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await sharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
     };
     try {
       final res = await api.get(ApiConstants.favorites, queryParameters: data);
@@ -191,8 +192,8 @@ class ApiService {
     AddPostRequestModel addPostRequestModel,
   ) async {
     final data = {
-      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
-      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'userid': await sharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await sharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
       'description': addPostRequestModel.description,
       'category': addPostRequestModel.categoryName,
 
@@ -222,8 +223,8 @@ class ApiService {
 
   Future<UserProfileResponseModel> getUserProfile() async {
     Map<String, dynamic> data = {
-      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
-      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'userid': await sharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await sharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
     };
     try {
       final res = await api.get(
@@ -238,8 +239,8 @@ class ApiService {
 
   Future<UsersListModel> getAllUsers() async {
     Map<String, dynamic> data = {
-      'userid': await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
-      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'userid': await sharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await sharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
     };
     try {
       final res = await api.get(
@@ -258,15 +259,15 @@ class ApiService {
       'username': userModel.username,
       'email': userModel.email,
       'bio': userModel.bio,
-      'pic_name':        userModel.imagePath != null
-              ? await AppFunctions.uploadImageToApiMethod(
-                userModel.imagePath              )
+      'pic_name':
+          userModel.imagePath != null
+              ? await AppFunctions.uploadImageToApiMethod(userModel.imagePath)
               : null,
       'password': userModel.password,
     };
     final queryParameters = {
-      'userid':await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
-      'token': await SharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
+      'userid': await sharedPrefHelper.getInt(SharedPrefKeys.userIdKey),
+      'token': await sharedPrefHelper.getSecuredData(SharedPrefKeys.tokenKey),
     };
     try {
       final res = await api.post(
@@ -278,6 +279,60 @@ class ApiService {
       return EditUserResposeModel.fromJson(res);
     } on ServerException catch (e) {
       throw ServerException(apiErrorModel: e.apiErrorModel);
+    }
+  }
+
+  void sendApiNotifiacation(
+    String fcmToken,
+    String senderName,
+    String messageText,
+    String targetUserId,
+    String chatId,
+  ) async {
+    const String fcmUrl = 'https://fcm.googleapis.com/fcm/send';
+
+    // ✅ Replace this with your actual FCM **Server Key** from Firebase Console > Cloud Messaging tab
+    const String serverKey = 'AIzaSyCbRuiFwyr2o9Cyrf0I68a22-i4W5o-FKg';
+    final Map<String, dynamic> notification = {
+      'to': fcmToken,
+      'priority': 'high',
+
+      'notification': {
+        'title': senderName,
+        'body': messageText,
+
+        'sound': 'default',
+        'badge': '1',
+      },
+      'data': {
+        'chatId': chatId,
+        'senderId': targetUserId,
+        'type': 'chat_message',
+        'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+      },
+    };
+
+    try {
+      final response = await api.post(
+        fcmUrl,
+        queryParameters: {
+          'Content-Type': 'application/json',
+          'Authorization': 'key=$serverKey',
+        },
+        data: notification,
+      );
+
+      if (response.statusCode == 200) {
+        print('✅ Push notification sent successfully');
+      } else {
+        print('❌ Failed to send push notification: ${response.statusCode}');
+        print('❗ Response: ${response.body}');
+      }
+    } on Exception catch (e) {
+      print('❌ Failed to send push notification${e.toString()}');
+      throw Exception(e.toString());
+    } catch (e) {
+      print('❌ Failed to send push notification${e.toString()}');
     }
   }
 }

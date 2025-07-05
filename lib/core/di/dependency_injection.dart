@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:saturn/core/helper/shared_pref_helper.dart';
 
 import 'package:saturn/core/networking/api%20consumer/dio_consumer.dart';
 import 'package:saturn/core/networking/api_service.dart';
@@ -10,12 +11,8 @@ import 'package:saturn/features/auth/sign%20in/data/repo/sign_in_repo.dart';
 import 'package:saturn/features/auth/sign%20in/logic/cubit/sign_in_cubit.dart';
 import 'package:saturn/features/auth/sign%20up/data/repo/sign_up_repo.dart';
 import 'package:saturn/features/auth/sign%20up/logic/cubit/sign_up_cubit.dart';
-import 'package:saturn/features/chat/data/chat%20repo/chat_repo.dart';
-import 'package:saturn/features/chat/logic/cubit/chat_cubit.dart';
-import 'package:saturn/features/favourite/data/models/user_favourit_arts_model.dart';
 import 'package:saturn/features/favourite/data/repo/favorite_repo.dart';
 
-import 'package:saturn/features/favourite/logic/cubit/favorite_cubit.dart';
 import 'package:saturn/features/favourite/logic/cubit/get_user_favorite_arts_cubit.dart';
 
 import 'package:saturn/features/home/data/repo/home_repo.dart';
@@ -79,7 +76,7 @@ void setUpGetIt() {
     () => UserProfileCubit(getIt()),
   );
 
-  //!!!!!!!!!! get all users (chat page) 
+  //!!!!!!!!!! get all users (chat page)
   //   getIt.registerLazySingleton<ChatRepo>(
   //   () => ChatRepo(apiService: getIt()),
   // );
@@ -87,11 +84,14 @@ void setUpGetIt() {
   //   () => ChatCubit(getIt()),
   // );
 
-    ///!!!!!!!!!! edit profile
+  ///!!!!!!!!!! edit profile
   getIt.registerLazySingleton<EditUserRepo>(
     () => EditUserRepo(apiService: getIt()),
   );
   getIt.registerFactory<EditUserProfileCubit>(
     () => EditUserProfileCubit(getIt()),
   );
+
+  getIt.registerSingleton(SharedPrefHelper());
+  getIt<SharedPrefHelper>().init();
 }

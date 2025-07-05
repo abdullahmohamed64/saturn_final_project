@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:saturn/core/di/dependency_injection.dart';
+import 'package:saturn/core/helper/app_functions.dart';
 import 'package:saturn/core/helper/shared_pref_helper.dart';
 import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/core/helper/spacing.dart';
@@ -22,14 +24,9 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
-    getUserId().then((userId) {
-      context.read<HomeCubit>().getListOfUsersById(userId.toString());
-    });
+    int uId = AppFunctions.getUserId() ?? 0 ;
+    context.read<HomeCubit>().getListOfUsersById(uId.toString());
     super.initState();
-  }
-
-  Future<int> getUserId() async {
-    return await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey);
   }
 
   @override
@@ -54,7 +51,7 @@ class _ChatPageState extends State<ChatPage> {
               }
 
               if (users == null || users.isEmpty) {
-                return const CustomListViewShimmer();
+                return const Center(child: CircularProgressIndicator());
               } else {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +76,16 @@ class _ChatPageState extends State<ChatPage> {
                     ),
                     verticalSpace(30),
                     ListOfAllUsers(users: users),
-                    ChatsListContainer(chatTileModels: chatTileModels),
+                    state is GetAllUsersLoading
+                        ? Padding(
+                          padding: EdgeInsets.only(
+                            top: 32.h,
+                            right: 12.w,
+                            left: 12.w,
+                          ),
+                          child: CustomListViewShimmer(height: 400),
+                        )
+                        : ChatsListContainer(chatTileModels: chatTileModels),
                   ],
                 );
               }

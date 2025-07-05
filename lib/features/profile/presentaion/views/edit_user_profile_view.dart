@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/constants/assets.dart';
-import 'package:saturn/core/helper/app_functions.dart';
 import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
 import 'package:saturn/features/profile/logic/edit%20user%20cubit/edit_user_profile_cubit.dart';
-import 'package:saturn/features/profile/logic/user%20profile%20cubit/user_profile_cubit_.dart';
 import 'package:saturn/features/profile/presentaion/widgets/edit_profile_form.dart';
 import 'package:saturn/features/profile/presentaion/widgets/edit_user_bloc_listener.dart';
 import 'package:saturn/features/profile/presentaion/widgets/user_image.dart';
@@ -75,8 +73,8 @@ class EditUserProfileView extends StatelessWidget {
                       UserImage(user: userModel, editCubit: editCubit),
                       //edit pin
                       Positioned(
-                        bottom: 30.h,
-                        right: 5.w,
+                        bottom: 70.h,
+                        right: -2.w,
                         child: CircleAvatar(
                           radius: 15.r,
                           backgroundColor: AppColors.white,

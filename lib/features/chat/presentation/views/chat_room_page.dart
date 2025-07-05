@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:saturn/core/di/dependency_injection.dart';
+import 'package:saturn/core/helper/app_functions.dart';
+import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/shared_pref_helper.dart';
 import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
-import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
 import 'package:saturn/features/chat/data/models/chat_service.dart';
-import 'package:saturn/features/chat/data/models/chat_title_model.dart';
 import 'package:saturn/features/chat/presentation/widgets/chat_room_listview_messages.dart';
 import 'package:saturn/features/chat/presentation/widgets/send_message_text_field.dart';
 
@@ -34,7 +34,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
 
   Future<void> _getChatIdAndUserId() async {
     isLoading = true;
-    currentUserId = await SharedPrefHelper.getInt(SharedPrefKeys.userIdKey);
+    currentUserId = AppFunctions.getUserId()??0;
     chatId = await ChatService().createOrGetChat(
       userId1: currentUserId.toString(),
       userId2: widget.user.id.toString(),
@@ -47,40 +47,54 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.deepPurple,
+      appBar: AppBar(
+        backgroundColor: AppColors.appBarColorPurple,
+        toolbarHeight: 138.h,
+        leading: IconButton(
+          icon: CircleAvatar(
+            backgroundColor: AppColors.arrowBackBakgroundColor,
+            child: const Icon(
+              Icons.arrow_back,
+              color: AppColors.arrowBackColor,
+            ),
+          ),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+      ),
+      backgroundColor: AppColors.appBarColorPurple,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.w),
-          child:
-              isLoading || chatId == null
-                  ? const Center(child: CircularProgressIndicator())
-                  : Column(
-                    children: [
-                      verticalSpace(20),
-                      SizedBox(
-                        height: 50.h,
-                        child: Text(
-                          widget.user.username!,
-                          textAlign: TextAlign.center,
-                          style: AppTextstyles.font16WhiteSemiBold.copyWith(
-                            fontFamily: GoogleFonts.poppins().fontFamily,
-                            fontSize: 20.sp,
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.usersProfileChatContainerColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(64.r),
+              topRight: Radius.circular(64.r),
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w),
+            child:
+                isLoading || chatId == null
+                    ? const Center(child: CircularProgressIndicator())
+                    : Column(
+                      children: [
+                        Expanded(
+                          child: ChatRoomListviewMessages(
+                            userName: widget.user.username ?? "un known",
+                            chatId: chatId!,
+                            senderId: currentUserId.toString(),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: ChatRoomListviewMessages(
+                        verticalSpace(20),
+                        SendMessageTextField(
                           chatId: chatId!,
-                          senderId: currentUserId.toString(),
+                          senderId: currentUserId,
                         ),
-                      ),
-                      verticalSpace(20),
-                      SendMessageTextField(
-                        chatId: chatId!,
-                        senderId: currentUserId,
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+          ),
         ),
       ),
     );

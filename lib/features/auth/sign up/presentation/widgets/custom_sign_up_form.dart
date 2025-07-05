@@ -28,6 +28,7 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
       child: Column(
         children: [
           CustomTextFormField(
+             prefixIcon: Icon(Icons.person_pin_outlined, color: AppColors.red),
              labelText: 'Name',
             labelTextStyle: AppTextstyles.font14BlackMeduim,
             controller: signUp.firstNameController,
@@ -36,6 +37,7 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
           ),
           verticalSpace(20),
           CustomTextFormField(
+             prefixIcon: Icon(Icons.email_outlined, color: AppColors.red),
              labelText: 'Email',
             labelTextStyle: AppTextstyles.font14BlackMeduim,
             controller: signUp.emailController,
@@ -46,6 +48,7 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
           verticalSpace(20),
 
           CustomTextFormField(
+             prefixIcon: Icon(Icons.lock_outline_rounded, color: AppColors.red),
              labelText: 'Password',
             labelTextStyle: AppTextstyles.font14BlackMeduim,
             controller: signUp.passwordController,
@@ -67,6 +70,7 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
           ),
           verticalSpace(20),
           CustomTextFormField(
+             prefixIcon: Icon(Icons.lock_outline_rounded, color: AppColors.red),
              labelText: 'Confirm Password',
             labelTextStyle: AppTextstyles.font14BlackMeduim,
             controller: signUp.confirmPasswordController,

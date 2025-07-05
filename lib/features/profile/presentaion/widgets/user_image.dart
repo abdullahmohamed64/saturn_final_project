@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/networking/api_constants.dart';
@@ -13,29 +12,38 @@ import '../../../../constants/assets.dart';
 class UserImage extends StatelessWidget {
   const UserImage({super.key, required this.user, this.editCubit});
   final UserModel user;
-  final EditUserProfileCubit? editCubit ;
+  final EditUserProfileCubit? editCubit;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        verticalSpace(10),
+
         CircleAvatar(
           backgroundColor: AppColors.white,
           radius: 50.r,
           child: CircleAvatar(
             backgroundImage:
-           
-         editCubit?.image != null?
-             FileImage(editCubit!.image!):
-            user.picName == null?
-             AssetImage(Assets.assetsImagesUserAvatar)
-             :
-             NetworkImage(ApiConstants.upload  + user.picName!)
-             ,
+                editCubit?.image != null
+                    ? FileImage(editCubit!.image!)
+                    : user.picName == null
+                    ? AssetImage(Assets.assetsImagesUserAvatar)
+                    : NetworkImage(
+                      ApiConstants.uploadUrl.toString() + user.picName!,
+                    ),
             radius: 45.r,
           ),
         ),
         verticalSpace(10),
-        Text(user.username ?? '' , style: AppTextstyles.font16WhiteMeduim,)
+        Text(
+          user.username?.replaceFirst(
+                user.username![0],
+                user.username![0].toUpperCase(),
+              ) ??
+              '',
+          style: AppTextstyles.userNameFont,
+        ),
+        verticalSpace(20),
       ],
     );
   }

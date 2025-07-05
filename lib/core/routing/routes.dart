@@ -18,4 +18,6 @@ class Routes {
   static const artViewPage = 'artViewPage';
   static const chatRoomPage = 'chatRoomPage';
   static const editProfilePage = 'editProfilePage';
+  static const loadingPage = 'loadingPage';
+  // static const editProfilePage = 'editProfilePage';
 }

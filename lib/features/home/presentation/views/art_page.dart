@@ -16,7 +16,7 @@ import 'package:saturn/features/home/presentation/widgets/comment_widget.dart';
 
 class ArtPage extends StatefulWidget {
   const ArtPage({super.key, required this.artModel});
-  final ArtModel artModel;
+  final PostModel artModel;
 
   @override
   State<ArtPage> createState() => _ArtPageState();
@@ -81,7 +81,7 @@ class _ArtPageState extends State<ArtPage> {
     final bool isLiked = isSuccess && state.favouriteRsponseModel.liked == true;
 
     return ArtImageSecion(
-     artModel: widget.artModel,
+      artModel: widget.artModel,
       likesCount: likeCount,
       isLiked: isLiked,
       onCommentPress: () {

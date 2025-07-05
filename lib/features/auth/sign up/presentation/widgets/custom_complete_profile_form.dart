@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:saturn/constants/assets.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
@@ -32,14 +31,14 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
           verticalSpace(40),
 
           CustomTextFormField(
-             prefixIcon: Icon(Icons.person_pin_outlined, color: AppColors.red),
+            prefixIcon: Icon(Icons.person_pin_outlined, color: AppColors.red),
             controller: signUp.firstNameController,
             backgroundColor: AppColors.textformFieldColor,
             hintText: 'Enter your first name',
           ),
           verticalSpace(20),
           CustomTextFormField(
-             prefixIcon: Icon(Icons.email_outlined, color: AppColors.red),
+            prefixIcon: Icon(Icons.person_pin_outlined, color: AppColors.red),
 
             controller: signUp.lastNameController,
             backgroundColor: AppColors.textformFieldColor,
@@ -49,7 +48,10 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
           verticalSpace(20),
 
           CustomTextFormField(
-             prefixIcon: Icon(Icons.phone_callback_outlined, color: AppColors.red),
+            prefixIcon: Icon(
+              Icons.phone_callback_outlined,
+              color: AppColors.red,
+            ),
 
             controller: signUp.mobileController,
 
@@ -62,8 +64,6 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
           //birthdate
           //create birth date item using date package
           CustomTextFormField(
-          
-
             prefixIcon: IconButton(
               onPressed: () async {
                 await showDatePicker(
@@ -80,7 +80,7 @@ class _CustomSignUpFormState extends State<CustomCompleteProfileForm> {
                       ).toIso8601String().substring(0, 10),
                 );
               },
-              icon: Icon(Icons.calendar_today_outlined, color: AppColors.red ),
+              icon: Icon(Icons.calendar_today_outlined, color: AppColors.red),
             ),
             hintText: 'date birth',
             controller: signUp.birthDateController,

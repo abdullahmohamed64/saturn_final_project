@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/core/theming/app_colors.dart';
-import 'package:saturn/core/theming/app_constants.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/features/chat/data/models/message_model.dart';
 import 'package:intl/intl.dart';
@@ -9,11 +8,11 @@ import 'package:intl/intl.dart';
 class BubbleMessage extends StatelessWidget {
   const BubbleMessage({
     super.key,
-    required this.isSender,
+    required this.isReceiver,
     required this.messageModel,
   });
 
-  final bool isSender;
+  final bool isReceiver;
   final MessageModel messageModel;
 
   @override
@@ -22,7 +21,7 @@ class BubbleMessage extends StatelessWidget {
 
     return Column(
       crossAxisAlignment:
-          isSender ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+          isReceiver ? CrossAxisAlignment.start : CrossAxisAlignment.end,
       children: [
         // Display time or day-date
         Text(
@@ -31,29 +30,27 @@ class BubbleMessage extends StatelessWidget {
         ),
 
         Align(
-          alignment:
-              isSender ? Alignment.centerLeft : Alignment.centerRight,
+          alignment: isReceiver ? Alignment.centerLeft : Alignment.centerRight,
           child: Container(
             padding: const EdgeInsets.all(16),
             margin: EdgeInsets.only(top: 8.h, bottom: 8.h),
             constraints: BoxConstraints(maxWidth: screenWidth * 2 / 3),
             decoration: BoxDecoration(
-              color: isSender
-                  ? AppColors.senderMessageColor
-                  : AppColors.reiceverMessageColor,
+              color:
+                  isReceiver
+                      ? AppColors.senderMessageColor
+                      : AppColors.reiceverMessageColor,
               borderRadius: BorderRadius.only(
-                topLeft:
-                    isSender ? Radius.zero : const Radius.circular(16).r,
+                topLeft: isReceiver ? Radius.zero : const Radius.circular(16).r,
                 bottomRight:
-                    isSender ? const Radius.circular(16).r : Radius.zero,
+                    isReceiver ? const Radius.circular(16).r : Radius.zero,
                 bottomLeft: const Radius.circular(16).r,
                 topRight: const Radius.circular(16).r,
               ),
             ),
             child: Text(
               messageModel.message,
-              style:
-                  AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp),
+              style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp),
             ),
           ),
         ),
@@ -63,11 +60,11 @@ class BubbleMessage extends StatelessWidget {
 
   String formatMessageDate(int timestamp) {
     final DateTime messageDate =
-        DateTime.fromMillisecondsSinceEpoch(timestamp, isUtc: true)
-            .toLocal();
+        DateTime.fromMillisecondsSinceEpoch(timestamp, isUtc: true).toLocal();
     final DateTime now = DateTime.now();
 
-    final bool isToday = now.year == messageDate.year &&
+    final bool isToday =
+        now.year == messageDate.year &&
         now.month == messageDate.month &&
         now.day == messageDate.day;
 

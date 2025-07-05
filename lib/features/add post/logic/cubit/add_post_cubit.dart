@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:saturn/features/add%20post/data/models/add_post_request_model.dart';
 import 'package:saturn/features/add%20post/data/models/add_post_response_model.dart';
 import 'package:saturn/features/add%20post/data/repo/add_post_repo.dart';
-import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
 
 part 'add_post_state.dart';
 

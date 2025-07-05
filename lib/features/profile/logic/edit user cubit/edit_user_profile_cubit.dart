@@ -1,11 +1,9 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
-import 'package:saturn/features/auth/sign%20up/presentation/widgets/upload_image_tp_api.dart';
 import 'package:saturn/features/profile/data/repo/edit_user_repo.dart';
 
 part 'edit_user_profile_state.dart';

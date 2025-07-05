@@ -7,7 +7,7 @@ import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class CustomProfileStaggeredGridview extends StatelessWidget {
   const CustomProfileStaggeredGridview({super.key, required this.artModels});
-  final List<ArtModel> artModels;
+  final List<PostModel> artModels;
   @override
   Widget build(BuildContext context) {
     int c = 1;

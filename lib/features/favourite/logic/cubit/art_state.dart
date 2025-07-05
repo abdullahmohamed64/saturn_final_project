@@ -5,7 +5,7 @@ abstract class ArtState {}
 class FavouriteInitial extends ArtState {}
 
 class GetPostReactsAndCommentsSucceFully extends ArtState {
-  final ArtModel favouriteRsponseModel;
+  final PostModel favouriteRsponseModel;
 
   GetPostReactsAndCommentsSucceFully({required this.favouriteRsponseModel});
 }
@@ -29,6 +29,5 @@ class CreateCommentFailure extends ArtState {
 
   CreateCommentFailure({required this.errMessage});
 }
-class GetUserFavoriteArtsLoading extends ArtState {
 
-}
+class GetUserFavoriteArtsLoading extends ArtState {}

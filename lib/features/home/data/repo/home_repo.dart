@@ -10,7 +10,7 @@ class HomeRepo {
   final ApiService _apiService;
 
   HomeRepo({required ApiService apiService}) : _apiService = apiService;
-  Future<Either<List<ArtModel>, String>> getCategoryItems({
+  Future<Either<List<PostModel>, String>> getCategoryItems({
     String? categoryName,
   }) async {
     try {
@@ -24,7 +24,7 @@ class HomeRepo {
     }
   }
 
-    Future<Either<List<UserModel>, String>> getAllUsers() async {
+  Future<Either<List<UserModel>, String>> getAllUsers() async {
     try {
       final UsersListModel res = await _apiService.getAllUsers();
 

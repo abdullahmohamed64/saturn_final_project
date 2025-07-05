@@ -11,7 +11,7 @@ import 'package:saturn/features/home/data/models/comment_model.dart';
 //           "created_at": "2025-03-11 14:55:51",
 //           "likes_count": 4
 //       },
-class ArtModel {
+class PostModel {
   final int? id;
   final int? userId;
 
@@ -28,7 +28,7 @@ class ArtModel {
   final String? createdAt;
   final String? title;
 
-  ArtModel({
+  PostModel({
     this.title,
     this.status,
     this.liked,
@@ -43,13 +43,13 @@ class ArtModel {
     this.likesCount,
   });
 
-  factory ArtModel.fromJson(Map<String, dynamic> json) {
-    List <Comment>comments = [];
-    if(json['comments'] != null) {
-      comments = (json['comments'] as List).map((e) => Comment.fromJson(e)).toList();
-    
+  factory PostModel.fromJson(Map<String, dynamic> json) {
+    List<Comment> comments = [];
+    if (json['comments'] != null) {
+      comments =
+          (json['comments'] as List).map((e) => Comment.fromJson(e)).toList();
     }
-    return ArtModel(
+    return PostModel(
       id: json['id'],
       userId: json['user_id'],
       type: json['type'],

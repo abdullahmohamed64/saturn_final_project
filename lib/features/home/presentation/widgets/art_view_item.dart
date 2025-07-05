@@ -7,7 +7,7 @@ import 'package:saturn/features/home/data/models/art_model.dart';
 
 class ArtViewItem extends StatelessWidget {
   const ArtViewItem({super.key, required this.artModel});
-  final ArtModel artModel;
+  final PostModel artModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +25,7 @@ class ArtViewItem extends StatelessWidget {
             child: Text(
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-          
+
               artModel.categoryName ?? '',
               style: AppTextstyles.font16WhitekSemiBold,
             ),

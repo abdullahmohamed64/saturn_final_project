@@ -9,9 +9,9 @@ class FavouriteRepo {
 
   FavouriteRepo({required ApiService apiService}) : _apiService = apiService;
 
-  Future<Either<String, ArtModel>> makeReact({required int artId}) async {
+  Future<Either<String, PostModel>> makeReact({required int artId}) async {
     try {
-      final ArtModel addLikeResponseModel = await _apiService.makeReact(
+      final PostModel addLikeResponseModel = await _apiService.makeReact(
         artId: artId,
       );
 
@@ -24,12 +24,12 @@ class FavouriteRepo {
     // }
   }
 
-  Future<Either<String, ArtModel>> createComment({
+  Future<Either<String, PostModel>> createComment({
     required int artId,
     required String comment,
   }) async {
     try {
-      final ArtModel createCommentResponseModel = await _apiService
+      final PostModel createCommentResponseModel = await _apiService
           .createComment(artId: artId, comment: comment);
 
       return right(createCommentResponseModel);
@@ -41,11 +41,11 @@ class FavouriteRepo {
     // }
   }
 
-  Future<Either<String, ArtModel>> getPostReactAndComments({
+  Future<Either<String, PostModel>> getPostReactAndComments({
     required int artId,
   }) async {
     try {
-      final ArtModel getPostReactResponseModel = await _apiService
+      final PostModel getPostReactResponseModel = await _apiService
           .getPostReactAndComments(artId: artId);
       return right(getPostReactResponseModel);
     } on ServerException catch (e) {
@@ -62,8 +62,7 @@ class FavouriteRepo {
       final UserFavouritArtsModel getPostReactResponseModel =
           await _apiService.getUserFavoriteArts();
       return right(getPostReactResponseModel);
-    } 
-    on ServerException catch (e) {
+    } on ServerException catch (e) {
       return left(e.apiErrorModel.message);
     }
 

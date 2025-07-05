@@ -1,18 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:saturn/constants/assets.dart';
-import 'package:saturn/core/helper/app_functions.dart';
+import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/networking/api_constants.dart';
 import 'package:saturn/core/theming/app_colors.dart';
-import 'package:saturn/core/theming/app_constants.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
 
 class CustomArtsGridViewItem extends StatelessWidget {
   const CustomArtsGridViewItem({super.key, required this.artModel});
-  final ArtModel artModel;
+  final PostModel artModel;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,28 +39,35 @@ class CustomArtsGridViewItem extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16.sp),
-            child: 
-            
-            artModel.imageName == null ? 
-            Image.asset(Assets.assetsImagesArts, height: 50.h, width: 50.w)
-            :
-            Image.network(ApiConstants.upload + artModel.imageName! ,height: 50.h,width: 50.w,)
-            ,
-
-            // CachedNetworkImage(
-            //   imageUrl: ApiConstants.upload + artModel.imageName,
-            //   placeholder: (context, url) =>
-            //       const CircularProgressIndicator(),
-            //   imageBuilder: (context, imageProvider) {
-            //     return Container(
-            //       decoration: BoxDecoration(
-            //           image: DecorationImage(
-            //         image: imageProvider,
-            //         fit: BoxFit.fill,
-            //       ),),
-            //     );
-            //   },
-            // ),
+            child:
+            // artModel.imageName == null
+            //     ? Image.asset(
+            //       Assets.assetsImagesArts,
+            //       height: 50.h,
+            //       width: 50.w,
+            //     )
+            //     : Image.network(
+            //       ApiConstants.uploadUrl + artModel.imageName!,
+            //       height: 50.h,
+            //       width: 50.w,
+            //     ),
+            CachedNetworkImage(
+              imageUrl:
+                  artModel.imageName.isNullOrEmpty()
+                      ? 'https://tse4.mm.bing.net/th/id/OIP._qD62an0_iiWX0pzZRUOZwHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
+                      : ApiConstants.uploadUrl + artModel.imageName!,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              imageBuilder: (context, imageProvider) {
+                return Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
         verticalSpace(4),

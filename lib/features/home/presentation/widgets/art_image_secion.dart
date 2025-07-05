@@ -25,7 +25,7 @@ class ArtImageSecion extends StatelessWidget {
   });
   final void Function()? onCommentPress;
   final int likesCount;
-  final ArtModel artModel;
+  final PostModel artModel;
   final bool isLiked;
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class ArtImageSecion extends StatelessWidget {
                 artModel.imageName == null
                     ? Image.asset(Assets.assetsImagesBag, height: 280.h)
                     : Image.network(
-                      ApiConstants.upload + artModel.imageName!,
+                      ApiConstants.uploadUrl.toString() + artModel.imageName!,
                       fit: BoxFit.scaleDown,
                     ),
           ),

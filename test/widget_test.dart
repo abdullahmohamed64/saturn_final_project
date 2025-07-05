@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:saturn/main.dart';
 import 'package:saturn/saturn_app.dart';
 
 void main() {

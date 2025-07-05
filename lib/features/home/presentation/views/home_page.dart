@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:saturn/core/helper/app_functions.dart';
-import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
@@ -21,7 +20,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<ArtModel> posts = [];
+  List<PostModel> posts = [];
   bool isSearching = false;
 
   @override
@@ -33,7 +32,7 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
-              final arts = context.watch<HomeCubit>().arts;
+              final arts = context.watch<HomeCubit>().posts;
 
               if (state is GetAllCategorisFailure) {
                 return Center(child: Text(state.errMessage));
@@ -72,12 +71,12 @@ class _HomePageState extends State<HomePage> {
                                         textAlign: TextAlign.center,
                                       )
                                       : CustomHomeArtsGridView(
-                                        artModels: posts,
+                                        postModels: posts,
                                       ),
                             )
                           else
                             SliverToBoxAdapter(
-                              child: CustomHomeArtsGridView(artModels: arts),
+                              child: CustomHomeArtsGridView(postModels: arts),
                             ),
                         ],
                       ),

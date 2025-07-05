@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
 import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/features/add%20post/presentation/views/add_post_page.dart';
@@ -11,15 +10,10 @@ import 'package:saturn/features/auth/sign%20in/presentation/views/set_new_passwo
 import 'package:saturn/features/auth/sign%20up/presentation/views/complete_profile_page.dart';
 import 'package:saturn/features/auth/sign%20up/presentation/views/sign_up_page.dart';
 import 'package:saturn/features/auth/views/login_succefully_page.dart';
-import 'package:saturn/features/chat/data/models/chat_title_model.dart';
 import 'package:saturn/features/chat/presentation/views/chat_page.dart';
 import 'package:saturn/features/chat/presentation/views/chat_room_page.dart';
-import 'package:saturn/features/favourite/logic/cubit/get_user_favorite_arts_cubit.dart';
 import 'package:saturn/features/favourite/presentation/views/favourite_page.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
-import 'package:saturn/features/home/data/models/categorys_response_model.dart';
-import 'package:saturn/features/home/data/repo/home_repo.dart';
-import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
 import 'package:saturn/features/home/presentation/views/art_page.dart';
 import 'package:saturn/features/home/presentation/views/category_page.dart';
 import 'package:saturn/features/home/presentation/views/home_page.dart';
@@ -30,6 +24,7 @@ import 'package:saturn/features/profile/data/repo/edit_user_repo.dart';
 import 'package:saturn/features/profile/logic/edit%20user%20cubit/edit_user_profile_cubit.dart';
 import 'package:saturn/features/profile/presentaion/views/edit_user_profile_view.dart';
 import 'package:saturn/features/profile/presentaion/views/profile_page.dart';
+import 'package:saturn/saturn_app.dart';
 
 import '../../features/auth/sign up/presentation/views/confirm_email_page.dart';
 
@@ -73,6 +68,12 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) {
             return CompleteProfilePage();
+          },
+        );
+      case Routes.loadingPage:
+        return MaterialPageRoute(
+          builder: (_) {
+            return LoadingPage();
           },
         );
       case Routes.setNewPassword:
@@ -130,7 +131,7 @@ class AppRouter {
       case Routes.artViewPage:
         return MaterialPageRoute(
           builder: (_) {
-            return ArtPage(artModel: routeSettings.arguments as ArtModel);
+            return ArtPage(artModel: routeSettings.arguments as PostModel);
           },
         );
 

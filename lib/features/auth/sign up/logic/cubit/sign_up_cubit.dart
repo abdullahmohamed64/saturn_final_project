@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:saturn/core/di/dependency_injection.dart';
 
 import 'package:saturn/core/helper/app_functions.dart';
 import 'package:saturn/core/helper/shared_pref_helper.dart';
@@ -10,6 +11,7 @@ import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/models/sign_up_response_model.dart';
 import 'package:saturn/features/auth/sign%20up/data/repo/sign_up_repo.dart';
+import 'package:saturn/features/chat/data/models/chat_service.dart';
 
 part 'sign_up_state.dart';
 
@@ -47,7 +49,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
     
     res.fold((signUpResponseModel) async {
-      await SharedPrefHelper.setSecuredData(
+       SharedPrefHelper().setSecuredData(
         SharedPrefKeys.tokenKey,
         signUpResponseModel.token ?? 'no token',
       );
@@ -55,10 +57,12 @@ class SignUpCubit extends Cubit<SignUpState> {
         email: signUpResponseModel.userData?.email ?? 'no email',
         password: signUpResponseModel.userData?.password ?? 'no password',
       );
-      await SharedPrefHelper.setData(
+      await getIt <SharedPrefHelper>().setData(
         SharedPrefKeys.userIdKey,
         signUpResponseModel.userData?.id ?? '',
       );
+      ChatService().saveFCMToken(signUpResponseModel.userData?.id.toString() ?? '');
+
       emit(SignUpSuccess(signUpResponseModel: signUpResponseModel));
     }, (error) => emit(SignUpError(error)));
   }

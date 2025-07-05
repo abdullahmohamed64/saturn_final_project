@@ -71,11 +71,11 @@
 import 'package:saturn/features/home/data/models/art_model.dart';
 
 class CategorysResponseModel {
-  final List<ArtModel> arts = [];
+  final List<PostModel> arts = [];
 
   CategorysResponseModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      json['data'].forEach((item) => arts.add(ArtModel.fromJson(item)));
+      json['data'].forEach((item) => arts.add(PostModel.fromJson(item)));
     }
   }
 }

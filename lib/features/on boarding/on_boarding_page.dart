@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/helper/extension.dart';
+import 'package:saturn/core/helper/shared_pref_helper.dart';
+import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/core/theming/app_colors.dart';
@@ -46,6 +49,10 @@ class OnBoardingPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 64.w),
                     child: AppButton(
                       onPressed: () {
+                        getIt<SharedPrefHelper>().setData(
+                          SharedPrefKeys.visitedOnBoarding,
+                          true,
+                        );
                         context.pushNamedAndRemoveUntile(
                           Routes.signInPage,
                           predicate: (route) => false,

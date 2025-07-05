@@ -114,4 +114,11 @@ class AppTextstyles {
     color: AppColors.black,
     
   ); 
+
+    static TextStyle userNameFont = GoogleFonts.roboto(
+    fontSize: 20.sp,
+    fontWeight: AppFontWeightHelper.meduim,
+    color: AppColors.white,
+    
+  ); 
 }

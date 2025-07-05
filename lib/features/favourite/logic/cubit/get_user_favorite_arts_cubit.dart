@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:saturn/features/favourite/data/repo/favorite_repo.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
 

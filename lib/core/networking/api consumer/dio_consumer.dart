@@ -38,7 +38,7 @@ class DioConsumer extends ApiConsumer {
   @override
   Future get(
     String path, {
-   Map<String , dynamic>? data,
+    Map<String, dynamic>? data,
     bool isFromData = false,
     Map<String, dynamic>? queryParameters,
   }) async {
@@ -47,13 +47,12 @@ class DioConsumer extends ApiConsumer {
         path,
         data: isFromData ? FormData.fromMap(data ?? {}) : data,
         queryParameters: queryParameters,
-        
       );
-      final Map<String, dynamic> jsonResponse =json.decode(res.data);
+      final Map<String, dynamic> jsonResponse = json.decode(res.data);
       return jsonResponse;
     } on DioException catch (e) {
       AppFunctions.handleException(e);
-    } 
+    }
   }
 
   @override
@@ -95,11 +94,11 @@ class DioConsumer extends ApiConsumer {
         queryParameters: queryParameters,
       );
       final Map<String, dynamic> jsonResponse = jsonDecode(res.data);
-          
+
       return jsonResponse;
     } on DioException catch (e) {
       AppFunctions.handleException(e);
-     } 
+    }
     //catch (e) {
     //   throw ServerException(
     //     apiErrorModel: ApiErrorModel(message: 'an error has occured'),

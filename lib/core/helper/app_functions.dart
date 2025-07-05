@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/helper/app_reg_exp.dart';
 import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/shared_pref_helper.dart';
@@ -10,7 +11,6 @@ import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/core/networking/api_error_model.dart';
 import 'package:saturn/core/networking/server_exception.dart';
 import 'package:saturn/features/auth/sign%20in/data/models/sign_in_request_model.dart';
-import 'package:saturn/features/auth/sign%20up/data/models/sign_up_request_model.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
 
 class AppFunctions {
@@ -52,18 +52,20 @@ class AppFunctions {
   // }
 
   static Future<void> saveUserData({required String email, password}) async {
-    await SharedPrefHelper.setData(SharedPrefKeys.emailKey, email);
-    await SharedPrefHelper.setSecuredData(SharedPrefKeys.passwordKey, password);
+     SharedPrefHelper().setData(SharedPrefKeys.emailKey, email);
+     SharedPrefHelper().setSecuredData(SharedPrefKeys.passwordKey, password);
   }
 
   static Future<SignInRequestModel> getUserData() async {
-    final email = await SharedPrefHelper.getString(SharedPrefKeys.emailKey);
-    final password = await SharedPrefHelper.getSecuredData(
+    final email =  SharedPrefHelper().getString(SharedPrefKeys.emailKey);
+    final password = await SharedPrefHelper().getSecuredData(
       SharedPrefKeys.passwordKey,
     );
     return SignInRequestModel(email: email, password: password);
   }
-
+  static int? getUserId() {
+    return getIt<SharedPrefHelper>().getInt(SharedPrefKeys.userIdKey);
+  }
   static void handleException(DioException e) {
     switch (e.type) {
       case DioExceptionType.connectionTimeout:
@@ -175,11 +177,11 @@ class AppFunctions {
     return DateFormat('MMM d • h:mm a').format(parsedDate);
   }
 
-  List<ArtModel>? searchPosts(List<ArtModel>? arts, description) {
-    if (arts.isNullOrEmpty()) return <ArtModel>[];
+  List<PostModel>? searchPosts(List<PostModel>? arts, description) {
+    if (arts.isNullOrEmpty()) return <PostModel>[];
     return arts
         ?.where(
-          (ArtModel art) =>
+          (PostModel art) =>
               art.description?.toLowerCase().contains(
                 description.toLowerCase(),
               ) ??

@@ -4,8 +4,6 @@ import 'package:saturn/core/helper/extension.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
-import 'package:saturn/features/chat/data/models/chat_service.dart';
-import 'package:saturn/features/chat/data/models/chat_title_model.dart';
 
 import 'userListview_photos_item.dart';
 
@@ -13,6 +11,7 @@ class ListOfAllUsers extends StatelessWidget {
   const ListOfAllUsers({super.key, required this.users});
   final List<UserModel> users;
   @override
+
   Widget build(BuildContext context) {
     return SizedBox(
       height: 110.h,

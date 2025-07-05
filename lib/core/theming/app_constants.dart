@@ -10,6 +10,8 @@ static const type  = "type";
 static const senderId  = "senderId";
 static const groupName  = "groupName";
 static const text = "text";
-
-
+static const senderName = "senderName";
+static const fcmToken = "fcmToken";
+static const updatedAt = "updatedAt";
+static const userTokens = "userTokens";
 }

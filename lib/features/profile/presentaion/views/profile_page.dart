@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
   }
 
-  late List<ArtModel> artList = [];
+  late List<PostModel> artList = [];
   String clickedValue = '';
   @override
   Widget build(BuildContext context) {
@@ -92,14 +92,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   Positioned(
                     top: 150.h,
                     child: SizedBox(
-                      height: mdQry.height * 4 / 7,
+                      height: mdQry.height * 5 / 7,
                       width: mdQry.width,
                       child: Column(
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children:
-                            
                                 textList.map((val) {
                                   return GestureDetector(
                                     onTap: () {
@@ -147,9 +146,7 @@ class _ProfilePageState extends State<ProfilePage> {
               return Center(
                 child: Text(
                   'Failed to fetch posts',
-                  style: AppTextstyles.font24BlueBold.copyWith(
-                    color: AppColors.white,
-                  ),
+                  style: AppTextstyles.font16WhiteMeduim,
                 ),
               );
             }

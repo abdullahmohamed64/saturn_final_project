@@ -7,13 +7,10 @@ import 'package:saturn/core/di/dependency_injection.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/features/add%20post/logic/cubit/add_post_cubit.dart';
 import 'package:saturn/features/add%20post/presentation/views/add_post_page.dart';
-import 'package:saturn/features/chat/logic/cubit/chat_cubit.dart';
 import 'package:saturn/features/chat/presentation/views/chat_page.dart';
 import 'package:saturn/features/favourite/logic/cubit/get_user_favorite_arts_cubit.dart';
 import 'package:saturn/features/favourite/presentation/views/favourite_page.dart';
-import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
 import 'package:saturn/features/home/presentation/views/home_page.dart';
-import 'package:saturn/features/profile/logic/user%20profile%20cubit/user_profile_cubit_.dart';
 import 'package:saturn/features/profile/presentaion/views/profile_page.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -38,24 +35,27 @@ class _NavigationPageState extends State<NavigationPage> {
       backgroundColor: AppColors.deepPurple,
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GNav(
-          onTabChange: (index) {
-            setState(() {
-              _currentPage = index;
-            });
-          },
-          gap: 8.w,
-          color: AppColors.white,
-          tabBackgroundColor: AppColors.lightPurple,
-          padding: EdgeInsets.all(16),
-          activeColor: Colors.white,
-          tabs: [
-            GButton(icon: LineIcons.home, text: 'Home'),
-            GButton(icon: Icons.message, text: 'Chat'),
-            GButton(icon: Icons.add, text: 'Add post'),
-            GButton(icon: Icons.person, text: 'Profile'),
-            GButton(icon: LineIcons.heartAlt, text: 'Favourites'),
-          ],
+        child: Expanded(
+          flex: 1,
+          child: GNav(
+            onTabChange: (index) {
+              setState(() {
+                _currentPage = index;
+              });
+            },
+            gap: 8.w,
+            color: AppColors.white,
+            tabBackgroundColor: AppColors.lightPurple,
+            padding: EdgeInsets.all(12),
+            activeColor: Colors.white,
+            tabs: [
+              GButton(icon: LineIcons.home, text: 'Home'),
+              GButton(icon: Icons.message, text: 'Chat'),
+              GButton(icon: Icons.add, text: 'post'),
+              GButton(icon: Icons.person, text: 'Profile'),
+              GButton(icon: LineIcons.heartAlt, text: 'Fav'),
+            ],
+          ),
         ),
       ),
       body: _selectBody(_currentPage),

@@ -4,6 +4,5 @@ abstract class SharedPrefKeys {
  static const String passwordKey= 'passwordKey';
  static const String tokenKey= 'tokenKey';
  static const String userIdKey= 'userIdKey';
-
-
+ static const String visitedOnBoarding= 'visitedOnBoarding';
 }
