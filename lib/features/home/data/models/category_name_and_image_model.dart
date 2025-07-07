@@ -40,8 +40,8 @@ Painting
   ),
   CategoryNameAndImageModel(
     categoryName: 'Pic',
-    categoryImage: Assets.assetsImagesPainting,
-    categoryColor: AppColors.paintingCategoryColor,
+    categoryImage: Assets.assetsImagesPic,
+    categoryColor: const Color.fromARGB(255, 43, 164, 117),
   ),
   CategoryNameAndImageModel(
     categoryName: 'Home design',

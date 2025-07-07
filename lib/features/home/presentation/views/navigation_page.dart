@@ -32,7 +32,8 @@ class _NavigationPageState extends State<NavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.deepPurple,
+  
+      backgroundColor: AppColors.black,
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Expanded(
@@ -49,11 +50,11 @@ class _NavigationPageState extends State<NavigationPage> {
             padding: EdgeInsets.all(12),
             activeColor: Colors.white,
             tabs: [
-              GButton(icon: LineIcons.home, text: 'Home'),
-              GButton(icon: Icons.message, text: 'Chat'),
-              GButton(icon: Icons.add, text: 'post'),
-              GButton(icon: Icons.person, text: 'Profile'),
-              GButton(icon: LineIcons.heartAlt, text: 'Fav'),
+              GButton(icon: Icons.home_outlined, text: 'Home'),
+              GButton(icon: Icons.textsms_outlined, text: 'Chat'),
+              GButton(icon: Icons.add_circle_outline, text: 'post'),
+              GButton(icon: Icons.person_outline_outlined, text: 'Profile'),
+              GButton(icon: Icons.favorite_outline, text: 'Fav'),
             ],
           ),
         ),
@@ -68,7 +69,6 @@ class _NavigationPageState extends State<NavigationPage> {
         create: (context) => AddPostCubit(getIt()),
         child: pages.elementAt(i),
       );
-    
     } else if (i == 4) {
       return BlocProvider(
         create:

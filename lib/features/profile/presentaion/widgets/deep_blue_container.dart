@@ -3,22 +3,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theming/app_colors.dart';
 
-class DeepBuleContainer extends StatelessWidget {
-  const DeepBuleContainer({super.key, required this.mdQry});
+class DeepBlackContainer extends StatelessWidget {
+  const DeepBlackContainer({super.key,});
 
-  final Size mdQry;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: mdQry.height * 5 / 6,
+      height: 700.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(32.r),
           topRight: Radius.circular(32.r),
         ),
 
-        color: AppColors.deepPurple,
+        color: AppColors.black,
       ),
     );
   }

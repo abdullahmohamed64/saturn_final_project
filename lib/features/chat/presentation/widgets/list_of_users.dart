@@ -13,27 +13,31 @@ class ListOfAllUsers extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 110.h,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (context, index) => horizontalSpace(20),
-        itemCount: users.length,
-        itemBuilder: (context, i) {
-          return GestureDetector(
-            onTap: () {
-              // ChatTileModel chatTileModel = ChatTileModel(
-              //   receiverId: users[i].id.toString(),
-              //   username: users[i].username!,
-              //   lastMessage: 'lastMessage',
-              //   lastMessageTime: 'lastMessageTime',
-              // );
-              context.pushNamed(Routes.chatRoomPage, args: users[i]);
-              // ChatService().getAllLastMessages('22');
-            },
-            child: UserListviewPhotosItem(userModel: users[i]),
-          );
-        },
+    return Padding(
+      padding:  EdgeInsets.symmetric(horizontal: 8.w),
+      child: SizedBox(
+        
+        height: 110.h,
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          separatorBuilder: (context, index) => horizontalSpace(20),
+          itemCount: users.length,
+          itemBuilder: (context, i) {
+            return GestureDetector(
+              onTap: () {
+                // ChatTileModel chatTileModel = ChatTileModel(
+                //   receiverId: users[i].id.toString(),
+                //   username: users[i].username!,
+                //   lastMessage: 'lastMessage',
+                //   lastMessageTime: 'lastMessageTime',
+                // );
+                context.pushNamed(Routes.chatRoomPage, args: users[i]);
+                // ChatService().getAllLastMessages('22');
+              },
+              child: UserListviewPhotosItem(userModel: users[i]),
+            );
+          },
+        ),
       ),
     );
   }

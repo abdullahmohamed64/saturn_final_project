@@ -5,6 +5,7 @@ import 'package:saturn/core/helper/spacing.dart';
 
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
+import 'package:saturn/core/widgets/back_icon_button.dart';
 import 'package:saturn/core/widgets/custom_listview_shimmer.dart';
 import 'package:saturn/core/widgets/custom_text_filed.dart';
 import 'package:saturn/features/favourite/logic/cubit/art_state.dart';
@@ -14,15 +15,15 @@ import 'package:saturn/features/home/presentation/functions/handle_error.dart';
 import 'package:saturn/features/home/presentation/widgets/art_image_secion.dart';
 import 'package:saturn/features/home/presentation/widgets/comment_widget.dart';
 
-class ArtPage extends StatefulWidget {
-  const ArtPage({super.key, required this.artModel});
+class PostPage extends StatefulWidget {
+  const PostPage({super.key, required this.artModel});
   final PostModel artModel;
 
   @override
-  State<ArtPage> createState() => _ArtPageState();
+  State<PostPage> createState() => _PostPageState();
 }
 
-class _ArtPageState extends State<ArtPage> {
+class _PostPageState extends State<PostPage> {
   bool showCommentInput = false;
 
   @override
@@ -42,7 +43,13 @@ class _ArtPageState extends State<ArtPage> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.lightPurple,
+        
+        appBar: AppBar(
+          backgroundColor: AppColors.white,
+          toolbarHeight: 132.h,
+          leading: CustomBackIconButton(),
+        ),
+        backgroundColor: AppColors.white,
         body: BlocConsumer<ArtCubit, ArtState>(
           listener: (context, state) {
             handleError(context, state);
@@ -52,19 +59,32 @@ class _ArtPageState extends State<ArtPage> {
             // final bool hasCommentsAndPosts =
             //     state is GetPostReactsAndCommentsSucceFully;
 
-            return Column(
-              children: [
-                _buildArtImageSection(state),
-                verticalSpace(15),
-                _buildCommentInputSection(favoriteCubit),
-                verticalSpace(15),
-                Expanded(
-                  child:
-                      isLoading
-                          ? const Center(child: CustomListViewShimmer())
-                          : _buildCommentsList(state),
+            return SingleChildScrollView(
+              child: Container(
+                height: 720.h,
+                decoration: BoxDecoration(
+                  color: AppColors.black,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40.r),
+                    topRight: Radius.circular(40.r),
+                  ),
                 ),
-              ],
+                child: Column(
+                  children: [
+                    verticalSpace(100),
+                    _buildArtImageSection(state),
+                    verticalSpace(15),
+                    _buildCommentInputSection(favoriteCubit),
+                    verticalSpace(15),
+                    Expanded(
+                      child:
+                          isLoading
+                              ? const Center(child: CustomListViewShimmer())
+                              : _buildCommentsList(state),
+                    ),
+                  ],
+                ),
+              ),
             );
           },
         ),
@@ -110,7 +130,7 @@ class _ArtPageState extends State<ArtPage> {
                         artId: widget.artModel.id ?? 0,
                       );
                     },
-                    icon: Icon(Icons.send, color: AppColors.deepPurple),
+                    icon: Icon(Icons.send, color: AppColors.black),
                   )
                   : null,
           hintText: 'Add comment',
@@ -147,7 +167,7 @@ class _ArtPageState extends State<ArtPage> {
             comment: comments[index].comment ?? '',
             userName: comments[index].username ?? '',
             createdAt: comments[index].createdAt ?? '',
-            userAvatar: null,
+            userAvatar: comments[index].userPic ?? '',
           ),
         );
       },

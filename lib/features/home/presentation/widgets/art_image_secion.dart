@@ -29,7 +29,7 @@ class ArtImageSecion extends StatelessWidget {
   final bool isLiked;
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
         GestureDetector(
           onTap: () {
@@ -39,68 +39,59 @@ class ArtImageSecion extends StatelessWidget {
             context.pushNamed(Routes.chatRoomPage, args: user);
           },
           child: Container(
+            clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
-              color: AppColors.deepPurple,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(16.r),
-                topRight: Radius.circular(32.r),
-              ),
+              borderRadius: BorderRadius.circular(16.sp),
             ),
-            height: 280.h,
-            width: double.infinity,
+            height: 183.h,
+            width: 244.w,
             child:
                 artModel.imageName == null
                     ? Image.asset(Assets.assetsImagesBag, height: 280.h)
                     : Image.network(
                       ApiConstants.uploadUrl.toString() + artModel.imageName!,
-                      fit: BoxFit.scaleDown,
+                      fit: BoxFit.contain,
                     ),
           ),
         ),
-        Positioned(
-          bottom: 10.h,
-          right: 10.w,
-          child: Container(
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(144, 127, 144, 159),
+        verticalSpace(25),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 24.w),
+          decoration: BoxDecoration(
+            color: const Color(0xFF2F2F2F),
 
-              borderRadius: BorderRadius.circular(16.sp),
-            ),
-            child: Row(
-              children: [
-                horizontalSpace(8),
-                Text(
-                  AppFunctions.formatDate2(artModel.createdAt!),
-                  style: AppTextstyles.font16WhiteSemiBold,
+            borderRadius: BorderRadius.circular(16.sp),
+          ),
+          child: Row(
+            children: [
+              horizontalSpace(12),
+              Text(
+                AppFunctions.formatDate2(artModel.createdAt!),
+                style: AppTextstyles.font16WhiteSemiBold,
+              ),
+              Spacer(),
+              Text(
+                likesCount.toString(),
+                style: AppTextstyles.font16WhiteMeduim,
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<ArtCubit>().emitMakeReact(artId: artModel.id!);
+                },
+                icon: Icon(
+                  Icons.favorite,
+                  color: isLiked ? Colors.red : Colors.grey,
                 ),
-                horizontalSpace(100),
-                Text(
-                  likesCount.toString(),
-                  style: AppTextstyles.font16WhiteMeduim,
-                ),
-                IconButton(
-                  onPressed: () {
-                    context.read<ArtCubit>().emitMakeReact(artId: artModel.id!);
-                  },
-                  icon: Icon(
-                    Icons.favorite,
-                    color: isLiked ? Colors.red : Colors.grey,
-                  ),
-                ),
-                IconButton(
-                  onPressed: onCommentPress,
-                  icon: const Icon(Icons.comment, color: Colors.white),
-                ),
-                horizontalSpace(8),
-              ],
-            ),
+              ),
+              IconButton(
+                onPressed: onCommentPress,
+                icon: const Icon(Icons.comment_outlined, color: Colors.white),
+              ),
+              horizontalSpace(12),
+            ],
           ),
         ),
-        // Positioned(
-        //   bottom: 20.h,
-        //   left: 20.w,
-        //   child: Text(artModel.createdAt!, style: AppTextstyles.font16WhiteSemiBold),
-        // ),
+   
       ],
     );
   }

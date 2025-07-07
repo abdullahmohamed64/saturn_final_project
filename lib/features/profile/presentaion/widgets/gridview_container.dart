@@ -7,17 +7,15 @@ import '../../../home/data/models/art_model.dart';
 class StaggeredGridViewContainer extends StatelessWidget {
   const StaggeredGridViewContainer({
     super.key,
-    required this.mdQry,
     required this.arts,
   });
 
-  final Size mdQry;
   final List<PostModel> arts;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16.r),
-      height: mdQry.height * 3 / 6,
+      height: 400.h,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(64.r)),
       child: CustomProfileStaggeredGridview(artModels: arts),
     );

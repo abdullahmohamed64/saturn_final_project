@@ -14,7 +14,7 @@ import 'package:saturn/features/chat/presentation/views/chat_page.dart';
 import 'package:saturn/features/chat/presentation/views/chat_room_page.dart';
 import 'package:saturn/features/favourite/presentation/views/favourite_page.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
-import 'package:saturn/features/home/presentation/views/art_page.dart';
+import 'package:saturn/features/home/presentation/views/post_page.dart';
 import 'package:saturn/features/home/presentation/views/category_page.dart';
 import 'package:saturn/features/home/presentation/views/home_page.dart';
 import 'package:saturn/features/home/presentation/views/navigation_page.dart';
@@ -131,7 +131,7 @@ class AppRouter {
       case Routes.artViewPage:
         return MaterialPageRoute(
           builder: (_) {
-            return ArtPage(artModel: routeSettings.arguments as PostModel);
+            return PostPage(artModel: routeSettings.arguments as PostModel);
           },
         );
 

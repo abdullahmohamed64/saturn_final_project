@@ -17,8 +17,8 @@ class CustomHomeArtsGridView extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 5.w,
-          mainAxisSpacing: 5.h,
-          childAspectRatio: 4 / 6,
+          // mainAxisSpacing: 5.h,
+          childAspectRatio: 5 / 6,
           // ,
           // childAspectRatio: 1/1,
         ),

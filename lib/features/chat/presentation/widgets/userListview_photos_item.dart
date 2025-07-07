@@ -27,7 +27,7 @@ class UserListviewPhotosItem extends StatelessWidget {
         Text(
           userModel.username ?? 'no name',
           style: AppTextstyles.font14GreyRegular.copyWith(
-            color: AppColors.theMostlightGrey,
+            color: AppColors.black,
           ),
         ),
       ],

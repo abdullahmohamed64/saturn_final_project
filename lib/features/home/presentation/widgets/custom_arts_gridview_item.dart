@@ -27,10 +27,10 @@ class CustomArtsGridViewItem extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.sp),
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft,
               colors: [
-                AppColors.lightPurple,
+                AppColors.lighterGrey,
                 const Color.fromARGB(255, 65, 36, 122),
                 const Color.fromARGB(255, 59, 15, 109),
               ],
@@ -38,7 +38,8 @@ class CustomArtsGridViewItem extends StatelessWidget {
             color: AppColors.lightGrey,
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(16.sp),
+          
+            borderRadius: BorderRadius.circular(4.sp),
             child:
             // artModel.imageName == null
             //     ? Image.asset(
@@ -60,7 +61,10 @@ class CustomArtsGridViewItem extends StatelessWidget {
               imageBuilder: (context, imageProvider) {
                 return Container(
                   decoration: BoxDecoration(
+                  color: AppColors.black,
+
                     image: DecorationImage(
+                      
                       image: imageProvider,
                       fit: BoxFit.fill,
                     ),
@@ -73,10 +77,10 @@ class CustomArtsGridViewItem extends StatelessWidget {
         verticalSpace(4),
 
         Text(
-          artModel.categoryName ?? 'no title',
-          style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp),
+          artModel.description ?? 'no title',
+          style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp , color: AppColors.black),
         ),
-        verticalSpace(4),
+        // verticalSpace(4),
 
         // Text(
         //   textAlign: TextAlign.center,
@@ -85,10 +89,10 @@ class CustomArtsGridViewItem extends StatelessWidget {
         //  AppFunctions.formatDate( artModel.createdAt ?? ''),
         //   style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp),
         // ),
-        Text(
-          artModel.type ?? 'no type',
-          style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp),
-        ),
+        // Text(
+        //   artModel.type ?? 'no type',
+        //   style: AppTextstyles.font16WhiteMeduim.copyWith(fontSize: 14.sp, color: AppColors.black),
+        // ),
       ],
     );
   }

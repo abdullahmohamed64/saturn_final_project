@@ -7,6 +7,7 @@ import 'package:saturn/core/helper/shared_pref_helper.dart';
 import 'package:saturn/core/helper/shared_pref_keys.dart';
 import 'package:saturn/core/helper/spacing.dart';
 import 'package:saturn/core/theming/app_colors.dart';
+import 'package:saturn/core/widgets/back_icon_button.dart';
 import 'package:saturn/features/auth/models/user_model.dart';
 import 'package:saturn/features/chat/data/models/chat_service.dart';
 import 'package:saturn/features/chat/presentation/widgets/chat_room_listview_messages.dart';
@@ -34,7 +35,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
 
   Future<void> _getChatIdAndUserId() async {
     isLoading = true;
-    currentUserId = AppFunctions.getUserId()??0;
+    currentUserId = AppFunctions.getUserId() ?? 0;
     chatId = await ChatService().createOrGetChat(
       userId1: currentUserId.toString(),
       userId2: widget.user.id.toString(),
@@ -48,26 +49,15 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.appBarColorPurple,
-        toolbarHeight: 138.h,
-        leading: IconButton(
-          icon: CircleAvatar(
-            backgroundColor: AppColors.arrowBackBakgroundColor,
-            child: const Icon(
-              Icons.arrow_back,
-              color: AppColors.arrowBackColor,
-            ),
-          ),
-          onPressed: () {
-            context.pop();
-          },
-        ),
+        backgroundColor: AppColors.white,
+        toolbarHeight: 132.h,
+        leading: CustomBackIconButton(),
       ),
-      backgroundColor: AppColors.appBarColorPurple,
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.usersProfileChatContainerColor,
+            color: AppColors.black,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(64.r),
               topRight: Radius.circular(64.r),
@@ -85,6 +75,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                             userName: widget.user.username ?? "un known",
                             chatId: chatId!,
                             senderId: currentUserId.toString(),
+                            userImage: widget.user.picName ??"",
                           ),
                         ),
                         verticalSpace(20),

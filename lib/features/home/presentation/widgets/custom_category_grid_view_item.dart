@@ -21,9 +21,11 @@ class CustomCategoryGridviewItem extends StatelessWidget {
       width: 200.w,
       decoration: BoxDecoration(
         gradient: LinearGradient(
+          begin: Alignment.centerRight,
+          end: Alignment.centerLeft,
           colors: [
-            AppColors.lightPurple,
-            const Color.fromARGB(255, 78, 45, 143),
+            AppColors.black,
+            const Color.fromARGB(255, 75, 72, 72),
             const Color.fromARGB(255, 59, 15, 109),
           ],
         ),
@@ -75,17 +77,17 @@ class CustomCategoryGridviewItem extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
 
-                    artModel.categoryName ?? '',
+                     'Design',
                     style: AppTextstyles.font16WhitekSemiBold,
                   ),
                 ),
-                verticalSpace(30),
+                verticalSpace(20),
                 Flexible(
                   child: Text(
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
 
-                    artModel.description ?? '',
+                    artModel.categoryName ?? '',
                     style: AppTextstyles.font16WhitekSemiBold,
                   ),
                 ),

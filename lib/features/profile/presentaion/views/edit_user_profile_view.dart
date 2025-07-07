@@ -13,7 +13,7 @@ import 'package:saturn/features/profile/presentaion/widgets/user_image.dart';
 
 class EditUserProfileView extends StatelessWidget {
   const EditUserProfileView({super.key, required this.userModel});
-  final UserModel userModel ;
+  final UserModel userModel;
   @override
   Widget build(BuildContext context) {
     final editCubit = context.watch<EditUserProfileCubit>();
@@ -33,7 +33,7 @@ class EditUserProfileView extends StatelessWidget {
             child: const Text("Save", style: TextStyle(color: AppColors.white)),
           ),
         ],
-        backgroundColor: AppColors.appBarColorPurple,
+        backgroundColor: AppColors.white,
         toolbarHeight: 138.h,
         leading: IconButton(
           icon: CircleAvatar(
@@ -48,14 +48,14 @@ class EditUserProfileView extends StatelessWidget {
           },
         ),
       ),
-      backgroundColor: AppColors.appBarColorPurple,
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             height: 800.h,
             // margin: EdgeInsets.only(top: 130.h),
             decoration: BoxDecoration(
-              color: AppColors.deepPurple,
+              color: AppColors.black,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(32.r),
                 topRight: Radius.circular(32.r),
@@ -78,7 +78,10 @@ class EditUserProfileView extends StatelessWidget {
                         child: CircleAvatar(
                           radius: 15.r,
                           backgroundColor: AppColors.white,
-                          child: Image.asset(Assets.assetsImagesEditPin, fit: BoxFit.contain,),
+                          child: Image.asset(
+                            Assets.assetsImagesEditPin,
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                     ],

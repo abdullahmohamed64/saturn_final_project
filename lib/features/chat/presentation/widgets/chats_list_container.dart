@@ -20,10 +20,10 @@ class ChatsListContainer extends StatelessWidget {
         padding: EdgeInsets.only(top: 32.h, right: 12.w, left: 12.w),
 
         decoration: BoxDecoration(
-          color: AppColors.usersProfileChatContainerColor,
+          color: AppColors.black,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(32.r),
-            topRight: Radius.circular(32.r),
+            topLeft: Radius.circular(50.r),
+            topRight: Radius.circular(50.r),
           ),
         ),
         child:
@@ -43,6 +43,7 @@ class ChatsListContainer extends StatelessWidget {
                         UserModel user = UserModel(
                           id: int.parse(chatTileModels[i].receiverId),
                           username: chatTileModels[i].username,
+                          picName: chatTileModels[i].userImage,
                         );
                         context.pushNamed(Routes.chatRoomPage, args: user);
                       },

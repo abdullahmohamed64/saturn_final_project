@@ -8,7 +8,7 @@ import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/core/widgets/custom_gridview_shimmer.dart';
 import 'package:saturn/features/home/data/models/art_model.dart';
 import 'package:saturn/features/home/logic/cubit/home_cubit.dart';
-import 'package:saturn/features/home/presentation/widgets/custom_app_bar.dart';
+import 'package:saturn/features/home/presentation/widgets/custom_search_app_bar.dart';
 import 'package:saturn/features/home/presentation/widgets/custom_home_arts_grid_view.dart';
 import 'package:saturn/features/home/presentation/widgets/custom_category_listview_separated.dart';
 
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.mainPurple,
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 return Column(
                   children: [
                     verticalSpace(10),
-                    CustomAppBar(
+                    CustomSearchAppBar(
                       onChanged: (input) {
                         input = input.trim();
                         setState(() {
@@ -65,8 +65,7 @@ class _HomePageState extends State<HomePage> {
                                   posts.isEmpty
                                       ? Text(
                                         'no posts found',
-                                        style: AppTextstyles
-                                            .font24LightPurpleRegular
+                                        style: AppTextstyles.font24BlackeBold
                                             .copyWith(color: AppColors.red),
                                         textAlign: TextAlign.center,
                                       )

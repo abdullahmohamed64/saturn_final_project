@@ -82,6 +82,10 @@ class Assets {
   /// assets/images/Phone.png
   static const String assetsImagesPhone = "assets/images/Phone.png";
 
+  /// Assets for assetsImagesPic
+  /// assets/images/pic.png
+  static const String assetsImagesPic = "assets/images/pic.png";
+
   /// Assets for assetsImagesResetPassword
   /// assets/images/reset_password.png
   static const String assetsImagesResetPassword = "assets/images/reset_password.png";

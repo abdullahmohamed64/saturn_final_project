@@ -6,7 +6,7 @@ class ChatTileModel {
   final String lastMessageTime;
   final bool isUnread; // optional for badge, if needed
   final int timeStamp;//used for sorting
-
+  
   
 
   ChatTileModel({

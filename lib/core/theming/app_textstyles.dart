@@ -34,7 +34,7 @@ class AppTextstyles {
   );
 
   static TextStyle font12GreyRegular = TextStyle(
-   fontWeight: AppFontWeightHelper.meduim,
+    fontWeight: AppFontWeightHelper.meduim,
     color: AppColors.lighterGrey,
     fontSize: 12.sp,
   );
@@ -66,7 +66,7 @@ class AppTextstyles {
     color: AppColors.black,
     fontSize: 12.sp,
   );
-    static TextStyle font12WhiteRegular = TextStyle(
+  static TextStyle font12WhiteRegular = TextStyle(
     fontWeight: AppFontWeightHelper.regular,
     color: AppColors.white,
     fontSize: 12.sp,
@@ -88,7 +88,6 @@ class AppTextstyles {
     fontSize: 18.sp,
   );
   static TextStyle font14GreyRegular = TextStyle(
- 
     fontWeight: AppFontWeightHelper.regular,
     color: AppColors.grey,
     fontSize: 14.sp,
@@ -102,23 +101,21 @@ class AppTextstyles {
     fontSize: 18.sp,
   );
 
-    static TextStyle font24LightPurpleRegular = TextStyle(
-    fontWeight: AppFontWeightHelper.regular,
-    color: AppColors.theMostLighPurple,
-    fontSize: 18.sp,
+  static TextStyle font24BlackeBold = GoogleFonts.roboto(
+    fontSize: 24.sp,
+    fontWeight: AppFontWeightHelper.bold,
+    color: AppColors.black,
   );
 
   static TextStyle font14BlackMeduim = GoogleFonts.poppins(
     fontSize: 14.sp,
     fontWeight: AppFontWeightHelper.meduim,
     color: AppColors.black,
-    
-  ); 
+  );
 
-    static TextStyle userNameFont = GoogleFonts.roboto(
+  static TextStyle userNameFont = GoogleFonts.roboto(
     fontSize: 20.sp,
     fontWeight: AppFontWeightHelper.meduim,
     color: AppColors.white,
-    
-  ); 
+  );
 }

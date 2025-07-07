@@ -8,6 +8,7 @@ import 'package:saturn/core/routing/routes.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/app_textstyles.dart';
 import 'package:saturn/core/widgets/app_button.dart';
+import 'package:saturn/core/widgets/back_icon_button.dart';
 import 'package:saturn/core/widgets/custom_listview_shimmer.dart';
 import 'package:saturn/core/widgets/custom_text_form_field.dart';
 import 'package:saturn/features/add%20post/logic/cubit/add_post_cubit.dart';
@@ -23,72 +24,94 @@ class AddPostPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final addPostCubit = context.read<AddPostCubit>();
     return Scaffold(
-      backgroundColor: AppColors.deepPurple,
+      appBar: AppBar(
+        toolbarHeight: 120.h,
+        backgroundColor: AppColors.white,
+
+        leading: CustomBackIconButton(
+          onPressed:
+              () => context.pushNamedAndRemoveUntile(
+                Routes.navigationPage,
+                predicate: (route) => false,
+              ),
+        ),
+      ),
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: BlocConsumer<AddPostCubit, AddPostState>(
-            listener: (context, state) {
-              listener(state, context);
-            },
-            builder: (context, state) {
-              return state is AddPostLoading
-                  ? CustomListViewShimmer()
-                  : Form(
-                    key: addPostCubit.addPostFormKey,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            verticalSpace(20),
-                            CustomTextFormField(
-                              controller: addPostCubit.descriptionController,
-                              hintText: 'descrption',
-                              hintTextStyle: AppTextstyles.font14GreyRegular
-                                  .copyWith(
-                                    color: AppColors.addPostInputTextsColor,
-                                  ),
-                            ),
-                            verticalSpace(20),
-
-                            CustomCategoryPopUpButton(),
-                            verticalSpace(20),
-                            CustomPostTypePopUpDownButton(),
-                            verticalSpace(20),
-                            ChooseImageOrVideoWidget(),
-                            verticalSpace(80),
-                            AppButton(
-                              height: 80.h,
-                              width: double.infinity,
-                              // backgroungColor: AppColors.theMostLighPurple,
-                              title: buildDoneTitleButton(
-                                State is AddImageLoading,
+          child: Container(
+               height: 720.h,
+                decoration: BoxDecoration(
+                  color: AppColors.black,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40.r),
+                    topRight: Radius.circular(40.r),
+                  ),
+                ),
+            child: BlocConsumer<AddPostCubit, AddPostState>(
+              listener: (context, state) {
+                listener(state, context);
+              },
+              builder: (context, state) {
+                return state is AddPostLoading
+                    ? CustomListViewShimmer()
+                    : Form(
+                      key: addPostCubit.addPostFormKey,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              verticalSpace(20),
+                              CustomTextFormField(
+                                controller: addPostCubit.descriptionController,
+                                hintText: 'descrption',
+                                hintTextStyle: AppTextstyles.font14GreyRegular
+                                    .copyWith(
+                                      color: AppColors.addPostInputTextsColor,
+                                    ),
                               ),
-
-                              onPressed: () {
-                                if (addPostCubit.addPostFormKey.currentState!
-                                        .validate() &&
-                                    addPostCubit.image != null &&
-                                    !addPostCubit.categoryNameController.text
-                                        .isNullOrEmpty()) {
-                                  addPostCubit.emitAddPost();
-                                } else {
-                                  AppFunctions.showCustomDialog(
-                                    context,
-                                    'error',
-                                    'fill all fields',
-                                  );
-                                }
-                              },
-                            ),
-                          ],
+                              verticalSpace(20),
+            
+                              CustomCategoryPopUpButton(),
+                              verticalSpace(20),
+                              CustomPostTypePopUpDownButton(),
+                              verticalSpace(20),
+                              ChooseImageOrVideoWidget(),
+                              verticalSpace(80),
+                              AppButton(
+                                height: 80.h,
+                                width: double.infinity,
+                                // backgroungColor: AppColors.theMostLighPurple,
+                                title: buildDoneTitleButton(
+                                  State is AddImageLoading,
+                                ),
+            
+                                onPressed: () {
+                                  if (addPostCubit.addPostFormKey.currentState!
+                                          .validate() &&
+                                      addPostCubit.image != null &&
+                                      !addPostCubit.categoryNameController.text
+                                          .isNullOrEmpty()) {
+                                    addPostCubit.emitAddPost();
+                                  } else {
+                                    AppFunctions.showCustomDialog(
+                                      context,
+                                      'error',
+                                      'fill all fields',
+                                    );
+                                  }
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-            },
+                    );
+              },
+            ),
           ),
         ),
       ),

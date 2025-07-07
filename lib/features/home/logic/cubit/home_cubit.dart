@@ -68,6 +68,7 @@ class HomeCubit extends Cubit<HomeState> {
 
       chatTileModels.add(
         ChatTileModel(
+          
           userImage: user.picName,
           receiverId:
               messages[i].senderId.toString() == userId

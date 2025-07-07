@@ -4,8 +4,8 @@ class AppColors {
   static const Color mainBlue = Color(0xff247CFF);
   static const Color grey = Color(0xff757575);
   static const Color lightGrey = Color(0xff9E9E9E);
-  static const Color black = Color(0xff242424);
-//#280E5C
+  // static const Color black = Color(0xff242424);
+  //#280E5C
   ///search hint text
   static const Color lighterGrey = Color(0xffC2C2C2);
   static const Color red = Colors.red;
@@ -15,15 +15,18 @@ class AppColors {
   static const Color textFieldBckgroundColor = Color(0xffF5F5F5);
 
   static const Color mainPurple = Color(0xff3B057A);
+  // static const Color white = Color(0xffffffff);
+
   static const Color usersProfileChatContainerColor = Color(0xff280E5C);
   //#280E5C
   static const Color lightPurple = Color(0xff3F217A);
   static const Color textformFieldColor = Color(0xffF8F7FB);
   static const Color white = Color.fromARGB(255, 255, 255, 255);
   static const Color theMostLighPurple = Color(0xffAD99D6);
-  static const Color deepPurple = Color(0xff24004E);
+  static const Color black = Color(0xff000000);
+  // static const Color deepPurple = Color(0xff24004E);
   static const Color appBarColorPurple = Color(0xff2C0258);
-//#2C0258
+  //#2C0258
   //#499DFF
   static const Color paintingCategoryColor = Color(0xff499DFF);
 
@@ -41,8 +44,8 @@ class AppColors {
   static const Color addPostInputTextsColor = Color(0xff7F909F);
   static const Color senderMessageColor = Color(0xff373E4E);
   static const Color reiceverMessageColor = Color(0xff7A8194);
-  static const Color arrowBackBakgroundColor = Color(0xffDEEDFD);
-  static const Color arrowBackColor = Color(0xff373737);
+  static const Color arrowBackBakgroundColor = Color(0xff000000);
+  static const Color arrowBackColor = Color(0xffffffff);
   //  #DEEDFD
 
   //#373737
