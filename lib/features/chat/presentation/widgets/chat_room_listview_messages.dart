@@ -36,6 +36,7 @@ class ChatRoomListviewMessages extends StatelessWidget {
         SizedBox(
           height: 100.h,
           child: Row(
+            
             children: [
               horizontalSpace(10),
                CircleAvatar(

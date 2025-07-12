@@ -20,8 +20,8 @@ void main() async {
   setUpGetIt();
   getIt<SharedPrefHelper>().init();
   // In your main app initialization
-  final notificationService = FirebaseNotifications();
-  await notificationService.initNotifications();
+  // final notificationService = FirebaseNotifications();
+//  await notificationService.initNotifications();
 
   // Save FCM token when user logs in
 

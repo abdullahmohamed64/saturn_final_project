@@ -45,8 +45,22 @@ class AddPostCubit extends Cubit<AddPostState> {
   void pickImageAndUpload() async {
     emit(AddImageLoading());
     try {
-      XFile? pickImage = await ImagePicker().pickImage(
-        source: ImageSource.camera,
+      XFile? pickImage =  await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+      );
+
+      image = File(pickImage!.path);
+      emit(AddImageSuccefully(image: image!));
+    } catch (e) {
+      emit(AddImageFailure(errMessage: e.toString()));
+    }
+  }
+
+    void pickVideoAndUpload() async {
+    emit(AddImageLoading());
+    try {
+      XFile? pickImage = await ImagePicker().pickVideo(
+        source: ImageSource.gallery,
       );
 
       image = File(pickImage!.path);

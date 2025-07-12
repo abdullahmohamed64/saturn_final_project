@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:saturn/core/theming/app_colors.dart';
 import 'package:saturn/core/theming/fontweight_helpr.dart';
 
@@ -39,7 +39,7 @@ class AppTextstyles {
     fontSize: 12.sp,
   );
   static TextStyle font14LigtGreyRegular = TextStyle(
-    fontFamily: GoogleFonts.poppins.toString(),
+    // fontFamily: GoogleFonts.poppins.toString(),
 
     fontWeight: AppFontWeightHelper.regular,
     color: AppColors.lighterGrey,
@@ -80,7 +80,7 @@ class AppTextstyles {
     fontWeight: AppFontWeightHelper.meduim,
     color: Colors.white,
     fontSize: 16.sp,
-    fontFamily: GoogleFonts.poppins().fontFamily,
+    // fontFamily: GoogleFonts.poppins().fontFamily,
   );
   static TextStyle font18BlackRegular = TextStyle(
     fontWeight: AppFontWeightHelper.regular,
@@ -101,19 +101,19 @@ class AppTextstyles {
     fontSize: 18.sp,
   );
 
-  static TextStyle font24BlackeBold = GoogleFonts.roboto(
+  static TextStyle font24BlackeBold = TextStyle(
     fontSize: 24.sp,
     fontWeight: AppFontWeightHelper.bold,
     color: AppColors.black,
   );
 
-  static TextStyle font14BlackMeduim = GoogleFonts.poppins(
+  static TextStyle font14BlackMeduim = TextStyle(
     fontSize: 14.sp,
     fontWeight: AppFontWeightHelper.meduim,
     color: AppColors.black,
   );
 
-  static TextStyle userNameFont = GoogleFonts.roboto(
+  static TextStyle userNameFont =TextStyle(
     fontSize: 20.sp,
     fontWeight: AppFontWeightHelper.meduim,
     color: AppColors.white,

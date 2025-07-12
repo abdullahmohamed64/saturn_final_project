@@ -82,6 +82,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                         SendMessageTextField(
                           chatId: chatId!,
                           senderId: currentUserId,
+                          
                         ),
                       ],
                     ),

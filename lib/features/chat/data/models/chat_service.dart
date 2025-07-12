@@ -231,40 +231,40 @@ class ChatService {
   );
 
   // Your server key from Firebase Console
-  static const String _serverKey = 'AIzaSyAMXNr4RCV1T5hd3Xlbq-BFTqkUeh1h-a8';
+  // static const String _serverKey = 'AIzaSyAMXNr4RCV1T5hd3Xlbq-BFTqkUeh1h-a8';
 
-  // Save FCM token for user
-  // Add better error handling and debugging to your ChatService
+  // // Save FCM token for user
+  // // Add better error handling and debugging to your ChatService
 
-  // Enhanced saveFCMToken with debugging
-  Future<void> saveFCMToken(String userId) async {
-    try {
-      log('🔄 Attempting to save FCM token for user: $userId');
+  // // Enhanced saveFCMToken with debugging
+  // Future<void> saveFCMToken(String userId) async {
+  //   try {
+  //     log('🔄 Attempting to save FCM token for user: $userId');
 
-      final fcmToken = await FirebaseMessaging.instance.getToken();
-      log('📱 Retrieved FCM token: ${fcmToken?.substring(0, 20)}...');
+  //     final fcmToken = await FirebaseMessaging.instance.getToken();
+  //     log('📱 Retrieved FCM token: ${fcmToken?.substring(0, 20)}...');
 
-      if (fcmToken != null) {
-        await _userTokensRef.child(userId).set({
-          AppConstants.fcmToken: fcmToken,
-          AppConstants.updatedAt: ServerValue.timestamp,
-        });
-        log('✅ FCM token saved successfully for user: $userId');
+  //     if (fcmToken != null) {
+  //       await _userTokensRef.child(userId).set({
+  //         AppConstants.fcmToken: fcmToken,
+  //         AppConstants.updatedAt: ServerValue.timestamp,
+  //       });
+  //       log('✅ FCM token saved successfully for user: $userId');
 
-        // Verify the token was saved
-        DataSnapshot verification = await _userTokensRef.child(userId).get();
-        if (verification.exists) {
-          log('✅ Token verification successful');
-        } else {
-          log('❌ Token verification failed');
-        }
-      } else {
-        log('❌ FCM token is null');
-      }
-    } catch (e) {
-      log('❌ Error saving FCM token: $e');
-    }
-  }
+  //       // Verify the token was saved
+  //       DataSnapshot verification = await _userTokensRef.child(userId).get();
+  //       if (verification.exists) {
+  //         log('✅ Token verification successful');
+  //       } else {
+  //         log('❌ Token verification failed');
+  //       }
+  //     } else {
+  //       log('❌ FCM token is null');
+  //     }
+  //   } catch (e) {
+  //     log('❌ Error saving FCM token: $e');
+  //   }
+  // }
 
   // Enhanced getFCMToken with debugging
   Future<String?> getFCMToken(String userId) async {
@@ -379,16 +379,16 @@ class ChatService {
       String displaySenderName = senderName ?? await getUserName(senderId);
 
       // Send notifications to all members except sender
-      for (String memberId in chatMembers) {
-        if (memberId != senderId.toString()) {
-          await sendPushNotification(
-            targetUserId: memberId,
-            senderName: displaySenderName,
-            messageText: text,
-            chatId: chatId,
-          );
-        }
-      }
+      // for (String memberId in chatMembers) {
+      //   if (memberId != senderId.toString()) {
+      //     await sendPushNotification(
+      //       targetUserId: memberId,
+      //       senderName: displaySenderName,
+      //       messageText: text,
+      //       chatId: chatId,
+      //     );
+      //   }
+      // }
     } catch (e) {
       print('Error in sendMessage: $e');
       rethrow;

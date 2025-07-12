@@ -31,6 +31,8 @@ class ApiConstants {
       return isEmulator
           ? 'http://10.0.2.2/saturn/' // Android Emulator
           : 'http://192.168.1.88/saturn/'; // Real Android
+          //192.168.1.88
+          //10.47.203.125
     } else if (Platform.isIOS) {
       final iosInfo = await deviceInfo.iosInfo;
       final isEmulator = !iosInfo.isPhysicalDevice;

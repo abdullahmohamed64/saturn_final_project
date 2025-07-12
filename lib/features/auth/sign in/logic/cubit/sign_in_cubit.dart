@@ -36,9 +36,9 @@ class SignInCubit extends Cubit<SignInState> {
           SharedPrefKeys.userIdKey,
           signInResponseModel.userData?.id ?? '',
         );
-        ChatService().saveFCMToken(
-          signInResponseModel.userData?.id.toString() ?? '',
-        );
+        // ChatService().saveFCMToken(
+        //   signInResponseModel.userData?.id.toString() ?? '',
+        // );
 
         emit(SignInSuccessState(signInResponseModel: signInResponseModel));
       },

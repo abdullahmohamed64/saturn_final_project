@@ -70,7 +70,8 @@ class CommentWidget extends StatelessWidget {
               horizontalSpace(10),
               // User name and date
               SizedBox(
-                width: MediaQuery.of(context).size.width * 3 / 4,
+                
+                width: MediaQuery.of(context).size.width * 2/3,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

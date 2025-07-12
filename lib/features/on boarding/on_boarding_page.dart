@@ -58,7 +58,7 @@ class OnBoardingPage extends StatelessWidget {
                           predicate: (route) => false,
                         );
                       },
-                      backgroungColor: AppColors.white,
+                      // backgroungColor: AppColors.pu,
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

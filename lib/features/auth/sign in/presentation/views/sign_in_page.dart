@@ -57,7 +57,7 @@ class SignInPage extends StatelessWidget {
                 Text('you can connect with'),
                 verticalSpace(10),
 
-                GoogleAndFacebookIcons(),
+                // GoogleAndFacebookIcons(),
                 verticalSpace(20),
                 DontHaveAnAccount(),
                 verticalSpace(30),

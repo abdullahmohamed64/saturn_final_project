@@ -61,7 +61,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         SharedPrefKeys.userIdKey,
         signUpResponseModel.userData?.id ?? '',
       );
-      ChatService().saveFCMToken(signUpResponseModel.userData?.id.toString() ?? '');
+      // ChatService().saveFCMToken(signUpResponseModel.userData?.id.toString() ?? '');
 
       emit(SignUpSuccess(signUpResponseModel: signUpResponseModel));
     }, (error) => emit(SignUpError(error)));

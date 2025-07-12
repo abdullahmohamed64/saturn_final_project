@@ -7,7 +7,8 @@ import 'package:saturn/features/home/data/models/art_model.dart';
 import 'package:saturn/features/home/presentation/widgets/custom_category_grid_view_item.dart';
 
 class CustomCategoryItemsGridView extends StatelessWidget {
-  const CustomCategoryItemsGridView({super.key, required this.arts});
+  const 
+  CustomCategoryItemsGridView({super.key, required this.arts});
   final List<PostModel> arts;
   @override
   Widget build(BuildContext context) {
