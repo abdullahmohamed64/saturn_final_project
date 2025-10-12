@@ -19,8 +19,6 @@ Save your favorite posts to view them anytime.
 
 👤 User Profiles:
 Each user has a personalized profile page showing their posts, info, and interactions.
-<img width="347" height="752" alt="لقطة شاشة 2025-10-13 002154" src="https://github.com/user-attachments/assets/6e2c1fcc-cf22-41a8-9452-b755505d7066" />
-
 <img width="347" height="752" alt="لقطة شاشة 2025-10-13 002154" src="https://github.com/user-attachments/assets/93b86b75-df5f-48e3-a207-e1dc69b78ee2" />
 <img width="333" height="715" alt="لقطة شاشة 2025-10-13 002236" src="https://github.com/user-attachments/assets/0e919004-af6e-429f-9b37-234ed7db17d9" />
 <img width="360" height="760" alt="لقطة شاشة 2025-10-13 002301" src="https://github.com/user-attachments/assets/58bfa6de-3e8f-4b17-ac51-fbbce6c38bcb" />
